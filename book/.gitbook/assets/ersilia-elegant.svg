@@ -1,0 +1,260 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 880" width="960" height="880">
+  <defs>
+    <!-- Fonts -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&amp;family=Outfit:wght@300;400;500;600&amp;display=swap');
+    </style>
+
+    <!-- Arrowheads -->
+    <marker id="ah" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L7,2.5 z" fill="#BDBDBD"/>
+    </marker>
+    <marker id="ah-purple" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L7,2.5 z" fill="#DDD4F0"/>
+    </marker>
+    <marker id="ah-rev" markerWidth="7" markerHeight="7" refX="2" refY="2.5" orient="auto-start-reverse">
+      <path d="M7,2.5 L0,0 L0,5 z" fill="#9B5DC8"/>
+    </marker>
+
+    <!-- Radial gradient for center node -->
+    <radialGradient id="hubGrad" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#FFFBF4"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </radialGradient>
+
+    <!-- Drop shadow -->
+    <filter id="cardshadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#00000009"/>
+    </filter>
+  </defs>
+
+  <!-- ═══════════════════════════════════════ BACKGROUND ═══ -->
+  <rect width="960" height="880" fill="#ffffff"/>
+
+  <!-- ═══════════════════════════════════════ TITLE ═══ -->
+  <text x="480" y="44" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, serif"
+        font-size="27" font-weight="300" letter-spacing="1" fill="#0f0f0f">Ersilia&#x202F;</text>
+  <text x="480" y="44" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, serif"
+        font-size="27" font-weight="300" letter-spacing="1" fill="#0f0f0f">
+    <tspan fill="#0f0f0f">Ersilia </tspan><tspan font-style="italic" fill="#C8922A">Model Hub</tspan><tspan fill="#0f0f0f"> Ecosystem</tspan>
+  </text>
+  <text x="480" y="62" text-anchor="middle"
+        font-family="'Outfit', sans-serif"
+        font-size="9.5" font-weight="400" letter-spacing="3.5" fill="#9E9E9E">COMPONENT ARCHITECTURE OVERVIEW</text>
+
+  <!-- ═══════════════════════════════════════ CONNECTOR LINES ═══ -->
+  <!-- All lines drawn BEFORE cards so they appear underneath -->
+
+  <!-- Hub → Storage (straight up) -->
+  <line x1="480" y1="360" x2="480" y2="195" stroke="#BDBDBD" stroke-width="1" stroke-dasharray="6,4" marker-end="url(#ah)"/>
+
+  <!-- Hub → Catalog (curved top-left) -->
+  <path d="M 406,390 C 340,390 258,158 230,158" fill="none" stroke="#BDBDBD" stroke-width="1" stroke-dasharray="6,4" marker-end="url(#ah)"/>
+
+  <!-- Hub → eos-template (curved top-right) -->
+  <path d="M 554,390 C 620,390 702,158 730,158" fill="none" stroke="#BDBDBD" stroke-width="1" stroke-dasharray="6,4" marker-end="url(#ah)"/>
+
+  <!-- Hub → Online Inference (straight left) -->
+  <line x1="406" y1="430" x2="230" y2="430" stroke="#BDBDBD" stroke-width="1" stroke-dasharray="6,4" marker-end="url(#ah)"/>
+
+  <!-- Hub → Maintenance (straight right) -->
+  <line x1="554" y1="430" x2="730" y2="430" stroke="#BDBDBD" stroke-width="1" stroke-dasharray="6,4" marker-end="url(#ah)"/>
+
+  <!-- Hub → ersilia-pack (curved bottom-left) -->
+  <path d="M 406,468 C 340,468 258,572 230,572" fill="none" stroke="#BDBDBD" stroke-width="1" stroke-dasharray="6,4" marker-end="url(#ah)"/>
+
+  <!-- Hub → Isaura (straight down) -->
+  <line x1="480" y1="500" x2="480" y2="660" stroke="#BDBDBD" stroke-width="1" stroke-dasharray="6,4" marker-end="url(#ah)"/>
+
+  <!-- Hub → EOSVC (curved bottom-right) -->
+  <path d="M 554,468 C 620,468 702,600 730,600" fill="none" stroke="#BDBDBD" stroke-width="1" stroke-dasharray="6,4" marker-end="url(#ah)"/>
+
+  <!-- Splunk → Isaura (horizontal) -->
+  <line x1="230" y1="740" x2="326" y2="720" stroke="#DDD4F0" stroke-width="1" stroke-dasharray="6,4" marker-end="url(#ah-purple)"/>
+
+  <!-- ═══════════════════════════════════════ CENTER NODE ═══ -->
+  <!-- outer ring -->
+  <circle cx="480" cy="430" r="74" fill="none" stroke="#E8E5E0" stroke-width="1"/>
+  <!-- inner ring with fill -->
+  <circle cx="480" cy="430" r="64" fill="url(#hubGrad)" stroke="#0f0f0f" stroke-width="1"/>
+  <!-- wordmark -->
+  <text x="480" y="420" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, serif"
+        font-size="20" font-weight="600" letter-spacing="0.3" fill="#0f0f0f">Ersilia</text>
+  <text x="480" y="437" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, serif"
+        font-size="13.5" font-weight="300" letter-spacing="1.2" fill="#7A7672">Model Hub</text>
+  <!-- amber dot -->
+  <circle cx="480" cy="451" r="2.5" fill="#C8922A"/>
+
+  <!-- ═══════════════════════════════════════ HELPER: card drawing ═══ -->
+  <!--
+    Card template: rect + top tag strip (20px) + dot + tag text + name + desc lines
+    Colors:
+      webapp  tag-bg #FEF5E7  tag-fg #7C4A03  dot #C8922A
+      repo    tag-bg #EEF4FB  tag-fg #1A3A5C  dot #3B7DD8
+      infra   tag-bg #EEF7EC  tag-fg #2D4A22  dot #4CA64C
+  -->
+
+  <!-- ═══════ MODEL STORAGE (top-centre) x=337 y=100 w=286 h=75 ═══ -->
+  <g filter="url(#cardshadow)">
+    <rect x="337" y="120" width="286" height="75" rx="4" fill="#ffffff" stroke="#E8E5E0" stroke-width="1"/>
+    <!-- header strip -->
+    <rect x="337" y="120" width="286" height="22" rx="4" fill="#FAFAFA"/>
+    <rect x="337" y="132" width="286" height="10" fill="#FAFAFA"/>
+    <line x1="337" y1="142" x2="623" y2="142" stroke="#E8E5E0" stroke-width="1"/>
+    <!-- dot + label -->
+    <circle cx="351" cy="131" r="2.5" fill="#9B5DC8"/>
+    <text x="359" y="134.5" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="500" letter-spacing="2" fill="#7A7672">MODEL STORAGE</text>
+    <!-- three sub-pills -->
+    <!-- GitHub -->
+    <rect x="348" y="148" width="72" height="36" rx="3" fill="#ffffff" stroke="#E8E5E0" stroke-width="1"/>
+    <text x="384" y="162" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" font-weight="500" fill="#0f0f0f">GitHub</text>
+    <text x="384" y="175" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="7.5" fill="#9E9E9E">Code &amp; repos</text>
+    <!-- DockerHub -->
+    <rect x="432" y="148" width="72" height="36" rx="3" fill="#ffffff" stroke="#E8E5E0" stroke-width="1"/>
+    <text x="468" y="162" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" font-weight="500" fill="#0f0f0f">DockerHub</text>
+    <text x="468" y="175" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="7.5" fill="#9E9E9E">Containers</text>
+    <!-- S3 -->
+    <rect x="516" y="148" width="72" height="36" rx="3" fill="#ffffff" stroke="#E8E5E0" stroke-width="1"/>
+    <text x="552" y="162" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" font-weight="500" fill="#0f0f0f">Amazon S3</text>
+    <text x="552" y="175" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="7.5" fill="#9E9E9E">Large files</text>
+  </g>
+
+  <!-- ═══════ CATALOG (top-left) x=52 y=120 w=178 h=88 ═══ -->
+  <g filter="url(#cardshadow)">
+    <rect x="52" y="120" width="178" height="88" rx="4" fill="#ffffff" stroke="#E8E5E0" stroke-width="1"/>
+    <rect x="52" y="120" width="178" height="22" rx="4" fill="#FEF5E7"/>
+    <rect x="52" y="132" width="178" height="10" fill="#FEF5E7"/>
+    <line x1="52" y1="142" x2="230" y2="142" stroke="#E8E5E0" stroke-width="1"/>
+    <circle cx="66" cy="131" r="2.5" fill="#C8922A"/>
+    <text x="74" y="134.5" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="500" letter-spacing="2" fill="#7C4A03">WEB APP</text>
+    <text x="141" y="160" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="600" fill="#0f0f0f">Catalog</text>
+    <text x="141" y="175" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">Search &amp; browse all models</text>
+    <text x="141" y="188" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">across storage backends</text>
+  </g>
+
+  <!-- ═══════ EOS-TEMPLATE (top-right) x=730 y=120 w=178 h=88 ═══ -->
+  <g filter="url(#cardshadow)">
+    <rect x="730" y="120" width="178" height="88" rx="4" fill="#ffffff" stroke="#E8E5E0" stroke-width="1"/>
+    <rect x="730" y="120" width="178" height="22" rx="4" fill="#EEF4FB"/>
+    <rect x="730" y="132" width="178" height="10" fill="#EEF4FB"/>
+    <line x1="730" y1="142" x2="908" y2="142" stroke="#E8E5E0" stroke-width="1"/>
+    <circle cx="744" cy="131" r="2.5" fill="#3B7DD8"/>
+    <text x="752" y="134.5" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="500" letter-spacing="2" fill="#1A3A5C">SCAFFOLDING REPO</text>
+    <text x="819" y="160" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="600" fill="#0f0f0f">eos-template</text>
+    <text x="819" y="175" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">Bootstraps new model repos</text>
+    <text x="819" y="188" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">via GitHub issue workflow</text>
+  </g>
+
+  <!-- ═══════ ONLINE INFERENCE (left) x=52 y=390 w=178 h=88 ═══ -->
+  <g filter="url(#cardshadow)">
+    <rect x="52" y="390" width="178" height="88" rx="4" fill="#ffffff" stroke="#E8E5E0" stroke-width="1"/>
+    <rect x="52" y="390" width="178" height="22" rx="4" fill="#FEF5E7"/>
+    <rect x="52" y="402" width="178" height="10" fill="#FEF5E7"/>
+    <line x1="52" y1="412" x2="230" y2="412" stroke="#E8E5E0" stroke-width="1"/>
+    <circle cx="66" cy="401" r="2.5" fill="#C8922A"/>
+    <text x="74" y="404.5" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="500" letter-spacing="2" fill="#7C4A03">WEB APP</text>
+    <text x="141" y="430" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="600" fill="#0f0f0f">Online Inference</text>
+    <text x="141" y="445" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">Run models in the browser</text>
+    <text x="141" y="458" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">&amp; download predictions</text>
+  </g>
+
+  <!-- ═══════ MAINTENANCE (right) x=730 y=390 w=178 h=88 ═══ -->
+  <g filter="url(#cardshadow)">
+    <rect x="730" y="390" width="178" height="88" rx="4" fill="#ffffff" stroke="#E8E5E0" stroke-width="1"/>
+    <rect x="730" y="390" width="178" height="22" rx="4" fill="#EEF4FB"/>
+    <rect x="730" y="402" width="178" height="10" fill="#EEF4FB"/>
+    <line x1="730" y1="412" x2="908" y2="412" stroke="#E8E5E0" stroke-width="1"/>
+    <circle cx="744" cy="401" r="2.5" fill="#3B7DD8"/>
+    <text x="752" y="404.5" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="500" letter-spacing="2" fill="#1A3A5C">CI / TESTING</text>
+    <text x="819" y="430" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="600" fill="#0f0f0f">Maintenance</text>
+    <text x="819" y="445" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">Automated routine tests</text>
+    <text x="819" y="458" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">across all registered models</text>
+  </g>
+
+  <!-- ═══════ ERSILIA-PACK (bottom-left) x=52 y=530 w=178 h=88 ═══ -->
+  <g filter="url(#cardshadow)">
+    <rect x="52" y="530" width="178" height="88" rx="4" fill="#ffffff" stroke="#E8E5E0" stroke-width="1"/>
+    <rect x="52" y="530" width="178" height="22" rx="4" fill="#EEF4FB"/>
+    <rect x="52" y="542" width="178" height="10" fill="#EEF4FB"/>
+    <line x1="52" y1="552" x2="230" y2="552" stroke="#E8E5E0" stroke-width="1"/>
+    <circle cx="66" cy="541" r="2.5" fill="#3B7DD8"/>
+    <text x="74" y="544.5" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="500" letter-spacing="2" fill="#1A3A5C">PACKAGING TOOL</text>
+    <text x="141" y="570" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="600" fill="#0f0f0f">ersilia-pack</text>
+    <text x="141" y="585" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">Packages models into</text>
+    <text x="141" y="598" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">self-contained REST APIs</text>
+  </g>
+
+  <!-- ═══════ EOSVC (bottom-right) x=730 y=560 w=178 h=98 ═══ -->
+  <g filter="url(#cardshadow)">
+    <rect x="730" y="560" width="178" height="98" rx="4" fill="#ffffff" stroke="#E8E5E0" stroke-width="1"/>
+    <rect x="730" y="560" width="178" height="22" rx="4" fill="#EEF7EC"/>
+    <rect x="730" y="572" width="178" height="10" fill="#EEF7EC"/>
+    <line x1="730" y1="582" x2="908" y2="582" stroke="#E8E5E0" stroke-width="1"/>
+    <circle cx="744" cy="571" r="2.5" fill="#4CA64C"/>
+    <text x="752" y="574.5" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="500" letter-spacing="2" fill="#2D4A22">FILE MANAGER</text>
+    <text x="819" y="600" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="600" fill="#0f0f0f">EOSVC</text>
+    <text x="819" y="615" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">Version control for large files</text>
+    <text x="819" y="628" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">synced to S3, code on GitHub</text>
+    <text x="819" y="641" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672"> </text>
+  </g>
+
+  <!-- ═══════ SPLUNK (bottom-left lower) x=52 y=690 w=178 h=88 ═══ -->
+  <g filter="url(#cardshadow)">
+    <rect x="52" y="690" width="178" height="88" rx="4" fill="#ffffff" stroke="#E8E5E0" stroke-width="1"/>
+    <rect x="52" y="690" width="178" height="22" rx="4" fill="#FEF5E7"/>
+    <rect x="52" y="702" width="178" height="10" fill="#FEF5E7"/>
+    <line x1="52" y1="712" x2="230" y2="712" stroke="#E8E5E0" stroke-width="1"/>
+    <circle cx="66" cy="701" r="2.5" fill="#C8922A"/>
+    <text x="74" y="704.5" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="500" letter-spacing="2" fill="#7C4A03">WEB APP</text>
+    <text x="141" y="730" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="16" font-weight="600" fill="#0f0f0f">Splunk Dashboard</text>
+    <text x="141" y="745" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">Monitors health &amp; usage</text>
+    <text x="141" y="758" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">of Isaura's cloud store</text>
+  </g>
+
+  <!-- ═══════ ISAURA (bottom-centre) x=326 y=660 w=308 h=118 ═══ -->
+  <g filter="url(#cardshadow)">
+    <rect x="326" y="660" width="308" height="118" rx="4" fill="#ffffff" stroke="#DDD4F0" stroke-width="1"/>
+    <rect x="326" y="660" width="308" height="22" rx="4" fill="#F7F3FD"/>
+    <rect x="326" y="672" width="308" height="10" fill="#F7F3FD"/>
+    <line x1="326" y1="682" x2="634" y2="682" stroke="#DDD4F0" stroke-width="1"/>
+    <circle cx="340" cy="671" r="2.5" fill="#9B5DC8"/>
+    <text x="348" y="674.5" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="500" letter-spacing="2" fill="#6B4A9B">PRECALCULATION STORE</text>
+    <!-- Isaura name -->
+    <text x="480" y="702" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="17" font-weight="600" fill="#0f0f0f">Isaura</text>
+    <text x="480" y="716" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">Cache &amp; share model outputs across the community</text>
+    <!-- User Store box -->
+    <rect x="336" y="723" width="120" height="46" rx="4" fill="#F7F3FD" stroke="#DDD4F0" stroke-width="1"/>
+    <text x="396" y="740" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" font-weight="500" fill="#6B4A9B">User Store</text>
+    <text x="396" y="753" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="8" fill="#9E9E9E">Local cache on</text>
+    <text x="396" y="763" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="8" fill="#9E9E9E">your machine</text>
+    <!-- bidirectional arrow -->
+    <line x1="458" y1="746" x2="504" y2="746" stroke="#9B5DC8" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#ah-rev)" marker-start="url(#ah-rev)"/>
+    <!-- Cloud Store box -->
+    <rect x="504" y="723" width="120" height="46" rx="4" fill="#F7F3FD" stroke="#DDD4F0" stroke-width="1"/>
+    <text x="564" y="740" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="9" font-weight="500" fill="#6B4A9B">Cloud Store</text>
+    <text x="564" y="753" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="8" fill="#9E9E9E">Shared server;</text>
+    <text x="564" y="763" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="8" fill="#9E9E9E">community uploads</text>
+  </g>
+
+  <!-- ═══════════════════════════════════════ LEGEND ═══ -->
+  <rect x="52" y="800" width="856" height="36" rx="4" fill="#FAFAFA" stroke="#E8E5E0" stroke-width="1"/>
+  <!-- Web App -->
+  <circle cx="120" cy="818" r="3.5" fill="#C8922A"/>
+  <text x="129" y="821.5" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">Web Application</text>
+  <!-- Repo -->
+  <circle cx="248" cy="818" r="3.5" fill="#3B7DD8"/>
+  <text x="257" y="821.5" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">Repository / Tool</text>
+  <!-- Infra -->
+  <circle cx="376" cy="818" r="3.5" fill="#4CA64C"/>
+  <text x="385" y="821.5" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">Infrastructure</text>
+  <!-- Store -->
+  <circle cx="484" cy="818" r="3.5" fill="#9B5DC8"/>
+  <text x="493" y="821.5" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">Storage / Store</text>
+  <!-- Line -->
+  <line x1="590" y1="818" x2="612" y2="818" stroke="#BDBDBD" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="618" y="821.5" font-family="'Outfit', sans-serif" font-size="9" fill="#7A7672">Data / Control Flow</text>
+</svg>

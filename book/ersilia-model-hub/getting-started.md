@@ -1,0 +1,10 @@
+# Getting started
+
+The Ersilia Model Hub is a unified open source platform to ship ready-to-use AI/ML models for drug discovery in infectious diseases. Please go to the following sections to understand how to use and contribute to the Hub!
+
+* [Online inference](online-inference.md): select the model of your choice and run predictions without any need for coding skills! (for end users without computational background)
+* [Local inference](local-inference.md): install Ersilia locally, download the models and run predictions in your system. (for end users with basic knowledge of bash and python)
+* [Model contribution](model-contribution/): incorporate models from the scientific literature in the Hub. (for computational biologists and research software engineers wishing to leverage Ersilia as a dissemination platform for their models)
+* [Developers](developer-docs/): support the development of the Hub. (for software engineers and DevOps engineers)
+* [Model Hub Maintenance](model-hub-maintenance.md): Overview of the infrastructure and processes used to maintain the Ersilia Model Hub. Includes automated workflows, public reports, and maintenance guidelines for monitoring model health and resolving issues (this repository is aimed at developers).
+
