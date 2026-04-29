@@ -6,7 +6,7 @@ description: >-
 
 # Ersilia's ecosystem
 
-Ersilia develops and implements AI/ML tools for infectious disease research. This documentation will be useful if you are...
+The Ersilia Open Source Initiative develops and implements AI/ML tools for infectious disease research. This documentation will be useful if you are...
 
 * A **chemist or biologist** looking to use some of our AI/ML platforms for your projects.
 * An open-source **developer** aiming to contribute to our tools.
