@@ -4,7 +4,7 @@ description: Privacy notice for the Ersilia Open source Initiative
 
 # Ersilia privacy notice
 
-The Ersilia Open Source Initiative (Ersilia) is a non-profit organisation incorporated as a Foundation in Spain (G44657393). This privacy policy explains how our organisation uses the personal data we collect from our users and collaborators.
+The Ersilia Open Source Initiative (Ersilia) is a non-profit organization incorporated as a Foundation in Spain (G44657393). This privacy policy explains how our organization uses the personal data we collect from our users and collaborators.
 
 We adhere to the Regulation (EU) 2016/679 (General Data Protection Regulation) in the current version of the OJ L 119, 04.05.2016; cor. OJ L 127, 23.5.2018.
 

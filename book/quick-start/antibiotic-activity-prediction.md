@@ -21,7 +21,7 @@ ersilia catalog
 ```
 
 {% hint style="info" %}
-The Ersilia Model Hub is growing continuously to fulfil the needs of the community. Please do not hesitate to request new models! Just reach out to us, we will be happy to assist: [hello@ersilia.io](mailto:hello@ersilia.io)
+The Ersilia Model Hub is growing continuously to fulfill the needs of the community. Please do not hesitate to request new models! Just reach out to us, we will be happy to assist: [hello@ersilia.io](mailto:hello@ersilia.io)
 {% endhint %}
 
 In the Ersilia Model Hub, the antibiotic activity prediction model has the **identifier** `eos4e40`  and the **slug** `chemprop-antibiotic`. You can use either one to refer to this model all of the commands below. For example, you can get more information through the model card:
@@ -105,7 +105,7 @@ The terminal command now becomes much cleaner:
 ersilia api predict -i input.csv
 ```
 
-By default, predictions are returned in the standard **output** of the terminal. We favour the widely used **JSON format** because it offers great flexibility and interoperability. However, many of the model APIs return an output that can be naturally expressed in tabular format, for example, in a **CSV file**. If this is what you want, simply specify an output file with the `.csv` extension.
+By default, predictions are returned in the standard **output** of the terminal. We favor the widely used **JSON format** because it offers great flexibility and interoperability. However, many of the model APIs return an output that can be naturally expressed in tabular format, for example, in a **CSV file**. If this is what you want, simply specify an output file with the `.csv` extension.
 
 ```bash
 # save output in a CSV file

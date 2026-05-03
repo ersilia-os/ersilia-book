@@ -32,7 +32,7 @@ Ersilia can only accept interns that have been approved by Outreachy and that co
 
 The contribution period runs from <mark style="color:blue;">March 4th</mark> to <mark style="color:blue;">April 2nd</mark>. During this time, interested applicants are welcome to contribute to Ersilia's project following the guidelines in this document.
 
-The contribution period is organised in 4 weeks. Each week has a set of specific goals defined, with the objective that mentors can evaluate the intern's experience, interest in the community and team-building work. Once the week's objectives have been met, please focus on:
+The contribution period is organized in 4 weeks. Each week has a set of specific goals defined, with the objective that mentors can evaluate the intern's experience, interest in the community and team-building work. Once the week's objectives have been met, please focus on:
 
 * Improving your contribution (there is always more publications to read, better bug reports to be written etc)
 * Helping out other contributors (we really value group work)
@@ -109,7 +109,7 @@ A common mistake is to forget the installation of Git-LFS, which is required for
 ersilia --help #this should output the command options for ersilia
 ```
 
-2. Once we are sure ersilia is recognised in the CLI, we will test a very simple model
+2. Once we are sure ersilia is recognized in the CLI, we will test a very simple model
 
 ```
 ersilia -v fetch eos3b5e
@@ -189,7 +189,7 @@ Write, in a thread in your issue, your motivation for joining Outreachy and, in 
 If what you have seen and learnt in this first week is appealing and you want to continue working with us, open an application to Ersilia through the Outreachy website, and link the issue you have opened to track your contributions.
 
 {% hint style="warning" %}
-We will not be providing further feedback on your task if you do not record the first contribution on the Outreachy website. This is to ensure we focus our limited capacity for support of those candidates who want to make a final application to the organisation
+We will not be providing further feedback on your task if you do not record the first contribution on the Outreachy website. This is to ensure we focus our limited capacity for support of those candidates who want to make a final application to the organization
 {% endhint %}
 
 ### 📆 WEEK 2: Get Familiar with Machine Learning for Chemistry

@@ -5,7 +5,7 @@ description: >-
   to track model health, testing and maintenance actions.
 ---
 
-# Model Hub Maintenance
+# Model Hub maintenance
 
 ## 1. Overview
 
@@ -31,7 +31,7 @@ The workflows produce a set of public reports that provide structured and up-to-
 | [Weekly model testing report](https://github.com/ersilia-os/ersilia-maintenance/blob/main/reports/weekly_model_testing.md) | Detailed results of the latest model testing cycle                             | Weekly           | Detect failing or unstable models                   |
 | [Monthly health report](https://github.com/ersilia-os/ersilia-maintenance/blob/main/reports/monthly_health_report.md)      | Aggregated ecosystem-level analytics and historical trends                     | Monthly          | Monitor long-term health and maintenance priorities |
 
-## 3. Maintenance Guidelines
+## 3. Maintenance guidelines
 
 This section describes how the Ersilia team uses the maintenance repository to monitor model health, coordinate maintenance work, and resolve model-related issues in a timely and transparent manner.
 

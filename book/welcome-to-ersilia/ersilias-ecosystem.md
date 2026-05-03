@@ -13,7 +13,7 @@ The Ersilia Open Source Initiative develops and implements AI/ML tools for infec
 * A **data scientist** developing AI/ML tools and wishing to incorporate them in our platform.
 * An Ersilia **enthusiast** looking forward to learning more about our work.
 
-All of our work is openly available through our [GitHub organisation page](https://github.com/ersilia-os). Below we will summarise the main repositories and where to find the most important software tools. For a complete catalog of all our organisation repositories, please see [this table](https://airtable.com/app1iYv78K6xbHkmL/shrdboxOgKjy3vipl).
+All of our work is openly available through our [GitHub organization page](https://github.com/ersilia-os). Below we will summarize the main repositories and where to find the most important software tools. For a complete catalog of all our organization repositories, please see [this table](https://airtable.com/app1iYv78K6xbHkmL/shrdboxOgKjy3vipl).
 
 ## Tool repositories
 
@@ -34,7 +34,7 @@ The repositories linked to the Ersilia Model Hub are:
 * [ersilia-self-service](https://github.com/ersilia-os/ersilia-self-service): GitHub Action-based online inference for all models. Data and results are available publicly through GitHub issues. Please do not submit IP-sensitive data.
 * [ersilia-assistant](https://github.com/ersilia-os/ersilia-assistant): LLM-based interface to easily interact with the Ersilia Model Hub.
 * [ersilia-pack](https://github.com/ersilia-os/ersilia-pack): Model packaging for serving through FastAPI.
-* [ersilia-maintained-inputs](https://github.com/ersilia-os/ersilia-maintained-inputs): Standardised inputs for model testing.
+* [ersilia-maintained-inputs](https://github.com/ersilia-os/ersilia-maintained-inputs): Standardized inputs for model testing.
 * [model-inference-pipeline](https://github.com/ersilia-os/model-inference-pipeline): Pipeline to store model inference results in AWS, creating an open database of pre-calculations (cache).
 * [eos repositories](https://github.com/ersilia-os/eos4e40): repositories labelled with an Ersilia (eos) identifier contain individual models. A full list of models, their identifiers and relevant information is available in [this table](https://airtable.com/appgxpCzCDNyGjWc8/shrNc3sTtTA3QeEZu).
 

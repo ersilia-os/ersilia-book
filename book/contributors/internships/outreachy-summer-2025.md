@@ -32,7 +32,7 @@ Ersilia can only accept interns that have been approved by Outreachy and that co
 
 The contribution period runs from March 17th to <mark style="color:blue;">April 15th</mark>. During this time, interested applicants are welcome to contribute to Ersilia's project following the guidelines in this document.
 
-The contribution period is organised in 4 weeks. Each week has a set of specific goals defined, with the objective that mentors can evaluate the intern's experience, interest in the community and team-building work. Once the week's objectives have been met, please focus on:
+The contribution period is organized in 4 weeks. Each week has a set of specific goals defined, with the objective that mentors can evaluate the intern's experience, interest in the community and team-building work. Once the week's objectives have been met, please focus on:
 
 * Improving your contribution (there is always more publications to read, better bug reports to be written etc)
 * Helping out other contributors (we really value group work)
@@ -97,7 +97,7 @@ A common mistake is to forget the installation of Git-LFS, which is required for
 ersilia --help #this should output the command options for ersilia
 ```
 
-2. Once we are sure ersilia is recognised in the CLI, we will test a very simple model
+2. Once we are sure ersilia is recognized in the CLI, we will test a very simple model
 
 ```
 ersilia -v fetch eos3b5e
@@ -178,17 +178,17 @@ If what you have seen and learnt in this first week is appealing and you want to
 We will not be assigning issues or reviewing code contributions of those applicants who have not received the OK to continue working on their application after completing the first week's assignments
 {% endhint %}
 
-### 📆 WEEKS 2 and 3: Apply Ersilia Models to a modelling task
+### 📆 WEEKS 2 and 3: Apply Ersilia Models to a modeling task
 
-Once you have successfully completed all the entry-level tasks and received the OK from your mentors to continue contributing, go ahead to the [outreachy-contributions](https://github.com/ersilia-os/outreachy-contributions) repository to start working! Please make sure to follow this documentation step by step to succeed in this modelling exercise. We have tried to indicate what are we looking for in each step:
+Once you have successfully completed all the entry-level tasks and received the OK from your mentors to continue contributing, go ahead to the [outreachy-contributions](https://github.com/ersilia-os/outreachy-contributions) repository to start working! Please make sure to follow this documentation step by step to succeed in this modeling exercise. We have tried to indicate what are we looking for in each step:
 
 #### 1. Download a dataset of interest
 
-There are plenty of datasets for drug discovery exercises. Here, we suggest using a dataset from the [Therapeutics Data Commons](https://tdcommons.ai/), which are already pre-prepared for ML modelling. When choosing your dataset, consider:
+There are plenty of datasets for drug discovery exercises. Here, we suggest using a dataset from the [Therapeutics Data Commons](https://tdcommons.ai/), which are already pre-prepared for ML modeling. When choosing your dataset, consider:
 
 * Classifiers are more easily modelled than regressors. We strongly suggest selecting a classifier problem
 * Understanding the background data. Could I follow the original data collection protocol? Do I understand what the endpoint is, and could I explain it in my own words?
-* My computational capacity. Large datasets will occupy more space once data is featurised.
+* My computational capacity. Large datasets will occupy more space once data is featurized.
 
 Once you are sure of which dataset you will model, download it using the python package. Keep all code in notebooks or scripts and save the data in the /data folder.&#x20;
 
@@ -201,12 +201,12 @@ At this point, you should start preparing the documentation for your project. Ho
 * Documentation
 * Working with GitHub: forks, issues and more
 
-#### 2. Featurise the data
+#### 2. Featurize the data
 
-The first step in ML modelling is to featurise the data (i.e convert the molecules to comprehensive vectorial representations). There are several ways of doing so. In this project, we ask you to browse the Ersilia Model Hub and select a featuriser from the models available in the Hub:
+The first step in ML modeling is to featurize the data (i.e convert the molecules to comprehensive vectorial representations). There are several ways of doing so. In this project, we ask you to browse the Ersilia Model Hub and select a featurizer from the models available in the Hub:
 
 * Look at the "Representation" labelled models in [Ersilia](https://ersilia.io/model-hub)
-* Select one featuriser and explain why
+* Select one featurizer and explain why
 
 Again, this section should also be reproducible by following the instructions on the README file and the code available.
 
@@ -218,7 +218,7 @@ Again, this section should also be reproducible by following the instructions on
 
 #### 3. Build an ML model
 
-Using the selected datasets and the featuriser, build a simple ML model. We suggest using one of the following packages:
+Using the selected datasets and the featurizer, build a simple ML model. We suggest using one of the following packages:
 
 * XGBoost
 * FLAML
@@ -235,7 +235,7 @@ Again, use scripts or python notebooks and make sure all steps are reproducible.
 
 #### 4. Prepare your code for review
 
-Once you are happy with your modelling exercise, it is time to evaluate it critically:
+Once you are happy with your modeling exercise, it is time to evaluate it critically:
 
 1. Is my documentation thorough? (think as if someone was seeing this code for the first time, could they be able to reproduce it?
 2. Is the evaluation of my model good enough? Could I do something to improve it?
@@ -250,7 +250,7 @@ If all the above checks, update your issue to ask for review and feedback!
 
 There are always ways to improve our work. In this particular project, you might want to:
 
-* Explore other featurisers
+* Explore other featurizers
 * Try different ML architectures
 * Try the model on public data (for example from ChEMBL)
 

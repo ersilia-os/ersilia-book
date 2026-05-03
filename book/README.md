@@ -6,9 +6,9 @@ description: >-
 
 # The Ersilia Open Source Initiative
 
-## The organisation
+## The organization
 
-The [Ersilia Open Source Initiative](https://ersilia.io) (Ersilia) is a tech non-profit organisation incorporated as a Foundation in Catalunya, Spain. We are located in [Norrsken House](https://www.norrsken.org/houses/barcelona), Barcelona.
+The [Ersilia Open Source Initiative](https://ersilia.io) (Ersilia) is a tech non-profit organization incorporated as a Foundation in Catalunya, Spain. We are located in [Norrsken House](https://www.norrsken.org/houses/barcelona), Barcelona.
 
 ### Mission
 
@@ -21,8 +21,8 @@ A world with egalitarian access to healthcare.
 ### Goals
 
 1. **To facilitate adoption of artificial intelligence and machine learning (AI/ML) models for biomedical research**. We bridge the gap between data scientists and experimental researchers, making AI/ML expertise available to scientists worldwide.&#x20;
-2. **To support research into infectious and neglected diseases in LMICs**. We focus on implementing our tools locally in institutions across the global south. We prioritise projects where the scientific leadership is within domestic institutions and local researchers.
-3. **To build capacity in data science and AI/ML**. Together with our partners, we organise workshops and seminars for experimental scientists.
+2. **To support research into infectious and neglected diseases in LMICs**. We focus on implementing our tools locally in institutions across the global south. We prioritize projects where the scientific leadership is within domestic institutions and local researchers.
+3. **To build capacity in data science and AI/ML**. Together with our partners, we organize workshops and seminars for experimental scientists.
 4. **To advocate for open science**. We firmly believe that an open science framework is the key to establishing sustainable collaborations. We strive to keep openness at all levels, including scientific findings, strategic decision-making, and funding.
 
 ## Governance
@@ -40,7 +40,7 @@ In addition, Ersilia is supported by a **Board of Advisors**:
 
 ## How are we funded
 
-Ersilia is funded by a combination of research grants from public entities (including the Spanish Government, the NIH, and the European Union), private foundations (including Schmidt Sciences, Mozilla Foundation and Bill and Melinda Gates Foundation) and donations from philantrophic bodies and corporate contributors (including Splunk, HPE, BlackRock and UPS). A full disclosure of our funding sources can be found in our [website](https://ersilia.io/supporters).
+Ersilia is funded by a combination of research grants from public entities (including the Spanish Government, the NIH, and the European Union), private foundations (including Schmidt Sciences, Mozilla Foundation and Bill and Melinda Gates Foundation) and donations from philantrophic bodies and corporate contributors (including Splunk, HPE, BlackRock and UPS). A full disclosure of our funding sources can be found in our [website](https://ersilia.io/about).
 
 ## Learn more about us
 

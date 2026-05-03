@@ -5,7 +5,7 @@ description: This page describes Ersilia's open standards and best practices pri
 # Open standards and best practices
 
 {% hint style="info" %}
-Ersilia is [recognised as a Digital Public Good](https://medium.com/ersiliaio/ersilia-becomes-a-digital-public-good-64fb2e8bb72c) by the Digital Public Goods Alliance.
+Ersilia is [recognized as a Digital Public Good](https://medium.com/ersiliaio/ersilia-becomes-a-digital-public-good-64fb2e8bb72c) by the Digital Public Goods Alliance.
 {% endhint %}
 
 ## Open standards

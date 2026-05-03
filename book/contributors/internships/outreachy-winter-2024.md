@@ -32,7 +32,7 @@ Ersilia can only accept interns that have been approved by Outreachy and that co
 
 The contribution period runs from <mark style="color:blue;">October 1st</mark> to <mark style="color:blue;">October 29th</mark>. During this time, interested applicants are welcome to contribute to Ersilia's project following the guidelines in this document.
 
-The contribution period is organised in 4 weeks. Each week has a set of specific goals defined, with the objective that mentors can evaluate the intern's experience, interest in the community and team-building work. Once the week's objectives have been met, please focus on:
+The contribution period is organized in 4 weeks. Each week has a set of specific goals defined, with the objective that mentors can evaluate the intern's experience, interest in the community and team-building work. Once the week's objectives have been met, please focus on:
 
 * Improving your contribution (there is always more publications to read, better bug reports to be written etc)
 * Helping out other contributors (we really value group work)
@@ -97,7 +97,7 @@ A common mistake is to forget the installation of Git-LFS, which is required for
 ersilia --help #this should output the command options for ersilia
 ```
 
-2. Once we are sure ersilia is recognised in the CLI, we will test a very simple model
+2. Once we are sure ersilia is recognized in the CLI, we will test a very simple model
 
 ```
 ersilia -v fetch eos3b5e

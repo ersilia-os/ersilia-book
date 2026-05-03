@@ -44,7 +44,7 @@ The model is downloaded (not fetched) from its online storage in S3 or Github. B
 ersilia test model_id --inspect [OPT?]
 ```
 
-<table><thead><tr><th width="220">Flag</th><th width="129">Default</th><th>Description</th></tr></thead><tbody><tr><td>--from_github</td><td>True</td><td>Downloads the model from its repository on the ersilia-os organisation.</td></tr><tr><td>--from_s3</td><td>False</td><td>Downloads the model from its storage on the cloud (S3 Bucket)</td></tr><tr><td>--from_dir [path/to/dir]</td><td>False</td><td>Uses a model stored locally on the indicated path.</td></tr><tr><td>--from_dockerhub</td><td>False</td><td>It will default back to from_github, as the model needs to be downloaded</td></tr></tbody></table>
+<table><thead><tr><th width="220">Flag</th><th width="129">Default</th><th>Description</th></tr></thead><tbody><tr><td>--from_github</td><td>True</td><td>Downloads the model from its repository on the ersilia-os organization.</td></tr><tr><td>--from_s3</td><td>False</td><td>Downloads the model from its storage on the cloud (S3 Bucket)</td></tr><tr><td>--from_dir [path/to/dir]</td><td>False</td><td>Uses a model stored locally on the indicated path.</td></tr><tr><td>--from_dockerhub</td><td>False</td><td>It will default back to from_github, as the model needs to be downloaded</td></tr></tbody></table>
 
 ### Tests performed
 
@@ -71,7 +71,7 @@ The model is downloaded (not fetched) from its online storage in S3 or Github, a
 ersilia test model_id --surface [OPT?]
 ```
 
-<table><thead><tr><th width="220">Flag</th><th width="129">Default</th><th>Description</th></tr></thead><tbody><tr><td>--from_github</td><td>True</td><td>Downloads the model from its repository on the ersilia-os organisation.</td></tr><tr><td>--from_s3</td><td>False</td><td>Downloads the model from its storage on the cloud (S3 Bucket)</td></tr><tr><td>--from_dir [path/to/dir]</td><td>False</td><td>Uses a model stored locally on the indicated path.</td></tr><tr><td>--from_dockerhub</td><td>False</td><td>Downloads the model from GitHub and fetches it via DockerHub for the simple run</td></tr></tbody></table>
+<table><thead><tr><th width="220">Flag</th><th width="129">Default</th><th>Description</th></tr></thead><tbody><tr><td>--from_github</td><td>True</td><td>Downloads the model from its repository on the ersilia-os organization.</td></tr><tr><td>--from_s3</td><td>False</td><td>Downloads the model from its storage on the cloud (S3 Bucket)</td></tr><tr><td>--from_dir [path/to/dir]</td><td>False</td><td>Uses a model stored locally on the indicated path.</td></tr><tr><td>--from_dockerhub</td><td>False</td><td>Downloads the model from GitHub and fetches it via DockerHub for the simple run</td></tr></tbody></table>
 
 ### Tests performed
 
@@ -95,7 +95,7 @@ Similar to the surface but performs more tests once the model is fetched.
 ersilia test model_id --shallow [OPT?]
 ```
 
-<table><thead><tr><th width="220">Flag</th><th width="129">Default</th><th>Description</th></tr></thead><tbody><tr><td>--from_github</td><td>True</td><td>Downloads the model from its repository on the ersilia-os organisation and then fetches it from the created folder.</td></tr><tr><td>--from_s3</td><td>False</td><td>Downloads the model from its storage on the cloud (S3 Bucket) and then fetches it from the created folder.</td></tr><tr><td>--from_dir [path/to/dir]</td><td>False</td><td>Fetches a model stored locally on the indicated path.</td></tr><tr><td>--from_dockerhub</td><td>False</td><td>Fetches the model from DockerHub, and in parallel downloads it from GitHub to perform the basic tests</td></tr></tbody></table>
+<table><thead><tr><th width="220">Flag</th><th width="129">Default</th><th>Description</th></tr></thead><tbody><tr><td>--from_github</td><td>True</td><td>Downloads the model from its repository on the ersilia-os organization and then fetches it from the created folder.</td></tr><tr><td>--from_s3</td><td>False</td><td>Downloads the model from its storage on the cloud (S3 Bucket) and then fetches it from the created folder.</td></tr><tr><td>--from_dir [path/to/dir]</td><td>False</td><td>Fetches a model stored locally on the indicated path.</td></tr><tr><td>--from_dockerhub</td><td>False</td><td>Fetches the model from DockerHub, and in parallel downloads it from GitHub to perform the basic tests</td></tr></tbody></table>
 
 {% hint style="info" %}
 To perform the basic test checks the model needs to be Downloaded, not Fetched, so we can calculate properties like Model Directory Size. Hence, the --shallow and --deep tests use a combination of downloading and fetching.
@@ -127,7 +127,7 @@ The command will perform the basic and shallow tests and in addition run predict
 ersilia test model_id --deep [OPT?]
 ```
 
-<table><thead><tr><th width="220">Flag</th><th width="129">Default</th><th>Description</th></tr></thead><tbody><tr><td>--from_github</td><td>True</td><td>Downloads the model from its repository on the ersilia-os organisation and then fetches it from the created folder.</td></tr><tr><td>--from_s3</td><td>False</td><td>Downloads the model from its storage on the cloud (S3 Bucket) and then fetches it from the created folder.</td></tr><tr><td>--from_dir [path/to/dir]</td><td>False</td><td>Fetches a model stored locally on the indicated path.</td></tr><tr><td>--from_dockerhub</td><td>False</td><td>Fetches the model from DockerHub, and in parallel downloads it from GitHub to perform the basic tests</td></tr></tbody></table>
+<table><thead><tr><th width="220">Flag</th><th width="129">Default</th><th>Description</th></tr></thead><tbody><tr><td>--from_github</td><td>True</td><td>Downloads the model from its repository on the ersilia-os organization and then fetches it from the created folder.</td></tr><tr><td>--from_s3</td><td>False</td><td>Downloads the model from its storage on the cloud (S3 Bucket) and then fetches it from the created folder.</td></tr><tr><td>--from_dir [path/to/dir]</td><td>False</td><td>Fetches a model stored locally on the indicated path.</td></tr><tr><td>--from_dockerhub</td><td>False</td><td>Fetches the model from DockerHub, and in parallel downloads it from GitHub to perform the basic tests</td></tr></tbody></table>
 
 ### Tests performed
 

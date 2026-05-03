@@ -14,14 +14,14 @@ In the process of making ML models FAIR and shareable, there are standards and p
 
 ## Model Metadata
 
-To share ML models effectively, it’s important to provide relevant information about the models. The information being the Metadata. Metadata is organised information that describes, explains, or helps find, use, or manage a resource. In the context of Ersilia Models, metadata is data about the model and it is classified into three categories namely; **Biological Metadata**, **Computational Metadata**, and the **Description Metadata**. The metadata enables the findability and accessibility of the models based on its specific characteristics by other researchers and modellers.
+To share ML models effectively, it’s important to provide relevant information about the models. The information being the Metadata. Metadata is organized information that describes, explains, or helps find, use, or manage a resource. In the context of Ersilia Models, metadata is data about the model and it is classified into three categories namely; **Biological Metadata**, **Computational Metadata**, and the **Description Metadata**. The metadata enables the findability and accessibility of the models based on its specific characteristics by other researchers and modelers.
 
 *   #### Biological Metadata
 
     The biological relevance of a model is an important aspect of a model. This ranges from its bioactivity, biological processes explained by the model, biological system the model was trained on, tissue or cell type involved, assay type, biological entity, Ersilia model theme (ranges from infectious disease to ADME property) and Compartment in which biological process is happening.
 *   #### Computational Metadata
 
-    The metadata identifies the model based on its specific characteristics, such as the type of ML algorithm used, the modelling approach, its evaluation metrics, and the functional properties of the model such as input data type, and model output. &#x20;
+    The metadata identifies the model based on its specific characteristics, such as the type of ML algorithm used, the modeling approach, its evaluation metrics, and the functional properties of the model such as input data type, and model output. &#x20;
 *   #### Description Metadata
 
     A model is described by its publication, a code base such as GitHub, data repository such as Zenodo, and lastly its deployment which could be in the form of a web server.&#x20;
@@ -231,7 +231,7 @@ After adding qualifiers to each metadata, the table looks like this;
 
 ### 7. Contextualize the Computational Metadata by adding DOME
 
-The **DOME annotation** provides more contexts to the computational metadata by identifying which section of the modelling the metadata belong to.&#x20;
+The **DOME annotation** provides more contexts to the computational metadata by identifying which section of the modeling the metadata belong to.&#x20;
 
 Adding DOME to the table shows this;&#x20;
 

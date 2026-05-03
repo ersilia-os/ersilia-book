@@ -29,7 +29,7 @@ Posting to this free online service will make your molecules public. Please cons
 {% endhint %}
 
 {% hint style="info" %}
-If you wish to run larger annotations, for example running several predictions against a database of >1k molecules, please contact Ersilia directly to obtain a customised solution: hello@ersilia.io
+If you wish to run larger annotations, for example running several predictions against a database of >1k molecules, please contact Ersilia directly to obtain a customized solution: hello@ersilia.io
 {% endhint %}
 
 ## 4. Check your predictions
@@ -37,5 +37,5 @@ If you wish to run larger annotations, for example running several predictions a
 By default, Ersilia will provide a downloadable `.csv` file summarizing the results, containing the following columns:
 
 * key: 32-character unique identifier of the molecule created by Ersilia
-* input: the input SMILES (please note that these might have been standardised if they were not provided in the standard format).
+* input: the input SMILES (please note that these might have been standardized if they were not provided in the standard format).
 * Model output: one or several columns containing the predictions of the selected model. Explantion about each column's meaning can be found on the model's GitHub repository under `model/framework/columns`. For example, for model `eos3b5e` you can go to [https://github/ersilia-os/eos3b5e](https://github.com/ersilia-os/eos3b5e) and navigate to the [run\_columns.csv](https://github.com/ersilia-os/eos3b5e/blob/main/model/framework/columns/run_columns.csv) file.

@@ -6,7 +6,7 @@ description: >-
 
 # Automated activity prediction models
 
-Quick baseline modeling of chemistry data can be done with [LazyQSAR](https://github.com/ersilia-os/lazy-qsar), our fast modelling tool. LazyQSAR produces light-weight models for binary classification and regression tasks.&#x20;
+Quick baseline modeling of chemistry data can be done with [LazyQSAR](https://github.com/ersilia-os/lazy-qsar), our fast modeling tool. LazyQSAR produces light-weight models for binary classification and regression tasks.&#x20;
 
 {% content-ref url="light-weight-automl-with-lazyqsar.md" %}
 [light-weight-automl-with-lazyqsar.md](light-weight-automl-with-lazyqsar.md)

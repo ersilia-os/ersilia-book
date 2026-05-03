@@ -102,7 +102,7 @@ We will first make sure ersilia works by running the following commands:
 ersilia --help #this should output the command options for ersilia
 ```
 
-Once we are sure ersilia is recognised in the CLI, we will test a very simple model
+Once we are sure ersilia is recognized in the CLI, we will test a very simple model
 
 ```
 ersilia -v fetch eos3b5e
@@ -197,17 +197,17 @@ Once you have:
 
 We are ready to continue onto the next stage of the contribution period 🎉
 
-For this period, we will use Ersilia's automated ML modelling packages:
+For this period, we will use Ersilia's automated ML modeling packages:
 
 * [lazy-qsar](https://github.com/ersilia-os/lazy-qsar): a library to build rapid QSAR models
-* [zairachem](https://github.com/ersilia-os/zaira-chem): an end-to-end QSAR modelling library with excellent performance rates
+* [zairachem](https://github.com/ersilia-os/zaira-chem): an end-to-end QSAR modeling library with excellent performance rates
 
-We will leverage the datasets from the excellent initiative Therapeutics Data Commons ([TDC](https://tdcommons.ai/)). You can read more about it in its associated [publication](https://www.nature.com/articles/s41589-022-01131-2). TDC has prepared biomedical-related datasets for ML modelling, and provides benchmarks of performance. We will use those to test our automated ML libraries and add the resulting models in the Ersilia Model Hub.
+We will leverage the datasets from the excellent initiative Therapeutics Data Commons ([TDC](https://tdcommons.ai/)). You can read more about it in its associated [publication](https://www.nature.com/articles/s41589-022-01131-2). TDC has prepared biomedical-related datasets for ML modeling, and provides benchmarks of performance. We will use those to test our automated ML libraries and add the resulting models in the Ersilia Model Hub.
 
-For this part, please do not launch directly onto modelling, wait for the mentor's revision of your previous work:
+For this part, please do not launch directly onto modeling, wait for the mentor's revision of your previous work:
 
 1. Once you have completed all the above steps, mention the mentors on the Slack channel #stage1-contributions and explain all the steps done on the first phase. Add your GitHub handle in the issue!
-2. The mentors will open a GitHub issue with the specific modelling exercise and assign it to you.
+2. The mentors will open a GitHub issue with the specific modeling exercise and assign it to you.
 3. Use the steps described in the [template notebook](https://colab.research.google.com/drive/1iA7kIuuoUywfoOPx-KIAk-sDY630NLMS?usp=sharing) to train a new model
 4. Answer these questions (and more that you might have) about your data and models:
    1. What are we trying to predict? (do some reading!)&#x20;

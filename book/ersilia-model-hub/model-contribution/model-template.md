@@ -102,7 +102,7 @@ Before opening the first PR to add the model to Ersilia, the contributor must ma
 
 **Interpretation:** provide a brief description of how to interpret the model results. For example, in the case of a binary classification model for antimalarial activity based on experimental IC50, indicate the experimental settings (time of incubation, strain of parasite...) and the selected cut-off for the classification. This field is a single string.
 
-**Biomedical area:** the pertinent area of research or disease targeted. More than one can be selected from the same model, for example ADMET and Malaria, if both are relevant. `Any` can be used when the model could be applied to all fields of disease (for example a featuriser). This field is a list of strings.
+**Biomedical area:** the pertinent area of research or disease targeted. More than one can be selected from the same model, for example ADMET and Malaria, if both are relevant. `Any` can be used when the model could be applied to all fields of disease (for example a featurizer). This field is a list of strings.
 
 **Target organism:** if existing, the pathogen the model is related to, for example _Plasmodium falciparum,_ or organism in case of ADMET, for example _Mus musculus_ or _Homo sapiens._ If the model is unrelated to any organism, select `Any`. This field is a list of strings.
 
@@ -342,7 +342,7 @@ The run\_output and the actual output of Ersilia will be routinely tested except
 
 Information about the model output is provided in the `framework/columns` folder. This is a csv file named `run_columns.csv` that must have the following columns:
 
-* Name: column name exactly as outputted by Ersilia. Column names must all be lowercase, without spaces or hypens (use only underscores). In the case of models outputting new molecules, we suggest using smi\_00, smi\_01, smi\_02... as column names, and for featurisers, unless they have specific names, please use feat\_00, feat\_01... Use zfill to complete the column number appropriately.
+* Name: column name exactly as outputted by Ersilia. Column names must all be lowercase, without spaces or hypens (use only underscores). In the case of models outputting new molecules, we suggest using smi\_00, smi\_01, smi\_02... as column names, and for featurizers, unless they have specific names, please use feat\_00, feat\_01... Use zfill to complete the column number appropriately.
 * Type: string, float or integer are the only accepted types. A model can contain mixed output columns that are integer and float, but string outputs cannot be passed along with numeric outputs.
 * Direction: direction for the interpretation of the value provided. For example, a probability will be direction high. Only `high` and `low` are accepted, if no direction is relevant (for example for a generative model outputting a smiles as a result) leave empty
 * Description: one line description of the column (importantly, without commas)
