@@ -21,9 +21,9 @@ All of our work is openly available through our [GitHub organisation page](https
 
 <figure><img src="../.gitbook/assets/ersilia-elegant-compact (1).svg" alt=""><figcaption></figcaption></figure>
 
-The [Ersilia Model Hub](https://ersilia.io) is our main platform. It serves ready-to-use AI models related to the drug discovery cascade. Models can be browsed in our [website](https://ersilia.io/model-hub), and can run locally (see [Installation ](/broken/pages/xenMKbpAv8JCcpCviZjg)instructions) and we also offer a selection of them for online inference (please select those available Online through our [website](https://ersilia.io/model-hub)) as well as an [open service](https://github.com/ersilia-self-service) based on GitHub.
+The [Ersilia Model Hub](https://ersilia.io) is our main platform. It serves ready-to-use AI models related to the drug discovery cascade. Models can be browsed in our [website](https://ersilia.io/model-hub), and can run locally (see [Installation instructions](../ersilia-model-hub/local-inference.md)) and we also offer a selection of them for online inference (please select those available Online through our [website](https://ersilia.io/model-hub)) as well as an [open service](https://github.com/ersilia-self-service) based on GitHub.
 
-Detailed information about the Ersilia Model Hub, its components and how to use it and contribute to its backend as well as contribute models can be found in [this section](/broken/pages/vc7p4YiBigkYvnfQDUXO). Developers may look into the [API documentation](https://ersilia-os.github.io/ersilia) for an in-depth view of the code.
+Detailed information about the Ersilia Model Hub, its components and how to use it and contribute to its backend as well as contribute models can be found in [this section](../ersilia-model-hub/getting-started.md). Developers may look into the [API documentation](https://ersilia-os.github.io/ersilia) for an in-depth view of the code.
 
 The repositories linked to the Ersilia Model Hub are:
 
@@ -56,7 +56,7 @@ In addition to our software tools, we have a number of repositories related to s
 
 ## Workshops and courses
 
-As part of our mission we provide training in AI and Data Science to researchers across the Global South. All our trainings are documented and freely available. Check out the [Training Materials](/broken/pages/t2irNph7bYDDQPq2Nif9) section if you are interested, and have a look at the following code repositories:
+As part of our mission we provide training in AI and Data Science to researchers across the Global South. All our trainings are documented and freely available. Check out the [Ersilia Workshops](https://ersilia.gitbook.io/ersilia-workshops) GitBook if you are interested, and have a look at the following code repositories:
 
 * AI2050 courses: 2h introduction to Drug Discovery ([ai2050-h3d-symposium-workshop](https://github.com/ersilia-os/ai2050-h3d-symposium-workshop)) and full week course for more advanced students ([ai2050-dd-workshop](https://github.com/ersilia-os/ai2050-dd-workshop)), developed in collaboration with the H3D Foundation.
 * Event Fund: A one-week course we developed in collaboration with the H3d Centre and the support of the Wellcome Trust and Code for Science and Society.

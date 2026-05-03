@@ -29,7 +29,7 @@ Posting to this free online service will make your molecules public. Please cons
 {% endhint %}
 
 {% hint style="info" %}
-If you wish to run larger annotations, for example running several predictions against a database of >1k molecules, please contact Ersilia directly to obtain a customised solution: hello\[at]ersilia.io
+If you wish to run larger annotations, for example running several predictions against a database of >1k molecules, please contact Ersilia directly to obtain a customised solution: hello@ersilia.io
 {% endhint %}
 
 ## 4. Check your predictions

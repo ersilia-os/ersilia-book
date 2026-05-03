@@ -8,7 +8,7 @@ The Ersilia Open Source Initiative (Ersilia) is a non-profit organisation incorp
 
 We adhere to the Regulation (EU) 2016/679 (General Data Protection Regulation) in the current version of the OJ L 119, 04.05.2016; cor. OJ L 127, 23.5.2018.
 
-Ersilia keeps its privacy policy under regular review and places any updates on this web page. This privacy policy was last updated on 1st January 2024.
+Ersilia keeps its privacy policy under regular review and places any updates on this web page. This privacy policy was last updated on 3rd May 2026.
 
 ## What data do we collect?
 

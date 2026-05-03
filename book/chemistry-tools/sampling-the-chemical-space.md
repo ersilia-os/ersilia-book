@@ -39,7 +39,7 @@ The parameters file is a `.json` file that allows the user to specify:
 }
 ```
 
-_\* If keep\_smiles or avoid\_smiles are specified, all molecules that do not fulfill either criteria will be removed, which potentially could lead to low number of generated candidates_
+_\* If keep\_smiles or avoid\_smiles are specified, all molecules that do not fulfill either criterion will be removed, which potentially could lead to low number of generated candidates_
 
 #### Input
 

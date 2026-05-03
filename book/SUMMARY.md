@@ -33,10 +33,9 @@
 * [Automated activity prediction models](chemistry-tools/automated-activity-prediction-models/README.md)
   * [Light-weight AutoML with LazyQSAR](chemistry-tools/automated-activity-prediction-models/light-weight-automl-with-lazyqsar.md)
   * [ZairaChem](chemistry-tools/automated-activity-prediction-models/zairachem.md)
-  * [Accurate AutoML with ZairaChem](chemistry-tools/automated-activity-prediction-models/accurate-automl-with-zairachem.md)
   * [Model distillation with Olinda](chemistry-tools/automated-activity-prediction-models/model-distillation-with-olinda.md)
 * [Sampling the chemical space](chemistry-tools/sampling-the-chemical-space.md)
-* [Encryption of AI/ML models](chemistry-tools/page-2.md)
+* [Encryption of AI/ML models](chemistry-tools/encryption-of-ai-ml-models.md)
 * [AMR chemical collections](chemistry-tools/amr-chemical-collections.md)
 
 ## 🙌 Contributors
@@ -65,4 +64,3 @@
 * [Ersilia privacy notice](about-us/ersilia-privacy-notice.md)
 * [Strategic Plan 2025-2027](about-us/strategic-plan-2025-2027.md)
 * [Ersilia, the Invisible City](about-us/ersilia-the-invisible-city.md)
-* [Strategic Plan 2021-2023](about-us/strategic-plan-2021-2023.md)
