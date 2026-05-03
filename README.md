@@ -43,7 +43,7 @@ We welcome corrections, clarifications, and new content from the community.
   3. If you add a new page, register it in [`book/SUMMARY.md`](book/SUMMARY.md) so it appears in the book's navigation.
   4. Open a pull request describing your change.
 
-All participants are expected to follow our [Code of Conduct](book/about-us/code-of-conduct.md) (Contributor Covenant). For private reports or questions about conduct, contact [gemma@ersilia.io](mailto:gemma@ersilia.io) or [alacia@ersilia.io](mailto:alacia@ersilia.io).
+All participants are expected to follow our [Code of Conduct](book/about-us/code-of-conduct.md) (Contributor Covenant). For private reports or questions about conduct, contact [gemma@ersilia.io](mailto:gemma@ersilia.io).
 
 ## About Ersilia
 
