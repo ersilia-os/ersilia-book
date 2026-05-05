@@ -55,6 +55,10 @@
 * [Slide and document templates](styles/slide-and-document-templates.md)
 * [Scientific figures with Stylia](styles/scientific-figures.md)
 
+## 🖥️ CLAUDE
+
+* [Ersilia Skills](claude/ersilia-skills.md)
+
 ## 🌍 About Us
 
 * [Where to find us?](about-us/where-to-find-us.md)
