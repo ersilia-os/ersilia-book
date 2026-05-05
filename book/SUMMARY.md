@@ -57,6 +57,7 @@
 
 ## 🖥️ CLAUDE
 
+* [Claude 101](claude/claude-101.md)
 * [Ersilia Skills](claude/ersilia-skills.md)
 
 ## 🌍 About Us
