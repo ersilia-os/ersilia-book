@@ -17,7 +17,7 @@ Isaura uses [`uv`](https://docs.astral.sh/uv/getting-started/installation/) for 
 
 {% stepper %}
 {% step %}
-### Clone and set up
+#### Clone and set up
 
 ```bash
 git clone https://github.com/ersilia-os/isaura.git
@@ -28,16 +28,16 @@ source .venv/bin/activate
 {% endstep %}
 
 {% step %}
-### Start all services
+#### Start all services
 
-#### Prerequisites
+**Prerequisites**
 
 * [Docker](https://www.docker.com/get-started) installed and running
 * Docker Compose installed
   * Ubuntu: follow Docker’s install docs
   * macOS: `brew install docker-compose`
 
-#### Fastest way
+**Fastest way**
 
 ```bash
 isaura engine --start
@@ -45,11 +45,11 @@ isaura engine --start
 {% endstep %}
 
 {% step %}
-### Optional: Install MinIO Client (mc)
+#### Optional: Install MinIO Client (mc)
 
 The MinIO Client (`mc`) is a command-line tool to manage MinIO/S3 storage.
 
-#### Install (Linux/macOS)
+**Install (Linux/macOS)**
 
 ```bash
 curl -O https://dl.min.io/client/mc/release/linux-amd64/mc
@@ -57,13 +57,13 @@ chmod +x mc
 sudo mv mc /usr/local/bin/
 ```
 
-#### Or with Homebrew (macOS)
+**Or with Homebrew (macOS)**
 
 ```bash
 brew install minio/stable/mc
 ```
 
-#### Configure `mc`
+**Configure `mc`**
 
 ```bash
 mc alias set local http://localhost:9000 minioadmin123 minioadmin1234

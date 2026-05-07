@@ -9,7 +9,7 @@ description: Example of an end-to-end model incorporation workflow
 The model incorporation pipeline is streamlined by a series of GitHub Actions that will automatize model testing and updating of our backend services (Airtable, DockerHub and AWS), simplifying the process for model contributors. The different workflows involved can be found in:
 
 * Reusable workflows: the actual workflows are stored in a single repository, [ersilia-model-workflows](https://github.com/ersilia-os/ersilia-model-workflows), so any change done in those will easily propagate to all models.
-* Caller workfflows: the reusable workflows are called by the workflows in [eos-template](https://github.com/ersilia-os/eos-template/tree/main/.github/workflows) upon Pull Request (PR) or Push to the model repository.&#x20;
+* Caller workfflows: the reusable workflows are called by the workflows in [eos-template](https://github.com/ersilia-os/eos-template/tree/main/.github/workflows) upon Pull Request (PR) or Push to the model repository.
 * Model request workflow: the model incorporation pipeline is triggered when a Model request issue is approved by an Ersilia maintainer. This [workflow](https://github.com/ersilia-os/ersilia/blob/master/.github/workflows/approve-dispatch.yml) is part of Ersilia's main repository workflows.
 
 More details on the actual workflows can be found in the [Developers](../developer-docs/#ci-cd-workflows-and-testing) section. Here we are just giving an overview of the steps a model contributor needs to take to successfully include a new model in Ersilia.
@@ -19,6 +19,10 @@ More details on the actual workflows can be found in the [Developers](../develop
 If you want to test the workflow with a toy example, we have prepared an [Ersilia Demo Repository](https://github.com/ersilia-os/eos-demo). This repository is focused on illustrating the GitHub Actions workflows to be followed in order to successfully incorporate a model to the Ersilia Model Hub.
 
 ### 1. Create a model request at Ersilia
+
+You can create a model request through two channels: directly via GitHub, or through the Ersilia Model Request App, a web interface that guides you through the submission process with AI assistance. Both options result in a model request issue being opened in the Ersilia repository for the team to review.
+
+#### 1.1 Using Github
 
 1. Go to the Ersilia main repository [issues page](https://github.com/ersilia-os/ersilia/issues).
 2. Click on **New issue**. Then 🦠 **Model Request** (**Get started**)
@@ -31,6 +35,23 @@ If you want to test the workflow with a toy example, we have prepared an [Ersili
    * **Publication**: [https://jcheminf.biomedcentral.com/articles/10.1186/s13321-021-00487-2](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-021-00487-2)
    * **Code**: [https://www.ebi.ac.uk/chembl/maip/](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-021-00487-2)
    * **License**: GPL-3.0-only
+
+#### 1.2 Using Ersilia Model Request app
+
+You can submit a model request through the [**Ersilia Model Request App**](https://ersilia-model-request-app.vercel.app/), a web interface designed to guide you through the process step by step, with AI assistance to help fill in the required metadata.
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+**How it works**
+
+1. **Log in** with your account to access the submission form.
+2. **Provide the publication** — paste the URL of the paper or upload a PDF.
+3. **Answer a few context questions** to help the AI understand the model's purpose and outputs.
+4. **Review the AI-generated metadata** — the app pre-fills fields like title, description, task type, input/output specifications, biomedical area, and more. You can edit any field and reset it to the AI suggestion at any time.
+5. **Preview your submission** — review everything in a clean summary before sending.
+6. **Submit** — the app creates a GitHub issue in the Ersilia repository on your behalf and shows you a link to track its progress.
+
+Your submission creates a model request issue in the [`ersilia-os/ersilia`](https://github.com/ersilia-os/ersilia) GitHub repository, exactly as if you had opened it manually.
 
 ### 2. Wait until model approval
 
@@ -90,7 +111,7 @@ Before incorporating the `sa-score` model to the Ersilia Model Hub, we need to m
 
 #### Create a conda environment
 
-No installation instructions are provided for this model. However, the `sascorer.py` file `import` statements indicate that, at least, `rdkit` is necessary. We can create a Conda environment and install the `rdkit`  library as follows:
+No installation instructions are provided for this model. However, the `sascorer.py` file `import` statements indicate that, at least, `rdkit` is necessary. We can create a Conda environment and install the `rdkit` library as follows:
 
 ```bash
 conda create -n sa-score python=3.10
@@ -477,7 +498,7 @@ commands:
 
 #### Write the `metadata.yml` file
 
-Don't forget to document the model. Read [the instructions to write the `metadata` file page](model-template.md#the-metadata.yml-file). The `metadata.yml` for this model should read like:&#x20;
+Don't forget to document the model. Read [the instructions to write the `metadata` file page](model-template.md#the-metadata.yml-file). The `metadata.yml` for this model should read like:
 
 ```yaml
 Identifier: eos9ei3
@@ -524,7 +545,7 @@ ersilia serve eos9ei3
 ersilia predict -i molecules.csv -o output.csv
 ```
 
-If this runs without issues, the model is ready to be incorporated. If not, please go to the [Troubleshooting](troubleshooting-models.md) section to know what to do next.&#x20;
+If this runs without issues, the model is ready to be incorporated. If not, please go to the [Troubleshooting](troubleshooting-models.md) section to know what to do next.
 
 ### 6. Test the model
 
@@ -578,7 +599,7 @@ Once the model is ready, open a pull request to merge your changes back into the
 If the Actions at Pull request fail, please check them and work on debugging them before making a new pull request. <mark style="color:purple;">**Ersilia maintainers will only merge PR's that have passed all the checks.**</mark> Once the PR has the three green checks, the PR will be merged. This triggers a <mark style="color:green;">Model Test on Push</mark> action that will:
 
 * Test the model once more
-* Update the `README.md` and AirTable metadata&#x20;
+* Update the `README.md` and AirTable metadata
 
 This workflow is also triggered each time there is a push to the repository, to ensure changes to the code do maintain model functionality and metadata is not outdated. If the model testing works, the model will then be zipped and uploaded to S3 as a backup and packaged in a Docker image and made available via the [Ersilia DockerHub](https://hub.docker.com/orgs/ersiliaos) page. The Docker image is also tested extensively in the workflows before being added to the DockerHub.
 
@@ -617,7 +638,7 @@ Ersilia will take care of the model maintence. Periodic checks are performed on 
 
 ### Model releases
 
-All models are released as v1.0.0 at model incorporation time. Releases from there onwards are done manually by Ersilia Maintainers if major changes are introduced in the model. Once a release is done, an automated workflow will tag the corresponding Docker image with the version tag, facilitating citing and reusing the appropriate model version.&#x20;
+All models are released as v1.0.0 at model incorporation time. Releases from there onwards are done manually by Ersilia Maintainers if major changes are introduced in the model. Once a release is done, an automated workflow will tag the corresponding Docker image with the version tag, facilitating citing and reusing the appropriate model version.
 
 #### Semantic versioning:
 

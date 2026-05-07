@@ -36,7 +36,7 @@ More versions of the logo can be found in [this folder](https://drive.google.com
 
 Ersilia's corporate typeface is **Beausite Classic Clear**, with the addition of **Beausite Classic Clear Italic** and **Beausite Classic Semi Bold**.
 
-<figure><img src="../.gitbook/assets/1_D_h-SVUIdAmkxrXa94OFig (2).png" alt=""><figcaption><p>Ersilia's corporate typography.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/1_D_h-SVUIdAmkxrXa94OFig.png" alt=""><figcaption><p>Ersilia's corporate typography.</p></figcaption></figure>
 
 {% hint style="warning" %}
 Beausite is **not freely available**. If you need to use this font type for any Ersilia-related documents, please reach out to [miquel@ersilia.io](mailto:miquel@ersilia.io) to get the font files.

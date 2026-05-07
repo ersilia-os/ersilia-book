@@ -4,7 +4,7 @@ description: Documentation to run models on-premises
 
 # Local inference
 
-The Ersilia Model Hub is conveniently offered as a python package through PyPi and CondaForge, and each model is individually packaged as a Docker container.&#x20;
+The Ersilia Model Hub is conveniently offered as a python package through PyPi and CondaForge, and each model is individually packaged as a Docker container.
 
 ## Installation in Linux/MacOS
 
@@ -54,7 +54,7 @@ ersilia --help
 
 The Ersilia Model Hub takes **chemical structures** as input, which should be specified as SMILES strings. To obtain the SMILES string of your compounds, you can use resources like [PubChem](https://pubchem.ncbi.nlm.nih.gov/).
 
-Ersilia only accepts an input file in csv format, with one column and a header. Predictions are returned in tabular format as .csv.&#x20;
+Ersilia only accepts an input file in csv format, with one column and a header. Predictions are returned in tabular format as .csv.
 
 {% code title="input.csv" %}
 ```bash
@@ -88,7 +88,7 @@ You can find the exact definitions for a model's output columns in two places:
 
 {% stepper %}
 {% step %}
-### Fetch&#x20;
+#### Fetch
 
 Download a model, along with its specific environment and dependencies, from the Ersilia Model Hub to your local machine.
 
@@ -106,7 +106,7 @@ You can access the list of available models in our [ersilia catalog](https://cat
 {% endstep %}
 
 {% step %}
-### Serve&#x20;
+#### Serve
 
 Initialize the downloaded model by spinning up a local container or API, preparing it to accept inputs and generate predictions.
 
@@ -115,12 +115,12 @@ ersilia serve eos2r5a
 ```
 
 {% hint style="warning" %}
-If you serve a model that is not available locally, Ersilia will try to fetch it automatically, from DockerHub first and then defaulting to S3 if Docker is not active.&#x20;
+If you serve a model that is not available locally, Ersilia will try to fetch it automatically, from DockerHub first and then defaulting to S3 if Docker is not active.
 {% endhint %}
 {% endstep %}
 
 {% step %}
-### Run
+#### Run
 
 Run: Pass your input data (like SMILES strings) through the active model to generate and retrieve predictions.
 
@@ -130,7 +130,7 @@ ersilia run -i input.csv -o output.csv
 {% endstep %}
 
 {% step %}
-### Close
+#### Close
 
 Shut down the active model and terminate its local container or API to free up system resources.
 
