@@ -49,11 +49,11 @@ When you install a skill, it can live in two places:
 * **System-wide** skills are installed in `~/.claude/skills/`. They are available in every Claude Code session you open, regardless of which directory or repository you are working in. It is the right place for tools you use across many projects.
 * **Project-wide** skills are defined inside a specific repository, typically referenced in a `.claude/settings.json` file at the root of the project. They are only active when Claude Code is running inside that project. This is useful for skills that are tightly coupled to a specific codebase or that you do not want bleeding into unrelated work.
 
-##
+
 
 Once a skill has been created, it can be used across the different ways of interacting with Claude. The same skill works in Chat, Cowork, and Code: you invoke it the same way and Claude follows the same workflow, only the surrounding environment changes. This means a single skill written once becomes available wherever you happen to be working — drafting in the chat, running operations in Cowork, or coding in the terminal — without having to be re-built for each interface.
 
-##
+
 
 ## Claude Chat
 
