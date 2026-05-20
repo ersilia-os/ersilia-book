@@ -24,36 +24,30 @@ Skills can include supporting reference documents (guidelines, templates, real e
 
 Anthropic maintains a registry of general-purpose skills for common tasks. Ersilia maintains its own library of skills tailored to our specific work that is what the `ersilia-skills` repository is (see [ersilia skills](ersilia-skills.md))
 
-## Installing Anthropic skills
+### Installing Anthropic skills
 
 Anthropic ships a set of built-in skills you can install directly from their registry. These are general-purpose skills for common tasks like creating new skills, building documents, designing interfaces, and more.
 
-To install them, run the following inside a Claude Code session:
+To install them, check the available skills in the Anthropic [repository](https://github.com/anthropics/claude-plugins-official) and  run the following inside a Claude Code session:
 
 ```
-/find-skills
+/plugin install skill-creator@claude-plugins-official
 ```
 
-Claude will show you what is available and guide you through installing the ones you want. The most important one to install first is **skill-creator**, which you will use to build new Ersilia skills:
+The skill-creator for example will guide you in creating a new skill from scratch, structuring the workflow, writing the front matter, and deciding what reference documents to include.
 
 ```
 /skill-creator
 ```
 
-This skill walks you through designing a new skill from scratch, structuring the workflow, writing the frontmatter, and deciding what reference documents to include.
-
-## Skills: system-wide vs project-wide installation
+### Skills: system-wide vs project-wide installation
 
 When you install a skill, it can live in two places:
 
 * **System-wide** skills are installed in `~/.claude/skills/`. They are available in every Claude Code session you open, regardless of which directory or repository you are working in. It is the right place for tools you use across many projects.
 * **Project-wide** skills are defined inside a specific repository, typically referenced in a `.claude/settings.json` file at the root of the project. They are only active when Claude Code is running inside that project. This is useful for skills that are tightly coupled to a specific codebase or that you do not want bleeding into unrelated work.
 
-
-
 Once a skill has been created, it can be used across the different ways of interacting with Claude. The same skill works in Chat, Cowork, and Code: you invoke it the same way and Claude follows the same workflow, only the surrounding environment changes. This means a single skill written once becomes available wherever you happen to be working — drafting in the chat, running operations in Cowork, or coding in the terminal — without having to be re-built for each interface.
-
-
 
 ## Claude Chat
 
