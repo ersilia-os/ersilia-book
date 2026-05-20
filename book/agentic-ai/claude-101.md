@@ -1,10 +1,30 @@
+---
+description: Set up instructions for Claude usage with Ersilia's organisation
+---
+
 # Claude 101
 
-Claude is an AI assistant made by Anthropic. You can use it through a chat interface at claude.ai, but for technical work the most powerful way to interact with it is through **Claude Code:** a command-line tool that gives Claude direct access to your terminal, your files, and your codebase. Instead of copy-pasting code back and forth in a chat window, Claude Code lets Claude read, write, and run things in your actual working environment.
+Claude is an AI assistant made by Anthropic.&#x20;
+
+
+
+
+
+## Chat
+
+
+
+## Claude Cowork
+
+
+
+## Claude Code
+
+You can use it through a chat interface at claude.ai, but for technical work the most powerful way to interact with it is through **Claude Code:** a command-line tool that gives Claude direct access to your terminal, your files, and your codebase. Instead of copy-pasting code back and forth in a chat window, Claude Code lets Claude read, write, and run things in your actual working environment.
 
 At Ersilia we use Claude Code as our primary AI interface for science, platform, and communications work.
 
-## Installing Claude Code
+### Installing Claude Code
 
 ### In the terminal
 

@@ -55,10 +55,10 @@
 * [Slide and document templates](styles/slide-and-document-templates.md)
 * [Scientific figures with Stylia](styles/scientific-figures.md)
 
-## 🖥️ CLAUDE
+## 🖥️ Agentic AI
 
-* [Claude 101](claude/claude-101.md)
-* [Ersilia Skills](claude/ersilia-skills.md)
+* [Claude 101](agentic-ai/claude-101.md)
+* [Ersilia Skills](agentic-ai/ersilia-skills.md)
 
 ## 🌍 About Us
 
