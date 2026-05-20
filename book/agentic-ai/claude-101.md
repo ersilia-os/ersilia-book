@@ -129,4 +129,3 @@ Both the terminal and the VSCode extension share the same installation and confi
 | **Best for**           | Quick thinking |     Operations work     |    Engineering work   |
 | **Who uses it most**   |    Everyone    | Comms, fundraising, ops | Scientists, engineers |
 
-##
