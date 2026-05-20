@@ -86,10 +86,6 @@ Both the terminal and the VSCode extension share the same installation and confi
 | **Best for**           | Quick thinking |     Operations work     |    Engineering work   |
 | **Who uses it most**   |    Everyone    | Comms, fundraising, ops | Scientists, engineers |
 
-#### Rule of thumb
-
-> **Idea or sentence?** → Chat **File or app update?** → Cowork **Code commit?** → Code
-
 ## Claude Skills
 
 A skill is a reusable workflow definition for Claude. It lives in a `SKILL.md` file and becomes a slash command you can invoke in any Claude Code session. When you run `/skill-name`, Claude loads the workflow and follows it knowing what inputs to expect, what steps to take, what tools to use, and what output to produce.
