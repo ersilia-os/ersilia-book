@@ -4,13 +4,56 @@ description: Set up instructions for Claude usage with Ersilia's organisation
 
 # Claude 101
 
-Claude is an AI assistant made by Anthropic. There are several ways to interact with it, and at Ersilia we use three of them depending on the task:
+Claude is an AI assistant made by Anthropic. It can read, write, reason, run code, and work with the apps and files you use every day. At Ersilia we rely on Claude across science, engineering, communications, and operations.
+
+There are three ways to interact with Claude, and at Ersilia we use all three depending on the task:
 
 1. **Claude Chat** at [claude.ai](https://claude.ai) is the simplest entry point and works well for quick questions, drafting, and research.&#x20;
 2. **Claude Cowork** is a desktop application aimed at file and operations work, where Claude can read and edit files on your computer, connect to apps like Airtable or Slack, and follow custom workflows.&#x20;
 3. **Claude Code** is a command-line tool that gives Claude direct access to your terminal and your codebase, and is what we use for science and platform engineering.
 
-This page covers what each one is and how we use them.
+All three interfaces share a key concept that makes Claude actually useful for our day-to-day work: **skills**. Skills can be used in Chat as well, but because a skill usually encodes a recurring task, they are most often used in Cowork or Code, where Claude is acting on our files and systems. Before going into each interface, the next section explains what a skill is and why it matters
+
+## Claude Skills
+
+A skill is a reusable workflow definition for Claude. It lives in a `SKILL.md` file and becomes a slash command you can invoke in any Claude Code session. When you run `/skill-name`, Claude loads the workflow and follows it knowing what inputs to expect, what steps to take, what tools to use, and what output to produce.
+
+Without skills, you would need to re-explain context and process to Claude every time you start a task. Skills remove that friction by encoding the "how we do things" layer directly into the tool. &#x20;
+
+Skills can include supporting reference documents (guidelines, templates, real examples) that Claude reads automatically as part of the workflow, so the relevant context is always loaded without you having to provide it manually.
+
+Anthropic maintains a registry of general-purpose skills for common tasks. Ersilia maintains its own library of skills tailored to our specific work that is what the `ersilia-skills` repository is (see [ersilia skills](ersilia-skills.md))
+
+## Installing Anthropic skills
+
+Anthropic ships a set of built-in skills you can install directly from their registry. These are general-purpose skills for common tasks like creating new skills, building documents, designing interfaces, and more.
+
+To install them, run the following inside a Claude Code session:
+
+```
+/find-skills
+```
+
+Claude will show you what is available and guide you through installing the ones you want. The most important one to install first is **skill-creator**, which you will use to build new Ersilia skills:
+
+```
+/skill-creator
+```
+
+This skill walks you through designing a new skill from scratch, structuring the workflow, writing the frontmatter, and deciding what reference documents to include.
+
+## Skills: system-wide vs project-wide installation
+
+When you install a skill, it can live in two places:
+
+* **System-wide** skills are installed in `~/.claude/skills/`. They are available in every Claude Code session you open, regardless of which directory or repository you are working in. It is the right place for tools you use across many projects.
+* **Project-wide** skills are defined inside a specific repository, typically referenced in a `.claude/settings.json` file at the root of the project. They are only active when Claude Code is running inside that project. This is useful for skills that are tightly coupled to a specific codebase or that you do not want bleeding into unrelated work.
+
+##
+
+Once a skill has been created, it can be used across the different ways of interacting with Claude. The same skill works in Chat, Cowork, and Code: you invoke it the same way and Claude follows the same workflow, only the surrounding environment changes. This means a single skill written once becomes available wherever you happen to be working — drafting in the chat, running operations in Cowork, or coding in the terminal — without having to be re-built for each interface.
+
+##
 
 ## Claude Chat
 
@@ -86,37 +129,4 @@ Both the terminal and the VSCode extension share the same installation and confi
 | **Best for**           | Quick thinking |     Operations work     |    Engineering work   |
 | **Who uses it most**   |    Everyone    | Comms, fundraising, ops | Scientists, engineers |
 
-## Claude Skills
-
-A skill is a reusable workflow definition for Claude. It lives in a `SKILL.md` file and becomes a slash command you can invoke in any Claude Code session. When you run `/skill-name`, Claude loads the workflow and follows it knowing what inputs to expect, what steps to take, what tools to use, and what output to produce.
-
-Without skills, you would need to re-explain context and process to Claude every time you start a task. Skills remove that friction by encoding the "how we do things" layer directly into the tool. &#x20;
-
-Skills can include supporting reference documents (guidelines, templates, real examples) that Claude reads automatically as part of the workflow, so the relevant context is always loaded without you having to provide it manually.
-
-Anthropic maintains a registry of general-purpose skills for common tasks. Ersilia maintains its own library of skills tailored to our specific work that is what the `ersilia-skills` repository is (see [ersilia skills](ersilia-skills.md))
-
-## Installing Anthropic skills
-
-Anthropic ships a set of built-in skills you can install directly from their registry. These are general-purpose skills for common tasks like creating new skills, building documents, designing interfaces, and more.
-
-To install them, run the following inside a Claude Code session:
-
-```
-/find-skills
-```
-
-Claude will show you what is available and guide you through installing the ones you want. The most important one to install first is **skill-creator**, which you will use to build new Ersilia skills:
-
-```
-/skill-creator
-```
-
-This skill walks you through designing a new skill from scratch, structuring the workflow, writing the frontmatter, and deciding what reference documents to include.
-
-## Skills: system-wide vs project-wide installation
-
-When you install a skill, it can live in two places:
-
-* **System-wide** skills are installed in `~/.claude/skills/`. They are available in every Claude Code session you open, regardless of which directory or repository you are working in. It is the right place for tools you use across many projects.
-* **Project-wide** skills are defined inside a specific repository, typically referenced in a `.claude/settings.json` file at the root of the project. They are only active when Claude Code is running inside that project. This is useful for skills that are tightly coupled to a specific codebase or that you do not want bleeding into unrelated work.
+##
