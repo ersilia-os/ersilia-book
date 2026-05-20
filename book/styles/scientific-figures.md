@@ -6,6 +6,12 @@ description: Sytlia is a small Python library for styling plots
 
 [Stylia](https://github.com/ersilia-os/stylia) is a small package to stylize [Matplotlib](https://matplotlib.org/) plots in Python so that they are publication-ready. Stylia provides modified axes (`ax`) that can be used as drop-in replacements for Matplotlib axes.
 
+We now maintain a **Claude skill for stylia plotting**, which lets you generate publication-ready figures without writing any matplotlib code yourself. You describe the plot you want and the data you have, and Claude handles the rest; you just need to indicate the right chart type you want with the corresponding styling conventions.
+
+The skill is published in our public [ersilia-skills](https://github.com/ersilia-os/ersilia-skills) GitHub repository. To install it, download the `SKILL.md` file and drop it into your Claude (Cowork or Claude Code) skills folder. Once installed, you can invoke it from any session and use stylia without touching the code.
+
+For step-by-step instructions on how to install and use Claude skills in general, see the Claude 101 page in Gitbook.
+
 ## Getting started
 
 ### Installation
