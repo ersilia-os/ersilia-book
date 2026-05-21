@@ -8,21 +8,19 @@ Claude is an AI assistant made by Anthropic. It can read, write, reason, run cod
 
 There are three ways to interact with Claude, and at Ersilia we use all three depending on the task:
 
-1. **Claude Chat** at [claude.ai](https://claude.ai) is the simplest entry point and works well for quick questions, drafting, and research.&#x20;
-2. **Claude Cowork** is a desktop application aimed at file and operations work, where Claude can read and edit files on your computer, connect to apps like Airtable or Slack, and follow custom workflows.&#x20;
-3. **Claude Code** is a command-line tool that gives Claude direct access to your terminal and your codebase, and is what we use for science and platform engineering.
+* **Claude Chat** at [claude.ai](https://claude.ai) is the simplest entry point and works well for quick questions, drafting, and research.
+* **Claude Cowork** is a desktop application aimed at file and operations work, where Claude can read and edit files on your computer, connect to apps like Airtable or Slack, and follow custom workflows.
+* **Claude Code** is a command-line tool that gives Claude direct access to your terminal and your codebase, and is what we use for science and platform engineering.
 
-All three interfaces share a key concept that makes Claude actually useful for our day-to-day work: **skills**. Skills can be used in Chat as well, but because a skill usually encodes a recurring task, they are most often used in Cowork or Code, where Claude is acting on our files and systems. Before going into each interface, the next section explains what a skill is and why it matters
+All three interfaces share a key concept that makes Claude actually useful for our day-to-day work: **skills**. Skills can be used in Chat as well, but because a skill usually encodes a recurring task, they are most often used in Cowork or Code, where Claude is acting on our files and systems. Before going into each interface, the next section explains what a skill is and why it matters.
 
 ## Claude Skills
 
-A skill is a reusable workflow definition for Claude. It lives in a `SKILL.md` file and becomes a slash command you can invoke in any Claude Code session. When you run `/skill-name`, Claude loads the workflow and follows it knowing what inputs to expect, what steps to take, what tools to use, and what output to produce.
+A skill is a reusable workflow definition for Claude. It lives in a **SKILL.md** file that tells Claude what inputs to expect, what steps to take, what tools to use, and what output to produce for a given task. Skills can also include supporting reference documents — guidelines, templates, real examples — that Claude reads automatically as part of the workflow, so the relevant context is always loaded without you having to provide it manually.
 
-Without skills, you would need to re-explain context and process to Claude every time you start a task. Skills remove that friction by encoding the "how we do things" layer directly into the tool. &#x20;
+Without skills, you would need to re-explain context and process to Claude every time you start a task. Skills remove that friction by encoding the "how we do things" layer directly into the tool.
 
-Skills can include supporting reference documents (guidelines, templates, real examples) that Claude reads automatically as part of the workflow, so the relevant context is always loaded without you having to provide it manually.
-
-Anthropic maintains a registry of general-purpose skills for common tasks. Ersilia maintains its own library of skills tailored to our specific work that is what the `ersilia-skills` repository is (see [ersilia skills](ersilia-skills.md))
+Anthropic maintains a registry of general-purpose skills for common tasks. Ersilia maintains its own library of skills tailored to our specific work — that is what the ersilia-skills repository is (see [ersilia-skills](https://docs.google.com/document/d/1s9O-mjzwREH5DODOfzJqQJiqGXZyLXqLxLlbUcM22hg/edit)).
 
 ### Installing Anthropic skills
 
