@@ -72,7 +72,53 @@ Claude will load the skill's workflow and follow it. Some skills accept argument
 
 ## Skill Catalogue
 
-## Visibility
+At Ersilia, we have divided the skills we are developing and using into several categories, according to what we use them for.<br>
+
+### Visibility
+
+Related to social media, Ersilia’s public image, and networking.
+
+| Name            | Skill                                                                                                                                         |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| event-discovery | Discover interesting events for Ersilia and write a summarised report. Classify between categories (local/global, science/philanthropy, etc.) |
+| branding        | Convert documents, including slides, diagrams, posters, into Ersilia branded formats                                                          |
+
+### Platform
+
+Related to the Ersilia Model Hub: onboarding, fixing, and maintaining models.
+
+| Name                | Skill                                                                 |
+| ------------------- | --------------------------------------------------------------------- |
+| model-incorporation | Incorporate model into the Ersilia Model Hub and test it              |
+| model-discovery     | Review the literature in search for models and datasets of interest   |
+| issue-tracking      | Track open issues, produce summaries for tech tracking meetings, etc. |
+| model-monitoring    | Track pending models, stored data, etc                                |
+| model-fixing        | When a model fails test, review where and fix it automatically        |
+
+### Science
+
+Skills that support Ersilia’s scientific work: literature suggestions, summaries, and advice on written articles.
+
+| Name              | Skill                                                                                                   |
+| ----------------- | ------------------------------------------------------------------------------------------------------- |
+| literature-review | Given a topic, offer a structured review from the literature                                            |
+| paper-summary     | Summarize a given paper and put it in context of Ersilia’s interests                                    |
+| peer-reviewing    | Emulate a peer review and suggest how to address changes                                                |
+| literature-digest | Produce a weekly literature digest for Ersilia                                                          |
+| molecule-auditing | Audit small molecules suggested in Ersilia screening and score them according to parameters of interest |
+
+### Day-to-day
+
+Skills that help streamline the everyday and recurring tasks of Ersilia members, such as preparing internal presentations and organizing calendars.
+
+| Name                   | Skill                                                                                                         |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------- |
+| slack-summaries        | Produce a summary of recent Slack activity and prioritise action items                                        |
+| calendars              | Check for availability, suggest timeslots, book rooms in Norrsken, create meeting invites and Calendar events |
+| time-tracking          | Check how you’ve been spending time (including meetings), alignment with objectives, etc.                     |
+| meeting-minutes        | Take meeting minutes dynamically, aware of agendas, etc.                                                      |
+| email-drafting         | Draft emails including Ersilia’s context, for example, for pitching or summarizing what we do                 |
+| internal-presentations | <p>Create Google Slides from an Ersilia's template using the information we provide him<br></p>               |
 
 ## Contributing
 
