@@ -117,7 +117,6 @@ Skills that help streamline the everyday and recurring tasks of Ersilia members,
 | calendars              | Check for availability, suggest timeslots, book rooms in Norrsken, create meeting invites and Calendar events |
 | time-tracking          | Check how you’ve been spending time (including meetings), alignment with objectives, etc.                     |
 | meeting-minutes        | Take meeting minutes dynamically, aware of agendas, etc.                                                      |
-| email-drafting         | Draft emails including Ersilia’s context, for example, for pitching or summarizing what we do                 |
 | internal-presentations | <p>Create Google Slides from an Ersilia's template using the information we provide him<br></p>               |
 
 ## Contributing
