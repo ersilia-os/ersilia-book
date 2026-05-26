@@ -72,7 +72,7 @@ Claude will load the skill's workflow and follow it. Some skills accept argument
 
 ## Skill Catalogue
 
-At Ersilia, we have divided the skills we are developing and using into several categories, according to what we use them for.<br>
+At Ersilia, we have divided the skills we are developing and using into several categories, according to what we use them for. You can find these skills on [GitHub](https://github.com/?utm_source=chatgpt.com) to download them. Some of them are not yet available because they are still being developed and tested by the Ersilia team.
 
 ### Visibility
 
