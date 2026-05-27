@@ -28,7 +28,7 @@ Anthropic maintains a registry of general-purpose skills for common tasks. Ersil
 
 To install a skill in **Claude Chat**, open [claude.ai](https://claude.ai/) and go to _Settings → Customize → Skills_. Click _Create skill_ (or _Upload skill_) and either upload the skill folder as a `.zip` — containing the `SKILL.md` file and any supporting reference documents — or paste the contents directly into the editor. Once saved, the skill is added to your account and stays available across all future conversations.
 
-### Installing Skills in Claude Code
+### Installing Skills in Claude Cowork
 
 To install a skill in **Claude Cowork**, open the desktop app and go to _Customize → Explore plugins_. From this screen you can upload an individual skill (a folder containing the `SKILL.md` file and any supporting reference documents), create one from scratch, or install a skill published by Anthropic. Once added, the skill becomes available across all your Cowork sessions — you do not need to enable it per conversation. To use it, just describe the task in natural language and Claude will pick the right skill based on its description.
 
