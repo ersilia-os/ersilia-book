@@ -13,7 +13,7 @@ The Ersilia Open Source Initiative develops and implements AI/ML tools for infec
 * A **data scientist** developing AI/ML tools and wishing to incorporate them in our platform.
 * An Ersilia **enthusiast** looking forward to learning more about our work.
 
-All of our work is openly available through our [GitHub organization page](https://github.com/ersilia-os). Below we will summarize the main repositories and where to find the most important software tools. For a complete catalog of all our organization repositories, please see [this table](https://airtable.com/app1iYv78K6xbHkmL/shrdboxOgKjy3vipl).
+All of our work is openly available through our [GitHub organization page](https://github.com/ersilia-os). Below we will summarize the main repositories and where to find the most important software tools. For a complete catalog of all our organization repositories, please see [this table](https://airtable.com/appR6ZwgLgG8RTdoU/shr7scXQV3UYqnM6Q/tblAfOWRbA7bI1VTB).
 
 ## Tool repositories
 
