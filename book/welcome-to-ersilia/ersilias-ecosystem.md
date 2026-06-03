@@ -34,7 +34,7 @@ The repositories linked to the Ersilia Model Hub are:
 * [ersilia-self-service](https://github.com/ersilia-os/ersilia-self-service): GitHub Action-based online inference for all models. Data and results are available publicly through GitHub issues. Please do not submit IP-sensitive data.
 * [ersilia-assistant](https://github.com/ersilia-os/ersilia-assistant): LLM-based interface to easily interact with the Ersilia Model Hub.
 * [ersilia-pack](https://github.com/ersilia-os/ersilia-pack): Model packaging for serving through FastAPI.
-* [ersilia-maintained-inputs](https://github.com/ersilia-os/ersilia-maintained-inputs): Standardized inputs for model testing.
+* [ersilia-maintained-inputs](https://github.com/ersilia-os/ersilia-model-hub-maintained-inputs): Standardized inputs for model testing.
 * [model-inference-pipeline](https://github.com/ersilia-os/model-inference-pipeline): Pipeline to store model inference results in AWS, creating an open database of pre-calculations (cache).
 * [eos repositories](https://github.com/ersilia-os/eos4e40): repositories labelled with an Ersilia (eos) identifier contain individual models. A full list of models, their identifiers and relevant information is available in [this table](https://airtable.com/appgxpCzCDNyGjWc8/shrNc3sTtTA3QeEZu).
 
@@ -47,7 +47,7 @@ ZairaChem is an automated pipeline for ML model training. Read more about it in 
 ChemSampler is a pipeline based on the generative AI models available in the Ersilia Model Hub. Given a starting molecule, it performs several rounds of generative chemistry and produces a list of molecular candidates. ChemSampler can be constrained using several parameters. Please read its dedicated [GitBook section](../chemistry-tools/sampling-the-chemical-space.md) or check the code repository ([chem-sampler](https://github.com/ersilia-os/chem-sampler)).
 
 {% hint style="danger" %}
-ChemSampler is still under development. Please open a [GitHub Issue](https://github.com/ersilia-os/chem-sampler/issues) if you want to use this tool, and we will try to assist you accordingly.&#x20;
+ChemSampler is still under development. Please open a [GitHub Issue](https://github.com/ersilia-os/chem-sampler/issues) if you want to use this tool, and we will try to assist you accordingly.
 {% endhint %}
 
 ## Research-associated analyses
@@ -61,4 +61,3 @@ As part of our mission we provide training in AI and Data Science to researchers
 * AI2050 courses: 2h introduction to Drug Discovery ([ai2050-h3d-symposium-workshop](https://github.com/ersilia-os/ai2050-h3d-symposium-workshop)) and full week course for more advanced students ([ai2050-dd-workshop](https://github.com/ersilia-os/ai2050-dd-workshop)), developed in collaboration with the H3D Foundation.
 * Event Fund: A one-week course we developed in collaboration with the H3d Centre and the support of the Wellcome Trust and Code for Science and Society.
 * Python 101: An introduction to Python programming language geared to scientists (focusing on data analysis, plotting and basic pythonic operations; [python101](https://github.com/ersilia-os/python101)). Inspired by the Carpentries!
-
