@@ -29,7 +29,7 @@ During the distillation process, helpful messages and progress bars are printed 
 
 ### Distillation customization
 
-The distillation API is very flexible and covers a wide varietry of use cases. User can easily customize the distillation behavior by passing parameters to the `distill` function.
+The distillation API is very flexible and covers a wide variety of use cases. User can easily customize the distillation behavior by passing parameters to the `distill` function.
 
 ```python
 def distill(
@@ -58,4 +58,3 @@ def distill(
         pl.LightningModule: Student Model.
     """
 ```
-
