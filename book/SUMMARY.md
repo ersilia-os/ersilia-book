@@ -63,10 +63,11 @@
 ## 🌍 About Us
 
 * [Where to find us?](about-us/where-to-find-us.md)
+* [Strategic Plan 2025-2027](about-us/strategic-plan-2025-2027.md)
+* [Ersilia, the Invisible City](about-us/ersilia-the-invisible-city.md)
 * [Diversity and inclusion statement](about-us/diversity-and-inclusion-statement.md)
 * [Gender Equality Plan](about-us/gender-equality-plan.md)
 * [Code of conduct](about-us/code-of-conduct.md)
 * [Open standards and best practices](about-us/open-standards-and-best-practices.md)
+* [AI Policy](about-us/ai-policy.md)
 * [Ersilia privacy notice](about-us/ersilia-privacy-notice.md)
-* [Strategic Plan 2025-2027](about-us/strategic-plan-2025-2027.md)
-* [Ersilia, the Invisible City](about-us/ersilia-the-invisible-city.md)
