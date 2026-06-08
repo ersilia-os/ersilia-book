@@ -64,6 +64,7 @@
 
 * [Where to find us?](about-us/where-to-find-us.md)
 * [Diversity and inclusion statement](about-us/diversity-and-inclusion-statement.md)
+* [Gender Equality Plan](about-us/gender-equality-plan.md)
 * [Code of conduct](about-us/code-of-conduct.md)
 * [Open standards and best practices](about-us/open-standards-and-best-practices.md)
 * [Ersilia privacy notice](about-us/ersilia-privacy-notice.md)
