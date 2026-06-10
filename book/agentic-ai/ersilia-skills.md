@@ -72,9 +72,11 @@ Claude will load the skill's workflow and follow it. Some skills accept argument
 
 ## Skill Catalogue
 
-At Ersilia, we have divided the skills we are developing and using into several categories, according to what we use them for.&#x20;
+At Ersilia, we have identified four key goals we want to make progress on, and for each one we have mapped specific skills we believe can help us get there: new connections with funders, better public reach, Ersilia Model Hub growth, and improving scientific literacy.
 
-They are still being developed and tested by the Ersilia team, and once they are ready they will be listed and available on [GitHub](https://github.com/?utm_source=chatgpt.com).
+The skills are still being developed and tested by the Ersilia team; you can check the ones that are ready-to-use and available on [GitHub](https://github.com/?utm_source=chatgpt.com).
+
+
 
 ## Contributing
 
