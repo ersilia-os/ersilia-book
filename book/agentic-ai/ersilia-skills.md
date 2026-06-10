@@ -74,9 +74,7 @@ Claude will load the skill's workflow and follow it. Some skills accept argument
 
 At Ersilia, we have identified four key goals we want to make progress on, and for each one we have mapped specific skills we believe can help us get there: new connections with funders, better public reach, Ersilia Model Hub growth, and improving scientific literacy.
 
-The skills are still being developed and tested by the Ersilia team; you can check the ones that are ready-to-use and available on [GitHub](https://github.com/?utm_source=chatgpt.com).
-
-
+The skills are still being developed and tested by the Ersilia team; you can check the ones that are ready-to-use and available on [GitHub](https://github.com/ersilia-os/ersilia-skills).
 
 ## Contributing
 
