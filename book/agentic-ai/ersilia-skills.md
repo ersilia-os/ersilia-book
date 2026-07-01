@@ -76,6 +76,16 @@ At Ersilia, we have identified four key goals we want to make progress on, and f
 
 The skills are still being developed and tested by the Ersilia team; you can check the ones that are ready-to-use and available on [GitHub](https://github.com/ersilia-os/ersilia-skills).
 
+| Name                          | Skill                                                                                                                                                                                                        |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| model-incorporation-request   | Open a model request issue on ersilia-os/ersilia.                                                                                                                                                            |
+| model-incorporation-metadata  | Fill in metadata.yml from the paper and source repo.                                                                                                                                                         |
+| model-incorporation-code      | Wire the model code into the Ersilia template.                                                                                                                                                               |
+| model-incorporation-reproduce | Verifies model outcomes/performance matches the original work.                                                                                                                                               |
+| ersilia-model-test            | Tests an Ersilia Model Hub model before hub incorporation.                                                                                                                                                   |
+| stylia-plotting               | How to create Python plots using the stylia package — Ersilia's matplotlib wrapper for publication-ready figures.                                                                                            |
+| literature-review             | Given a topic, offer a structured review from the literature. This review will provide you with relevant research/review papers, alongside potential ML models and datasets that can be included in Ersilia. |
+
 ## Contributing
 
 To add a new skill:
