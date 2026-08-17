@@ -27,7 +27,7 @@ https://github.com/ersilia-os/[EOS_IDENTIFIER]
 The `eos` identifier follows this regular expression: `eos[1-9][a-z0-9]{3}`. That is:
 
 * The `eos` prefix, plus...
-* one digit  (`1-9`) (the `0` is reserved for test models), plus...
+* one digit (`1-9`) (the `0` is reserved for test models), plus...
 * three alphanumeric (`a-z` and `0-9`) characters.
 
 {% hint style="success" %}
@@ -36,7 +36,7 @@ The `eos` identifier follows this regular expression: `eos[1-9][a-z0-9]{3}`. Tha
 
 ### The `metadata.yml` file
 
-The `metadata.yml` file is where all the model information can be found. This is the only place where you should modify or update the model description, interpretation etc. The Airtable backend, the browsable [interface](https://ersilia.io/model-hub) of the Ersilia Model Hub and the `README.md` file will automatically be updated from the `metadata.yml` upon merge of the Pull Request. It is important to understand the flow of information: the metadata file is updated sequentially, some of the fields require input from the Model Contributor and some others are automatically added ans should not be modified.&#x20;
+The `metadata.yml` file is where all the model information can be found. This is the only place where you should modify or update the model description, interpretation etc. The Airtable backend, the browsable [interface](https://ersilia.io/model-hub) of the Ersilia Model Hub and the `README.md` file will automatically be updated from the `metadata.yml` upon merge of the Pull Request. It is important to understand the flow of information: the metadata file is updated sequentially, some of the fields require input from the Model Contributor and some others are automatically added ans should not be modified.
 
 {% hint style="danger" %}
 Note that all fields are filled in as Python strings, therefore misspellings or lower / uppercase will affect their recognition as valid values.
@@ -50,23 +50,23 @@ The model contributor is asked to fill in a few metadata fields in the Model Req
 
 **Slug:** a one-word or multi-word (linked by a hypen) human-readable identifier, stored as a string, to be used as an alternative to the EOS ID. It will be filled in from the Model Request issue. It can be modified afterwards if necessary.
 
-**Title:** a self-descriptive model title. This field is a single string of minimum 70 characters.
+**Title:** a self-descriptive model title. This field is a single string between 10-300 characters long.
 
 **Description**: minimum information about model type, results and the training dataset. This field is a single string of minimum 200 characters.
 
 {% hint style="info" %}
-Some contributors may find it difficult to come up with a good description for the model. You can find some inspiration in [Semantic Scholar](https://semanticscholar.org). This portal provides an AI-based TL;DR short description of many indexed papers.&#x20;
+Some contributors may find it difficult to come up with a good description for the model. You can find some inspiration in [Semantic Scholar](https://semanticscholar.org). This portal provides an AI-based TL;DR short description of many indexed papers.
 {% endhint %}
 
 **Tag:** labels to facilitate model search. For example, a model that predicts activity against malaria could have _P.falciparum_ as tag. This field is a list with one or more accepted values since models can have more than one [tag](https://github.com/ersilia-os/ersilia/blob/master/ersilia/hub/content/metadata/tag.txt). Select between one and five relevant from the following categories. Tags are predefined in a list at Model Request time. Do not deviate from that. This field is a list of strings.
 
 * Disease: `AIDS`, `Alzheimer`, `Cancer`, `Cardiotoxicity`, `Cytotoxicity`, `COVID19`, `Dengue`, `Malaria`, `Neglected tropical disease`, `Schistosomiasis`, `Tuberculosis`.
-* Organism: `A.baumannii`, `E.coli`, `E.faecium`, `HBV`, `HIV`, `Human`, `K.pneumoniae`, `Mouse`, `M.tuberculosis`, `P.aeruginosa`, `P.falciparum`, `Rat`, `Sars-CoV-2`,  `S.aureus`, `ESKAPE`.
-* Target: `BACE`, `CYP450`, `GPCR`, `hERG`.&#x20;
+* Organism: `A.baumannii`, `E.coli`, `E.faecium`, `HBV`, `HIV`, `Human`, `K.pneumoniae`, `Mouse`, `M.tuberculosis`, `P.aeruginosa`, `P.falciparum`, `Rat`, `Sars-CoV-2`, `S.aureus`, `ESKAPE`.
+* Target: `BACE`, `CYP450`, `GPCR`, `hERG`.
 * Experiment: `Fraction bound`, `IC50`, `Half-life`, `LogD`, `LogP`, `LogS`, `MIC90`, `Molecular weight`, `Papp`, `pKa`.
 * Application: `ADME`, `Antimicrobial activity`, `Antiviral activity`, `Bioactivity profile`, `Lipophilicity`, `Metabolism`, `Microsomal stability`, `Natural product`, `Price`, `Quantum properties`, `Side effects`, `Solubility`, `Synthetic accessibility`, `Target identification`, `Therapeutic indication`, `Toxicity`.
 * Dataset: `ChEMBL`, `DrugBank`, `MoleculeNet`, `Tox21`, `ToxCast`, `ZINC`, `TDCommons`.
-* Chemoinformatics: `Chemical graph model`, `Chemical language model`, `Chemical notation`, `Chemical synthesis`, `Compound generation`, `Descriptor`, `Drug-likeness`, `Embedding`, `Fingerprint`, `Similarity`.&#x20;
+* Chemoinformatics: `Chemical graph model`, `Chemical language model`, `Chemical notation`, `Chemical synthesis`, `Compound generation`, `Descriptor`, `Drug-likeness`, `Embedding`, `Fingerprint`, `Similarity`.
 
 **Publication:** link to the original publication. Please refer to the journal page whenever possible, instead of PubMed, ResearchGate or other secondary webs. If the model is not published in a scientific journal, please contact Ersilia maintainers. This field is a string with URL format.
 
@@ -92,9 +92,9 @@ Before opening the first PR to add the model to Ersilia, the contributor must ma
 
 **Input**: data type required by the model. Currently all Ersilia models accept only `Compound` as input. This field is a string with only one accepted value.
 
-**Input dimension:** data format required by the model. Currently all Ersilia models accept only One (in numeric, `1`) as input dimension. This does not mean we cannot pass a list of inputs to the model, but the predictions are done on one input, not a combination of them.  This field is an integer with only one accepted value.
+**Input dimension:** data format required by the model. Currently all Ersilia models accept only One (in numeric, `1`) as input dimension. This does not mean we cannot pass a list of inputs to the model, but the predictions are done on one input, not a combination of them. This field is an integer with only one accepted value.
 
-**Output:** data type outputted by the model.  The only accepted output formats are: `Score` (for example a probability), `Value` (an experimental value, a molecular descriptor, a calculated property...) `Compound` (a new compound), `Text` (natural language text, for example a description). This field is a list.
+**Output:** data type outputted by the model. The only accepted output formats are: `Score` (for example a probability), `Value` (an experimental value, a molecular descriptor, a calculated property...) `Compound` (a new compound), `Text` (natural language text, for example a description). This field is a list.
 
 **Output Dimension:** similar to the input dimension, what is the length of the output per each input? . This field is an integer with only one accepted value.
 
@@ -136,7 +136,7 @@ Once a PR successfuly passes the tests, Ersilia will run a series of workflows t
 
 **Image Size:** size of the Docker image of the model, in MB.
 
-**Computational Performance 1,2,3,4 and 5:** fields storing the time required to run 1 , 10, 100, 1000 and 10000 inputs through the model, in seconds.&#x20;
+**Computational Performance 1,2,3,4 and 5:** fields storing the time required to run 1 , 10, 100, 1000 and 10000 inputs through the model, in seconds.
 
 **Last Packaging Date**: date when the model was last packaged and uploaded to DockerHub. This is a string with the format YYYY-MM-DD.
 
@@ -160,15 +160,15 @@ However, the license notices for code developed by **third parties** must be kep
 
 ### The [`install.yml`](https://github.com/ersilia-os/eos-template/blob/main/install.yml) file
 
-Ersilia uses an `install.yml` file to specify installation instructions. The YAML syntax is easy to read and maintain. This file specifies which Python version to use to build a conda environment, or a Docker image for the model.&#x20;
+Ersilia uses an `install.yml` file to specify installation instructions. The YAML syntax is easy to read and maintain. This file specifies which Python version to use to build a conda environment, or a Docker image for the model.
 
 This dependency configuration file has two top level keys, namely, `python`, and `commands.` They dependencies are to be specified in the following manner:
 
 * `python` key expects a string value denoting a python version (eg `"3.10"`). **Only Python 3.8 or above are accepted.**
-* `commands` key expects a list of values, each of which is a list on its own, denoting the dependencies required by the model. Currently, dependencies  from `pip` and `conda` are supported.
+* `commands` key expects a list of values, each of which is a list on its own, denoting the dependencies required by the model. Currently, dependencies from `pip` and `conda` are supported.
 * `pip` dependencies are expected to be three element lists in the format `["pip", "library", "version"]`
 * `conda` dependencies are expected to be four element lists in the format `["conda", "library", "version", "channel"]`, where channel is the conda channel to install the required library.
-* When the model is run from source, Ersilia always defaults to creating a conda environment for the model to provide isolation. However, when the model is Dockerized, whether conda is used in that process depends entirely on there being conda dependencies in this file.&#x20;
+* When the model is run from source, Ersilia always defaults to creating a conda environment for the model to provide isolation. However, when the model is Dockerized, whether conda is used in that process depends entirely on there being conda dependencies in this file.
 
 The `install.yml` available in the Ersilia Model Template only defines two top-level keys as follows:
 
@@ -189,14 +189,14 @@ The commands key only allows the following entries:
 - "mkdir -p /data"
 ```
 
-* List with pip: a two-element list for Git URLs that begin with `git+https://`, `git+ssh://`, or `https://` or a list with three or more elements containing the package name (compulsory), package version  (compulsory) and optional pip flags
+* List with pip: a two-element list for Git URLs that begin with `git+https://`, `git+ssh://`, or `https://` or a list with three or more elements containing the package name (compulsory), package version (compulsory) and optional pip flags
 
 ```yaml
 - ["pip", "git+https://github.com/user/repo.git"]
 - ["pip", "mypkg", "0.1.2", "--upgrade", "--no-deps"]
 ```
 
-* List with conda: users can specify a long version (recommended) where channels are indicated by `-c` or use a shorthand form with the following order: `conda`, package name, version string, then any channels.  If the `-y` flag is not added, it will be automatically appended in both cases. Packages must have the version specified either as `package=version` or as `"[package", "version"].` If no channel is specified, default will be used
+* List with conda: users can specify a long version (recommended) where channels are indicated by `-c` or use a shorthand form with the following order: `conda`, package name, version string, then any channels. If the `-y` flag is not added, it will be automatically appended in both cases. Packages must have the version specified either as `package=version` or as `"[package", "version"].` If no channel is specified, default will be used
 
 ```yaml
 - ["conda", "install", "-y", "-c", "channel", "package=version"] #long one channel
@@ -255,7 +255,7 @@ python $1/code/main.py -i $2 -o $3
 
 In this case, a Python file located in the `[FRAMEWORK_DIR]/code` folder is executed, taking as input (`-i`) the `DATA_FILE` and giving as output (`-o`) the `OUTPUT_FILE`.
 
-To understand this further, we now need to inspect the step `main.py` file in the step above, in more detail. The current template proposes the following script:&#x20;
+To understand this further, we now need to inspect the step `main.py` file in the step above, in more detail. The current template proposes the following script:
 
 {% code title="code/main.py" %}
 ```python
@@ -535,7 +535,7 @@ You <mark style="color:red;">**don't have to modify**</mark> this class.
 
 #### The `Service` class
 
-This class is used to create the service. The service exposes the `run` API:&#x20;
+This class is used to create the service. The service exposes the `run` API:
 
 ```python
 @artifacts([Artifact("model")])
