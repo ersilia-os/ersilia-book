@@ -80,9 +80,10 @@ The skills are still being developed and tested by the Ersilia team; you can che
 
 #### 1. Better public reach
 
-| Name            | Skill                                                                                                             |
-| --------------- | ----------------------------------------------------------------------------------------------------------------- |
-| stylia-plotting | How to create Python plots using the stylia package — Ersilia's matplotlib wrapper for publication-ready figures. |
+| Name            | Skill                                                                                                                                         |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| stylia-plotting | How to create Python plots using the stylia package — Ersilia's matplotlib wrapper for publication-ready figures.                             |
+| event-discovery | Discover interesting events for Ersilia and write a summarised report. Classify between categories (local/global, science/philanthropy, etc.) |
 
 #### 2. Ersilia Model Hub growth
 
@@ -91,23 +92,27 @@ Several of these skills are designed to be chained together as part of a larger 
 * **Model incorporation pipeline** — `model-incorporation-request`, `model-incorporation-metadata`, `model-incorporation-code`, and `model-incorporation-reproduce` cover the full lifecycle of bringing a new model into the Hub, from opening the initial request to verifying it reproduces the original paper's results. They are meant to be run in sequence.
 * **Hub maintenance workflow** — `model-discovery`, `ersilia-model-test`, `model-monitoring`, `model-fixing`, and `github-digest` work together as a recurring maintenance loop: discovering new candidate models, testing them before incorporation, monitoring the state of models and stored data, fixing what fails, and digesting GitHub activity to keep track of it all. We recommend running these as a bundled workflow rather than as standalone skills.
 
-| Name                         | Skill                                                                          |
-| ---------------------------- | ------------------------------------------------------------------------------ |
-| model-incorporation-request  | Open a model request issue on ersilia-os/ersilia.                              |
-| model-incorporation-metadata | Fill in metadata.yml from the paper and source repo.                           |
-| model-incorporation-code     | Wire the model code into the Ersilia template.                                 |
-| ersilia-model-test           | Tests an Ersilia Model Hub model before hub incorporation.                     |
-| model-fixing                 | When a model fails a test, reviews where it failed and fixes it automatically. |
-| github-digest                | Tracks open issues and produces summaries for tech-tracking meetings.          |
-| repository-auditing          | Audits a repository to make sure it abides by Ersilia's standards.             |
+| Name                          | Skill                                                                          |
+| ----------------------------- | ------------------------------------------------------------------------------ |
+| model-incorporation-request   | Open a model request issue on ersilia-os/ersilia.                              |
+| model-incorporation-metadata  | Fill in metadata.yml from the paper and source repo.                           |
+| model-incorporation-code      | Wire the model code into the Ersilia template.                                 |
+| model-incorporation-reproduce | verifies model outcomes/performance matches the original work.                 |
+| ersilia-model-test            | Tests an Ersilia Model Hub model before hub incorporation.                     |
+| model-fixing                  | When a model fails a test, reviews where it failed and fixes it automatically. |
+| github-digest                 | Tracks open issues and produces summaries for tech-tracking meetings.          |
+| repository-auditing           | Audits a repository to make sure it abides by Ersilia's standards.             |
+| model-monitoring              | Track pending models, stored data, etc.                                        |
 
 #### 3. Improve scientific literacy
 
-| Name              | Skill                                                                                                                                                                                                        |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| literature-review | Given a topic, offer a structured review from the literature. This review will provide you with relevant research/review papers, alongside potential ML models and datasets that can be included in Ersilia. |
-| literature-digest | Produces a weekly literature digest for Ersilia.                                                                                                                                                             |
-| molecule-auditing | Audits small molecules suggested in Ersilia's screening and scores them according to parameters of interest.                                                                                                 |
+| Name                     | Skill                                                                                                                                                                                                        |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| literature-review        | Given a topic, offer a structured review from the literature. This review will provide you with relevant research/review papers, alongside potential ML models and datasets that can be included in Ersilia. |
+| literature-digest        | Produces a weekly literature digest for Ersilia.                                                                                                                                                             |
+| molecule-auditing        | Audits small molecules suggested in Ersilia's screening and scores them according to parameters of interest.                                                                                                 |
+| paper-to-model-assesment | Summarize a given paper and put it in context of Ersilia's interests.                                                                                                                                        |
+| peer-reviewing           | Emulate a peer review and suggest how to address changes.                                                                                                                                                    |
 
 ## Contributing
 
