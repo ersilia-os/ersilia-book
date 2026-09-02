@@ -84,6 +84,7 @@ The skills are still being developed and tested by the Ersilia team; you can che
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | stylia-plotting | How to create Python plots using the stylia package — Ersilia's matplotlib wrapper for publication-ready figures.                             |
 | event-discovery | Discover interesting events for Ersilia and write a summarised report. Classify between categories (local/global, science/philanthropy, etc.) |
+| html-formatting | Style any HTML into the recognisable Ersilia look and feel, and improve its UX at the same time.                                              |
 
 #### 2. Ersilia Model Hub growth
 
