@@ -8,17 +8,31 @@ description: >-
 
 ### Purpose of the Policy
 
-An AI policy is essential to ensure that artificial intelligence tools are developed and deployed responsibly, ethically, and in alignment with organizational values. This policy establishes clear guidelines for the use of AI to protect stakeholders, maintain trust, and promote equitable outcomes.
+Ersilia builds open-source AI tools for drug discovery, runs its own scientific research, and delivers training and capacity building with research institutions in the Global South. An AI policy is essential to ensure that artificial intelligence tools are developed and deployed responsibly, ethically, and in alignment with organizational values. This policy establishes clear guidelines for the use of AI to protect stakeholders, maintain trust, and promote equitable outcomes.
 
 ### AI Use
 
-AI tools are used by the Ersilia Open Source Initiative (Ersilia) to support research and healthcare decisions, with direct interaction between beneficiaries—including researchers, healthcare workers, and communities in the Global South—and the AI systems. Scientific and research data, such as molecular structures, disease data, and experimental results, as well as personal data including names and contact information of users and partners, are collected and processed through these tools.&#x20;
+#### What we build
 
-The organization's AI applications are designed to advance scientific discovery and improve health outcomes in resource-limited settings.
+Ersilia develops and distributes AI/ML models for drug discovery, with a focus on infectious and neglected diseases. These are narrow, task-specific models: they predict properties of chemical compounds — bioactivity against a pathogen, toxicity, physicochemical characteristics — or generate candidate molecules. Researchers use them to prioritise which compounds are worth testing experimentally, reducing the time and cost of early-stage discovery. We process scientific data (molecular structures, disease data, experimental results) and limited personal information (names, contact details) to advance scientific discovery and improve health outcomes in resource-limited settings.
+
+#### Claude by Anthropic
+
+We have recently incorporated Claude by Anthropic to our work across three levels of the organisation: technical, to develop and maintain the Ersilia Model Hub; scientific, to support our research; and organisational, in fundraising, communications and administration.
+
+Individuals working or collaborating at Ersilia are expected to exercise judgment about when and how to use it, based on the nature of the work and the risks involved, and to use the best tool available for the job.
 
 ### Interactions with Beneficiaries
 
 AI tools are deployed directly to beneficiaries who use them for research and healthcare decision-making. These interactions require careful attention to usability, accessibility, and the provision of clear guidance on how to interpret AI-generated outputs. Users receive training to understand the capabilities and limitations of the AI tools to ensure informed and appropriate use in their work.
+
+Our models support scientific decisions and every prediction is accompanied by a confidence estimate, based on how far a compound sits from the training distribution, so that users can judge how much weight to place on a result.
+
+#### Collaborative work and training activities
+
+Where AI is used in collaborative work with partners and in our training programs, the same principles apply, and partners retain ownership of their data and results.&#x20;
+
+Our flagship capacity building program, the AI Incubator, has its own [AI Policy ](https://app.gitbook.com/s/HHO5jOS38euA5IqOgq6G/resources/ai-policy) and [intellectual property](https://app.gitbook.com/s/HHO5jOS38euA5IqOgq6G/resources/intellectual-property) property sections related to the use of AI during the program and participating research projects remain with the researchers and their host institutions.
 
 ### Data Collection Practices
 
