@@ -32,7 +32,7 @@ Our models support scientific decisions and every prediction is accompanied by a
 
 Where AI is used in collaborative work with partners and in our training programs, the same principles apply, and partners retain ownership of their data and results.&#x20;
 
-Our flagship capacity building program, the AI Incubator, has its own [AI Policy ](https://app.gitbook.com/s/HHO5jOS38euA5IqOgq6G/resources/ai-policy) and [intellectual property](https://app.gitbook.com/s/HHO5jOS38euA5IqOgq6G/resources/intellectual-property) property sections related to the use of AI during the program and participating research projects remain with the researchers and their host institutions.
+Our flagship capacity building program, the AI Incubator, has its own [AI Policy ](https://app.gitbook.com/s/HHO5jOS38euA5IqOgq6G/resources/ai-policy) and [intellectual property](https://app.gitbook.com/s/HHO5jOS38euA5IqOgq6G/resources/intellectual-property) property sections related to the use of AI during the program and the intelectual property of the projects data and outcomes.
 
 ### Data Collection Practices
 
