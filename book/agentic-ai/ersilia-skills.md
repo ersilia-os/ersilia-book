@@ -85,6 +85,7 @@ The skills are still being developed and tested by the Ersilia team; you can che
 | stylia-plotting | How to create Python plots using the stylia package — Ersilia's matplotlib wrapper for publication-ready figures.                             |
 | event-discovery | Discover interesting events for Ersilia and write a summarised report. Classify between categories (local/global, science/philanthropy, etc.) |
 | html-formatting | Style any HTML into the recognisable Ersilia look and feel, and improve its UX at the same time.                                              |
+| org-context     | Keeps the agent-context files short, true and consistent.                                                                                     |
 
 #### 2. Ersilia Model Hub growth
 
@@ -93,17 +94,19 @@ Several of these skills are designed to be chained together as part of a larger 
 * **Model incorporation pipeline** — `model-incorporation-request`, `model-incorporation-metadata`, `model-incorporation-code`, and `model-incorporation-reproduce` cover the full lifecycle of bringing a new model into the Hub, from opening the initial request to verifying it reproduces the original paper's results. They are meant to be run in sequence.
 * **Hub maintenance workflow** — `model-discovery`, `ersilia-model-test`, `model-monitoring`, `model-fixing`, and `github-digest` work together as a recurring maintenance loop: discovering new candidate models, testing them before incorporation, monitoring the state of models and stored data, fixing what fails, and digesting GitHub activity to keep track of it all. We recommend running these as a bundled workflow rather than as standalone skills.
 
-| Name                          | Skill                                                                          |
-| ----------------------------- | ------------------------------------------------------------------------------ |
-| model-incorporation-request   | Open a model request issue on ersilia-os/ersilia.                              |
-| model-incorporation-metadata  | Fill in metadata.yml from the paper and source repo.                           |
-| model-incorporation-code      | Wire the model code into the Ersilia template.                                 |
-| model-incorporation-reproduce | verifies model outcomes/performance matches the original work.                 |
-| ersilia-model-test            | Tests an Ersilia Model Hub model before hub incorporation.                     |
-| model-fixing                  | When a model fails a test, reviews where it failed and fixes it automatically. |
-| github-digest                 | Tracks open issues and produces summaries for tech-tracking meetings.          |
-| repository-auditing           | Audits a repository to make sure it abides by Ersilia's standards.             |
-| model-monitoring              | Track pending models, stored data, etc.                                        |
+| Name                          | Skill                                                                                                                                                                                                                       |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| model-incorporation-request   | Open a model request issue on ersilia-os/ersilia.                                                                                                                                                                           |
+| model-incorporation-metadata  | Fill in metadata.yml from the paper and source repo.                                                                                                                                                                        |
+| model-incorporation-code      | Wire the model code into the Ersilia template.                                                                                                                                                                              |
+| model-incorporation-reproduce | verifies model outcomes/performance matches the original work.                                                                                                                                                              |
+| model-incorporation-release   | Last step of the incorporation pipeline. It runs after the model's PR is merged into ersilia-os/eosXXXX.                                                                                                                    |
+| ersilia-model-test            | Tests an Ersilia Model Hub model before hub incorporation.                                                                                                                                                                  |
+| model-fixing                  | When a model fails a test, reviews where it failed and fixes it automatically.                                                                                                                                              |
+| github-digest                 | Tracks open issues and produces summaries for tech-tracking meetings.                                                                                                                                                       |
+| repository-auditing           | Audits a repository to make sure it abides by Ersilia's standards.                                                                                                                                                          |
+| model-monitoring              | Track pending models, stored data, etc.                                                                                                                                                                                     |
+| model-optimization            | Makes an Ersilia Model Hub model smaller without changing its outputs, verifies it with exact output gates, a served-model run and ersilia test --shallow, and opens a PR on the model repository with the size comparison. |
 
 #### 3. Improve scientific literacy
 
