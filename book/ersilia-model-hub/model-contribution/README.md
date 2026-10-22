@@ -28,7 +28,7 @@ Ersilia is only maintained for Linux/MacOS systems. If you are working with Wind
 #### Additional installations
 
 * DockerHub: all models incorporated in Ersilia will be Dockerized for easy deployment. While the dockerization step happens in the cloud (GitHub Actions) it is recommended to install docker for model testing purposes.
-* Git-LFS: many model’s checkpoints are too large (>100MB) for GitHub storage. Make sure that [git-lfs](https://git-lfs.com/) is installed and active in your system to push large files to the model repository.&#x20;
+* EOSVC: checkpoints and training data are committed to the model repository. A folder that holds a file larger than 100 MB is stored in S3 with [eosvc](https://github.com/ersilia-os/eosvc) instead; uploading requires AWS credentials.&#x20;
 
 ## TL:DR
 
@@ -39,7 +39,7 @@ Summary of the contributor’s pipeline:
 3. Open a Model Request issue under the [Ersilia repository](https://github.com/ersilia-os/ersilia).
 4. Fork the repository created upon approval of the Model Request by Ersilia maintainers.
 5. Clone the model repository in your local machine and follow the steps described below:
-   1. Include the model checkpoints in the `/checkpoints` directory. Track them as git-lfs files using the `.gitattributes` file if necessary.
+   1. Include the model checkpoints in the `/checkpoints` directory and commit them. If a file is larger than 100 MB, gitignore the whole folder and store it with [eosvc](https://github.com/ersilia-os/eosvc) instead.
    2. Include any code needed to run the model as .py script files in the `/framework/code` directory.
    3. Adapt the functions in `main.py` to actually run your model and provide the output in the specified format.
    4. Create the `run_columns.csv` file including information about the model output, following the indications described [here](model-template.md#columns-file).&#x20;
