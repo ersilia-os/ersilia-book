@@ -650,6 +650,13 @@ Choose the version by the effect of the change on people who use the model, not 
   * The model returns a different kind of result for the same input. For example, inputs that used to return a value now return an empty row.
 * MINOR (`vN.M+1.0`): changes to the code, dependencies or Docker image that keep the same output columns.
   * Dependency updates and rebuilds where the outputs match the previous release. Report any small numerical differences in the release notes.
+  * Serving and performance changes that keep the same outputs. This includes:
+    * loading the model once and reusing it between batches (warm serving, by splitting `main.py` into `load_tool()` and `run_tool()`)
+    * faster code, or memory that no longer grows with the input
+    * smaller images
+    * an added GPU option
+
+    Before releasing, compare the outputs of the previous and new versions on the same molecules. GPU outputs may differ slightly from CPU outputs. Report the differences and the speed-up in the release notes.
   * Bug fixes that make the model work as documented, for example inputs that used to fail now return a result. If the fix changes outputs that users already have, describe the change in the release notes.
 * PATCH (`vN.M.P+1`): no change to the code, dependencies, checkpoints or outputs.
   * Metadata and README updates, including corrections to the licence, task or output fields.
