@@ -26,6 +26,7 @@
   * [Best code practices](ersilia-model-hub/developer-docs/developer-guide-for-codebase-quality-and-consistency.md)
   * [Precalculation Store](ersilia-model-hub/developer-docs/precalculation-store.md)
   * [Ersilia Version Control (EOSVC)](ersilia-model-hub/developer-docs/ersilia-version-control-eosvc.md)
+  * [Apptainer (Singularity) images](ersilia-model-hub/developer-docs/apptainer-singularity-images.md)
 * [Model Hub maintenance](ersilia-model-hub/model-hub-maintenance.md)
 
 ## 💊 Chemistry tools
