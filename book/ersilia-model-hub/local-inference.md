@@ -24,7 +24,7 @@ rm -rf ~/miniconda3/miniconda.sh
 ~/miniconda3/bin/conda init zsh
 ```
 
-* Docker: Docker containers are an excellent way to share applications and simplify the management of system requirements and configurations. Please [install Docker](https://www.docker.com) to ensure that all our AI/ML assets will work smoothly in your local device.
+* Docker: Docker containers are an excellent way to share applications and simplify the management of system requirements and configurations. Please [install Docker](https://www.docker.com) to ensure that all our AI/ML assets will work smoothly in your local device. No Docker, for example on an HPC cluster? See [Apptainer (Singularity) images](developer-docs/apptainer-singularity-images.md).
 
 #### Install from PyPi
 
