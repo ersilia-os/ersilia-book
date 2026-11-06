@@ -219,10 +219,6 @@ cp SA_Score/sascorer.py eos9ei3/model/framework/code/.
 cp SA_Score/fpscores.pkl.gz eos9ei3/model/checkpoints/.
 ```
 
-{% hint style="info" %}
-The github repository contains a dummy `mock.csv` that can be deleted. Also remove the .gitattributes file if it is not needed.
-{% endhint %}
-
 {% hint style="danger" %}
 Note that here we are migrating code and parameters to different folders. This may cause critical errors if code expects to find parameters at a certain relative location. Try to locate the pointers to the model parameters and change the paths. Only, and exceptionally, if the model architecture is too complex we can keep code and parameters in the `/framework` folder. Please ask for permission to Ersilia's team before doing it.
 {% endhint %}
@@ -231,208 +227,150 @@ Note that here we are migrating code and parameters to different folders. This m
 
 Now it is time to write some code. Here we will follow the description of the `model` folder given in the [Model Template page](model-template.md#the-model-folder).
 
-The `eos-template` provides a `main.py` that will guide us through the deployment steps. We will adapt the `main.py` to our specific needs, and run it from the `run.sh` file present in the /model directory. The arguments are, respectively, the path to the file, the input and the output. Ersilia takes care of passing the right arguments to the `run.sh` file. Please do not modify it.
+Ersilia runs the model through the `run.sh` file, with three arguments: the path to the `framework` folder, the input file and the output file. Ersilia takes care of passing the right arguments to `run.sh`. Please do not modify it.
 
 ```bash
 python $1/code/main.py $2 $3
 ```
 
+The `main.py` of the `eos-template` is organized in two functions, and we will keep that structure:
+
+* `load_tool()` does the slow, one-time setup: imports, reading the checkpoints, building the model. It returns the model.
+* `run_tool(model, input_file, output_file)` runs the model on one batch: it reads the input file, predicts and writes the output file.
+
+When the model is served, Ersilia calls `load_tool()` only once and keeps the model in memory between batches. This is called [**warm serving**](../developer-docs/warm-serving.md), and for many models it is several times faster than loading the model again for every batch. When `main.py` is run from the terminal, its last lines simply call the two functions one after the other.
+
 Going back to our model of interest, we have identified three necessary steps to run the model:
 
 1. Input adapter
-2. SAScorer (in this case, the `sascorer.py` which is already written)
+2. SAScorer (in this case, the `sascorer.py`, which is already written)
 3. Output adapter
-
-**Write the input adapter**
-
-By default, for chemical compound inputs, Ersilia uses single-column files with a header. However, the `sascorer.py` [expects](example-of-the-model-incorporation-workflow.md#test-the-model) a two-column file. Let's write an **input** **adapter.** The best practice to create temporary files is to include a temporal folder with the prefix "ersilia" and remove it at the end of the model run.
-
-{% code title="input_adapter.py" %}
-```python
-import sys
-import csv
-import tempfile
-
-input_file = sys.argv[1] 
-
-root = os.path.dirname(os.path.abspath(__file__))
-temp_dir = tempfile.mkdtemp(prefix="ersilia_", dir=root)
-temp_input = os.path.join(temp_dir, "tmp_input.smi")
-
-smiles_list = []
-with open(input_file, "r") as f:
-    reader = csv.reader(f)
-    next(reader) # skip header
-    for r in reader:
-        smiles_list += [r[0]]
-
-with open(temp_input, "w") as f:
-    writer = csv.writer(f, delimiter=" ")
-    writer.writerow(["smiles", "identifier"]) # header
-    for i, smi in enumerate(smiles_list):
-        writer.writerow([smi, "mol{0}".format(i)])
-```
-{% endcode %}
-
-The script creates an intermediate `tmp_input.smi` file that can be used as input for `sascorer.py`. We can keep this as a separate script under `/code`, but since it is a small function, we will write it inside the `main.py` file:
-
-{% code title="code/main.py from line 20" %}
-```python
-# read SMILES from .csv file, assuming one column with header
-smiles_list = []
-with open(input_file, "r") as f:
-    reader = csv.reader(f)
-    next(reader) # skip header
-    for r in reader:
-        smiles_list += [r[0]]
-
-with open(temp_input, "w") as f:
-    writer = csv.writer(f, delimiter=" ")
-    writer.writerow(["smiles", "identifier"]) # header
-    for i, smi in enumerate(smiles_list):
-        writer.writerow([smi, "mol{0}".format(i)])
-```
-{% endcode %}
 
 **Make sure that parameters are read**
 
-So far, we haven't pointed to the model parameters. When [migrating code and parameters](example-of-the-model-incorporation-workflow.md#migrate-code-and-parameters), we separated the `sascore.py` file and the `fpscores.pkl.gz` file.
-
-Let's inspect `sascore.py` to understand how parameters are read. There is a `readFragmentScore` function that does this job. We need to modify it to point to the `checkpoints` folder:
+When [migrating code and parameters](example-of-the-model-incorporation-workflow.md#migrate-code-and-parameters), we separated the `sascorer.py` file and the `fpscores.pkl.gz` file. Let's inspect `sascorer.py` to understand how parameters are read. There is a `readFragmentScores` function that does this job. We need to modify it to point to the `checkpoints` folder:
 
 {% code title="code/sascorer.py" %}
 ```python
-...
-def readFragmentScores(name='fpscores'):
-    import gzip
-    global _fscores
-    # generate the full path filename:
-    if name == "fpscores":
-        name = op.join(op.join(op.dirname(__file__), "..", "..", "checkpoints"), name)
-    data = pickle.load(gzip.open('%s.pkl.gz' % name))
-    outDict = {}
-    for i in data:
-        for j in range(1, len(i)):
-            outDict[i[j]] = float(i[0])
-    _fscores = outDict
-...
+def readFragmentScores(name="fpscores.pkl.gz"):
+  import gzip
+  global _fscores
+  # generate the full path filename:
+  if name == "fpscores.pkl.gz":
+    name = op.join(op.dirname(__file__), "..", "..", "checkpoints", name)
+  data = pickle.load(gzip.open(name))
+  outDict = {}
+  for i in data:
+    for j in range(1, len(i)):
+      outDict[i[j]] = float(i[0])
+  _fscores = outDict
 ```
 {% endcode %}
 
-**Run the model inside main.py**
+Reading the fragment scores is the slow, one-time step of this model, so it goes in `load_tool()`.
 
-We now have the input adapter and the model code and parameters. We simply need to run the model in `main.py` by calling the `sascorer.py`.
+**Collect the output of the model**
 
-We first make sure to import the necessary packages and delete the non-necessary ones (in this case, the MW by RDKit). The sa-scorer uses `time` to measure how long did the model take, as well as the functions `readFragmentScores` and `processMols`.
+The `processMols()` function was simply printing the output without saving the results, so we modify it in `sascorer.py` to also return them:
 
-The input file is no longer passed as a `sys.argv`, so we modify it with the temporal input file we just created
+{% code title="code/sascorer.py" %}
+```python
+def processMols(mols):
+  print('smiles\tName\tsa_score')
+  R = []
+  for i, m in enumerate(mols):
+    if m is None:
+      continue
+
+    s = calculateScore(m)
+
+    smiles = Chem.MolToSmiles(m)
+    if s is None:
+      print(f"{smiles}\t{m.GetProp('_Name')}\t{s}")
+    else:
+      print(f"{smiles}\t{m.GetProp('_Name')}\t{s:3f}")
+    R += [[smiles, m.GetProp("_Name"), s]]
+  return R
+```
+{% endcode %}
+
+Each row of `R` has three values: the SMILES, the identifier and the SA score. We only need the score.
+
+**Write main.py**
+
+By default, for chemical compound inputs, Ersilia passes a single-column file with a header. We read it with `read_smiles`, from the `ersilia_pack_utils` package that the template already uses, and write the output with `write_out`. These two functions also handle the other file formats that Ersilia may pass to the model, so we do not open the input and output files ourselves.
+
+However, `sascorer.py` expects a two-column file, with the SMILES and an identifier separated by a space. The **input adapter** writes this file into a temporary folder with the prefix `ersilia_`, which is removed at the end of each batch. The **output adapter** keeps only the score.
+
+Our final `main.py` looks like this:
 
 {% code title="code/main.py" %}
 ```python
 # imports
 import os
 import csv
+import shutil
 import sys
-import time
+import tempfile
+import numpy as np
 from rdkit import Chem
+from ersilia_pack_utils.core import read_smiles, write_out
 from sascorer import readFragmentScores, processMols
-
-# parse arguments
-input_file = sys.argv[1]
-output_file = sys.argv[2]
 
 # current file directory
 root = os.path.dirname(os.path.abspath(__file__))
-temp_dir = tempfile.mkdtemp(prefix="ersilia_", dir=root)
-temp_input = os.path.join(temp_dir, "tmp_input.smi")
-
-# read SMILES from .csv file, assuming one column with header
-smiles_list = []
-with open(input_file, "r") as f:
-    reader = csv.reader(f)
-    next(reader) # skip header
-    for r in reader:
-        smiles_list += [r[0]]
-
-with open(temp_input, "w") as f:
-    writer = csv.writer(f, delimiter=" ")
-    writer.writerow(["smiles", "identifier"]) # header
-    for i, smi in enumerate(smiles_list):
-        writer.writerow([smi, "mol{0}".format(i)])
-
-# run model
-t1 = time.time()
-readFragmentScores("fpscores")
-t2 = time.time()
-
-suppl = Chem.SmilesMolSupplier(temp_input)
-t3 = time.time()
-R = processMols(suppl)
-t4 = time.time()
-
-print('Reading took %.2f seconds. Calculating took %.2f seconds' % ((t2 - t1), (t4 - t3)),
-        file=sys.stderr)
 
 
+# load the model once: read the fragment scores from the checkpoints folder.
+# When served, Ersilia calls this once and keeps the result in memory between batches.
+def load_tool():
+    readFragmentScores()
+    return processMols
+
+
+# run the model on one batch: read the input file, predict, write the output file.
+def run_tool(model, input_file, output_file):
+    # read SMILES from the input file, assuming one column with header
+    _, smiles_list = read_smiles(input_file)
+
+    # input adapter: write the SMILES in the format that sascorer.py expects
+    temp_dir = tempfile.mkdtemp(prefix="ersilia_", dir=root)
+    temp_input = os.path.join(temp_dir, "tmp_input.smi")
+    with open(temp_input, "w") as f:
+        writer = csv.writer(f, delimiter=" ")
+        writer.writerow(["smiles", "identifier"])  # header
+        for i, smi in enumerate(smiles_list):
+            writer.writerow([smi, "mol{0}".format(i)])
+
+    # run model
+    R = model(Chem.SmilesMolSupplier(temp_input))
+
+    # output adapter: keep only the score
+    outputs = np.array([[r[-1]] for r in R], dtype=np.float32)
+
+    # check input and output have the same length
+    assert len(smiles_list) == len(outputs)
+
+    # write output in a .csv file
+    write_out(outputs, ["sa_score"], output_file, np.float32)
+
+    # remove the temporary files of this batch
+    shutil.rmtree(temp_dir)
+
+
+if __name__ == "__main__":
+    # parse arguments
+    input_file = sys.argv[1]
+    output_file = sys.argv[2]
+    run_tool(load_tool(), input_file, output_file)
 ```
 {% endcode %}
 
-The `processMols()` function was simply printing the output without saving the results, so we have modified it in the `sascorer.py` to get the output:
+Keep these rules in mind when writing your own `main.py`:
 
-```python
-def processMols(mols):
-    print('smiles\tName\tsa_score')
-    R = []
-    for i, m in enumerate(mols):
-        if m is None:
-            continue
-        s = calculateScore(m)
-        smiles = Chem.MolToSmiles(m)
-        print(smiles + "\t" + m.GetProp('_Name') + "\t%3f" % s)
-        R += [[smiles, m.GetProp("_Name"), "\t%3f" % s]]
-    return R
-```
-
-#### Write the output adapters
-
-We need to understand the output of the model in order to collect it correctly. The easiest will be to add a `print(R)` statement in `main.py` and run the `run.sh` file with the example test file.
-
-```bash
-cd model/framework
-python run.sh . examples/run_input.csv examples/run_output.csv
-```
-
-We observe that the output provided by `sascorer.py` has three columns (tab-separated), so we need to adapt it.
-
-<table><thead><tr><th width="462.3333333333333">smiles</th><th>Name</th><th>sa_score</th></tr></thead><tbody><tr><td>C(F)Oc1ccc(-c2nnc3cncc(Oc4ccc5ccsc5c4)n23)cc1</td><td>mol0</td><td>2.823995</td></tr><tr><td>C(F)Oc1ccc(-c2nnc3cncc(OCC[C]4BBBBBBBBBB[CH]4)n23)cc1</td><td>mol1</td><td>5.757383</td></tr><tr><td>Cn1cc2ccc(Oc3cncc4nnc(-c5ccc(OC(F)F)cc5)n34)cc2n1</td><td>mol2</td><td>2.910502</td></tr></tbody></table>
-
-Likewise, we can substitute this piece of code in `main.py`:
-
-{% code title="code/main.py  template line29" %}
-```python
-outputs = []
-for r in R:
-    outputs += [r[-1].strip()]
-        
-#check input and output have the same lenght
-input_len = len(smiles_list)
-output_len = len(outputs)
-assert input_len == output_len
-
-# write output in a .csv file
-with open(output_file, "w") as f:
-    writer = csv.writer(f)
-    writer.writerow(["sa_score"])  # header
-    for o in outputs:
-        writer.writerow([o])
-```
-{% endcode %}
-
-Finally, let's add one more line to `main.py` to clean up the temporary files we have created:
-
-```python
-shutil.rmtree(temp_dir)
-```
+* Everything that is slow and only needs to happen once goes in `load_tool()`. Do not load anything again inside `run_tool()`.
+* `run_tool()` must not keep anything between batches: each batch must give the same result, whatever ran before it. This is why the temporary folder is created and removed inside `run_tool()`.
+* Keep the `if __name__ == "__main__":` block, so that `run.sh` keeps working.
 
 ### 4. Run the model locally
 
@@ -462,11 +400,11 @@ You should get the `output.csv` file in your `~/Desktop`. The output contains fi
 {% code title="output.csv" %}
 ```
 sa_score
-3.527006
+3.5270064
 2.344611
-2.957539
-2.535359
-1.798579
+2.9575393
+2.5353591
+1.7985793
 ```
 {% endcode %}
 
@@ -485,7 +423,7 @@ sa_score,float,low,Synthetic accessibility score
 
 #### Edit the `install.yml` file
 
-The `install.yml` file should include all the installation steps that you run after creating the working Conda environment. In the case of `sa-scorer`, we only installed RDKit. It is important to specify the right version of each package to avoid clashes.
+The `install.yml` file should include all the installation steps that you run after creating the working Conda environment. In the case of `sa-scorer`, we only installed RDKit, plus NumPy and `ersilia-pack-utils`, which `main.py` uses to read and write files. It is important to specify the right version of each package to avoid clashes.
 
 {% code title="install.yml" %}
 ```yaml
@@ -493,6 +431,8 @@ python: "3.10"
 
 commands:
   - ["pip", "rdkit", "2023.3.1"]
+  - ["pip", "numpy", "1.26.4"]
+  - ["pip", "ersilia-pack-utils", "0.1.5"]
 ```
 {% endcode %}
 
@@ -542,7 +482,8 @@ Before committing our new model to Ersilia, we must check it will work within th
 conda activate ersilia
 ersilia -v fetch eos9ei3 --from_dir ~/Desktop/eos9ei3
 ersilia serve eos9ei3
-ersilia predict -i molecules.csv -o output.csv
+ersilia run -i molecules.csv -o output.csv
+ersilia close
 ```
 
 If this runs without issues, the model is ready to be incorporated. If not, please go to the [Troubleshooting](troubleshooting-models.md) section to know what to do next.
@@ -562,31 +503,22 @@ This will create a report file stating if any test has not passed. To learn more
 
 We are now ready to commit changes, first to our fork, and then to the main Ersilia repository by opening a pull request. Before doing so, complete the steps below:
 
-#### Cleanup mock files
+#### Cleanup unneeded files
 
-Probably, there is a few files, such as `mock.csv`, that are no longer needed (this is used solely to initialize Git-LFS). Please remove them before committing and also eliminate the Git-LFS tracking from `.gitattributes` (see below for more on Git-LFS)
+Remove any file that is no longer needed before committing, such as temporary files created while testing the model, or example files from the original repository that the model does not use.
 
-#### Check the `.gitattributes` file
+#### Commit the checkpoints
 
-If you have large files, you will have to track them with Git LFS. The template already provides a collection of common extensions to track with Git LFS (see `.gitattributes` file). However, it is possible that your parameters do not have any of these extensions.
-
-Let's track our parameters, even if the file is not particularly big:
+Checkpoints and training data are committed to the model repository, like the code. In our case, `fpscores.pkl.gz` is small, so it goes in the commit with the rest of the work:
 
 ```bash
 cd ~/Desktop/eos9ei3
-git lfs track "*.pkl.gz"
-git add .gitattributes
-git commit -m "git lfs track"
-git push
-```
-
-Now commit the bulk of your work:
-
-```bash
 git add .
 git commit -m "first major commit"
 git push
 ```
+
+If a file is larger than 100 MB, add its whole folder to `.gitignore` and store the folder in S3 with eosvc instead (see [Ersilia Version Control (EOSVC)](../developer-docs/ersilia-version-control-eosvc.md)).
 
 #### Open a pull request
 
@@ -618,8 +550,8 @@ ersilia run -i input.csv -o output.csv
 The output should look like this:
 
 ```csv
- "key","input","sa-score"
- "RYYVLZVUVIJVGH-UHFFFAOYSA-N","Cn1cnc2n(C)c(=O)n(C)c(=O)c12",2.297982
+"key","input","sa_score"
+"RYYVLZVUVIJVGH-UHFFFAOYSA-N","Cn1cnc2n(C)c(=O)n(C)c(=O)c12",2.297982
 ```
 
 {% hint style="danger" %}
@@ -630,7 +562,7 @@ The original model contributor should make sure the model is working for differe
 
 ### 9. Clean up
 
-Please, help us keep a healthy environment and avoid duplication of files and consuming of our Git LFS quota. Delete the repository fork after the model has been successfully incorporated.
+Please help us keep a healthy environment and avoid duplication of files. Delete the repository fork after the model has been successfully incorporated.
 
 ## Model maintenance
 
