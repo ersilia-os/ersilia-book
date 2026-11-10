@@ -645,9 +645,10 @@ All models are released as v1.0.0 at model incorporation time. After that, Ersil
 Choose the version by the effect of the change on people who use the model, not by which files changed. If several apply, use the highest.
 
 * MAJOR (`vN+1.0.0`): changes that can break existing uses of the model.
-  * The checkpoints change (retraining, fine-tuning, new weights).
+  * The checkpoints change (retraining, fine-tuning, new weights). A conversion of the same weights to another file format also counts as MAJOR unless the outputs were compared and match (see MINOR).
   * The output columns change: a column is added, removed, renamed or reordered, or its type changes.
   * The model returns a different kind of result for the same input. For example, inputs that used to return a value now return an empty row.
+  * For generative models whose output is random, a change to how molecules are produced: a different sampling algorithm, model or selection criteria.
 * MINOR (`vN.M+1.0`): changes to the code, dependencies or Docker image that keep the same output columns.
   * Dependency updates and rebuilds where the outputs match the previous release. Report any small numerical differences in the release notes.
   * Serving and performance changes that keep the same outputs. This includes:
@@ -658,6 +659,8 @@ Choose the version by the effect of the change on people who use the model, not 
 
     Before releasing, compare the outputs of the previous and new versions on the same molecules. GPU outputs may differ slightly from CPU outputs. Report the differences and the speed-up in the release notes.
   * Bug fixes that make the model work as documented, for example inputs that used to fail now return a result. If the fix changes outputs that users already have, describe the change in the release notes.
+  * A conversion of the same weights to another file format (for example ONNX, TorchScript, npz or JSON), when the outputs of the previous and new versions match within numerical precision on the same molecules. Report the largest difference in the release notes.
+  * For generative models, changes that make the output match its description without changing the method: removing invalid SMILES, duplicates or copies of the input, or ordering each row by similarity to the input.
 * PATCH (`vN.M.P+1`): no change to the code, dependencies, checkpoints or outputs.
   * Metadata and README updates, including corrections to the licence, task or output fields.
   * Changes to the descriptions or direction in `run_columns.csv`, if column names, order and types stay the same.
