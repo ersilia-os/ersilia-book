@@ -601,7 +601,7 @@ If the Actions at Pull request fail, please check them and work on debugging the
 * Test the model once more
 * Update the `README.md` and AirTable metadata
 
-This workflow is also triggered each time there is a push to the repository, to ensure changes to the code do maintain model functionality and metadata is not outdated. If the model testing works, the model will then be zipped and uploaded to S3 as a backup and packaged in a Docker image and made available via the [Ersilia DockerHub](https://hub.docker.com/orgs/ersiliaos) page. The Docker image is also tested extensively in the workflows before being added to the DockerHub.
+This workflow is also triggered each time there is a push to the repository, to ensure changes to the code do maintain model functionality and metadata is not outdated. If the model testing works, the model will then be zipped and uploaded to S3 as a backup and packaged in a Docker image and made available via the [Ersilia DockerHub](https://hub.docker.com/orgs/ersiliaos) page. The Docker image is also tested extensively in the workflows before being added to the DockerHub. Once the Docker image has passed its tests, an [Apptainer image](../developer-docs/apptainer-singularity-images.md) (a `.sif` file) is built from it, tested and uploaded, so that the model can also run where Docker is not available, such as on HPC clusters. Its URL is written in the `Apptainer` field of the model metadata.
 
 You can now visit the `eos9ei3` [GitHub repository](https://github.com/ersilia-os/eos9ei3) and check that your work is publicly available.
 
