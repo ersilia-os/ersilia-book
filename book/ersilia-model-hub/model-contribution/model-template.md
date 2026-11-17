@@ -236,7 +236,7 @@ The `model` folder **should not** contain anything other than the `framework` an
 {% endhint %}
 
 {% hint style="info" %}
-Often, the separation between `framework` and `checkpoints` is not easy to determine. Sometimes, models obtained from third parties have model data embedded within the code or as part of the repository. If those are impossible to separate, keep the data in the `framework` subfolder, and leave the `checkpoints` subfolder empty.
+Often, the separation between `framework` and `checkpoints` is not easy to determine. Sometimes, models obtained from third parties have model data embedded within the code or as part of the repository. Even then, the weights must go to `model/checkpoints/`: move them there and update the paths in the code (see [Checkpoints and storage](#checkpoints-and-storage)).
 {% endhint %}
 
 The `framework` subfolder contains at least one Bash file, named `run.sh`. This file will run as follows:
@@ -377,7 +377,9 @@ eosvc upload --path checkpoints
 eosvc upload --path fit
 ```
 
-Keep only the folders that go to eosvc in `access.json` and `.gitignore`. For example, a model whose checkpoints are all under 100 MiB lists only `fit`.
+Upload only the folders that go to eosvc, one at a time (for example `eosvc upload --path fit`). Never use `eosvc upload --path .`. Leaving a folder out of `access.json` does not stop eosvc: it treats the folder as public, and CI's `eosvc download --path .` puts any S3 copy over the Git one. Never keep a folder in both Git and S3. If neither folder goes to eosvc, the repository needs no `access.json`.
+
+A model without a training step keeps the template's `model/framework/fit/` skeleton (`README.md` and the empty `data/`, `results/` and `src/` folders) in Git, and does not list `fit` in `access.json` or `.gitignore`. As soon as `fit/` holds training code or data, the whole folder goes to eosvc.
 
 {% hint style="info" %}
 Some older models still keep files in Git LFS. They are being migrated (see [ersilia#1967](https://github.com/ersilia-os/ersilia/issues/1967)). To work with one of them from source, install [git-lfs](https://git-lfs.com/).

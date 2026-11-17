@@ -151,7 +151,7 @@ kill -9 12345
 
 * Remove any temporal edits, like `print` statements.
 * Ensure the packages listed in the `install.yml` are updated to the version that is working.
-* Revise the `.gitattributes` file.
+* Check that the checkpoints follow [Checkpoints and storage](model-template.md#checkpoints-and-storage).
 
 When you are ready to push the changes to your fork of the model, open a PR to the main branch. As in the Model Incorporation, a series of [automated tests](example-of-the-model-incorporation-workflow.md#open-a-pull-request) will be triggered. Please check their result before moving on.
 

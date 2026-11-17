@@ -73,7 +73,7 @@ eosvc download --path data/my_big_dataset
 See what is already stored on S3 for this project:
 
 ```
-eosvc view --path data
+eosvc view
 ```
 
 ### ⚠️ Important Safety Note: Access Lock
