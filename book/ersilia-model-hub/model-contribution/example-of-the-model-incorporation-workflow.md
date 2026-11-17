@@ -220,11 +220,11 @@ cp SA_Score/fpscores.pkl.gz eos9ei3/model/checkpoints/.
 ```
 
 {% hint style="info" %}
-The github repository contains a dummy `mock.csv` that can be deleted. Also remove the .gitattributes file if it is not needed.
+`fpscores.pkl.gz` is small, so it is committed to Git with the rest of the repository. Follow the [Checkpoints and storage](model-template.md#checkpoints-and-storage) rule: a folder with a file of 100 MiB or more goes to eosvc, and Git LFS is not used. If the repository contains a `mock.csv` or a `.gitattributes` file from an older template, delete them.
 {% endhint %}
 
 {% hint style="danger" %}
-Note that here we are migrating code and parameters to different folders. This may cause critical errors if code expects to find parameters at a certain relative location. Try to locate the pointers to the model parameters and change the paths. Only, and exceptionally, if the model architecture is too complex we can keep code and parameters in the `/framework` folder. Please ask for permission to Ersilia's team before doing it.
+Note that here we are migrating code and parameters to different folders. This may cause critical errors if code expects to find parameters at a certain relative location. Try to locate the pointers to the model parameters and change the paths. Weights must live in `/checkpoints`; do not keep them in the `/framework` folder.
 {% endhint %}
 
 #### Write framework code
@@ -562,25 +562,18 @@ This will create a report file stating if any test has not passed. To learn more
 
 We are now ready to commit changes, first to our fork, and then to the main Ersilia repository by opening a pull request. Before doing so, complete the steps below:
 
-#### Cleanup mock files
+#### Check where large files go
 
-Probably, there is a few files, such as `mock.csv`, that are no longer needed (this is used solely to initialize Git-LFS). Please remove them before committing and also eliminate the Git-LFS tracking from `.gitattributes` (see below for more on Git-LFS)
-
-#### Check the `.gitattributes` file
-
-If you have large files, you will have to track them with Git LFS. The template already provides a collection of common extensions to track with Git LFS (see `.gitattributes` file). However, it is possible that your parameters do not have any of these extensions.
-
-Let's track our parameters, even if the file is not particularly big:
+Check that no file in `model/checkpoints/` is 100 MiB or larger:
 
 ```bash
 cd ~/Desktop/eos9ei3
-git lfs track "*.pkl.gz"
-git add .gitattributes
-git commit -m "git lfs track"
-git push
+find model/checkpoints -type f -size +104857599c
 ```
 
-Now commit the bulk of your work:
+No output means the folder can be committed to Git. If a file is listed, store the whole folder with eosvc instead (see [Checkpoints and storage](model-template.md#checkpoints-and-storage)). `model/framework/fit/`, if used, always goes to eosvc. Remove any leftover `mock.csv` or `.gitattributes` file. Do not use Git LFS.
+
+Now commit your work:
 
 ```bash
 git add .
@@ -630,7 +623,7 @@ The original model contributor should make sure the model is working for differe
 
 ### 9. Clean up
 
-Please, help us keep a healthy environment and avoid duplication of files and consuming of our Git LFS quota. Delete the repository fork after the model has been successfully incorporated.
+Please, help us keep a healthy environment and avoid duplicate, outdated copies of the model. Delete the repository fork after the model has been successfully incorporated.
 
 ## Model maintenance
 

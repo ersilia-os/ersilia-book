@@ -11,7 +11,7 @@ description: >-
 Each model in the Ersilia Model Hub is contained within an individual GitHub repository. Each model repository is created using the [**Ersilia Model Template**](https://github.com/ersilia-os/eos-template) upon approval of the Model Request issue. When the new repository is created, please fork it and work on modifying the template from your own user. Open a pull request when the model is ready.
 
 {% hint style="danger" %}
-When you have finished the model incorporation, please delete the fork from your own GitHub user. This will prevent abuses of the Git-LFS quota and outdated versions of the models.
+When you have finished the model incorporation, please delete the fork from your own GitHub user. This avoids outdated copies of the models.
 {% endhint %}
 
 Below, we describe the main files you will find in the newly created model repository. Note that some of them are automatically updated and you do not have to modify them, like the `README.md`.
@@ -347,19 +347,40 @@ Information about the model output is provided in the `framework/columns` folder
 * Direction: direction for the interpretation of the value provided. For example, a probability will be direction high. Only `high` and `low` are accepted, if no direction is relevant (for example for a generative model outputting a smiles as a result) leave empty
 * Description: one line description of the column (importantly, without commas)
 
-### The `.gitattributes` file
+### Checkpoints and storage
 
-We use Git LFS to store large files (over 100 MB). Typically, these files are model parameters. Files to be stored in Git LFS should be specified in the `.gitattributes` file. Examples for Git LFS tracking of `csv`, `h5`, `joblib`, `pkl`, `pt` and `tsv` are:
+Model weights and training data are stored with the model. These rules apply to every model repository:
+
+1. Weights that the model loads at inference go in `model/checkpoints/`, not in `model/framework/code/`. Update the paths in the code accordingly.
+2. If every file in `model/checkpoints/` is under 100 MiB (104,857,600 bytes, GitHub's file size limit), commit the folder to Git. If any file is 100 MiB or larger, the whole folder is stored in S3 with [eosvc](../developer-docs/ersilia-version-control-eosvc.md) instead.
+3. `model/framework/fit/` (training code and data) is always stored with eosvc, whatever its size.
+4. Do not use Git LFS. Do not add a `.gitattributes` file with LFS rules.
+5. The model does not download weights at run time (for example from Hugging Face, Google Drive or Zenodo). Download them once, place them in `model/checkpoints/` and load them from there.
+
+To store a folder with eosvc, list it in an `access.json` file at the root of the repository, gitignore it, and upload it (uploading requires AWS credentials):
 
 ```
-*.csv filter=lfs diff=lfs merge=lfs -text
-*.h5 filter=lfs diff=lfs merge=lfs -text
-*.joblib filter=lfs diff=lfs merge=lfs -text
-*.pkl filter=lfs diff=lfs merge=lfs -text
+{
+    "checkpoints": "public",
+    "fit": "public"
+}
 ```
 
-{% hint style="warning" %}
-To allow model contributors to push Git LFS files to Ersilia's repository (counts towards Ersilia's quota) a mock.csv file will be creatd and tracked. Make sure to eliminate the mock.csv file and, if not needed for other files, the .gitattributes as well.
+```
+#eosvc managed
+model/checkpoints/*
+model/framework/fit/*
+```
+
+```bash
+eosvc upload --path checkpoints
+eosvc upload --path fit
+```
+
+Keep only the folders that go to eosvc in `access.json` and `.gitignore`. For example, a model whose checkpoints are all under 100 MiB lists only `fit`.
+
+{% hint style="info" %}
+Some older models still keep files in Git LFS. They are being migrated (see [ersilia#1967](https://github.com/ersilia-os/ersilia/issues/1967)). To work with one of them from source, install [git-lfs](https://git-lfs.com/).
 {% endhint %}
 
 ## The Legacy Model Template
