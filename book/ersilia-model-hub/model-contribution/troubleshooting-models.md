@@ -23,7 +23,7 @@ If that is the case, go through the following steps:
 Make sure to:
 
 1. Use the **latest version** of Ersilia. In your local clone of the Ersilia repository, please run `git pull --rebase`. If you installed Ersilia in the ersilia conda environment using `pip install -e .` you don't need to reinstall it, conda will use the updated codebase. If you installed it by simply running a `pip install` command, please reinstall Ersilia in your conda environment.
-2. Install and activate `git-lfs`. The **Large File Storage** system from GitHub allows to store files > 500 MB in GitHub. It is possible that `git-lfs` is installed in your system but not activated. Typically, Ersilia will download the model from our AWS S3 storage, but some essential files might be stored in `git-lfs`.
+2. If the model is one of the older models that still keep files in Git LFS, install and activate `git-lfs` (it may be installed but not activated). Current models store a checkpoints folder that has a file of 100 MiB or more in S3 with eosvc instead. Typically, Ersilia downloads the model for you from DockerHub or our AWS S3 storage.
 3. Check that the `eos` folder is being created in your Home directory. There, a `dest` folder with the model subfolders should appear, this is the directory where Ersilia will clone the model. If the `eos` folder does not exist, you might need to revise your **User permissions for creating new folders**.
 4. Identify if there is a **connection error.** Run the fetch command in verbose mode: `ersilia -v fetch eos0abc` and scan the output printed in the terminal for errors such as `TimeoutError: [Errno 60] Operation timed out` or `NewConnectionError`. Typically you will receive errors from the `urllib3` library if there is an internet issue. Please change network and make sure you are not using a VPN or firewall before trying again.
 5. Make sure you have **enough free space** in your system. If running the fetch command in verbose model prints in the output a message like `No Space Left on Device`, free it up before proceeding. We recommend at least 10 GB of free disk space.
@@ -151,7 +151,7 @@ kill -9 12345
 
 * Remove any temporal edits, like `print` statements.
 * Ensure the packages listed in the `install.yml` are updated to the version that is working.
-* Revise the `.gitattributes` file.
+* Check that the checkpoints follow [Checkpoints and storage](model-template.md#checkpoints-and-storage).
 
 When you are ready to push the changes to your fork of the model, open a PR to the main branch. As in the Model Incorporation, a series of [automated tests](example-of-the-model-incorporation-workflow.md#open-a-pull-request) will be triggered. Please check their result before moving on.
 
