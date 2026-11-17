@@ -32,7 +32,7 @@ Running models as Docker container is the recommended way since it maximizes int
 
 ### Working with models from source
 
-Ersilia models can also be packaged from source. The source code and parameters for a given model are available in its corresponding GitHub repository. Checkpoints in `model/checkpoints/` are committed to the model repository, unless a file is 100 MiB or larger; then the whole folder is stored in S3 with [eosvc](https://github.com/ersilia-os/eosvc). Training data in `model/framework/fit/` is always stored with eosvc. See [Checkpoints and storage](../model-contribution/model-template.md#checkpoints-and-storage) for the full rule. Some older models still keep files in [git-lfs](https://git-lfs.com/) while they are being migrated, so install it if you work with those models from source.
+Ersilia models can also be packaged from source. The source code and parameters for a given model are available in its corresponding GitHub repository. Checkpoints in `model/checkpoints/` are committed to the model repository, unless a file is 100 MiB or larger; then the whole folder is stored in S3 with [eosvc](https://github.com/ersilia-os/eosvc). `model/framework/fit/` is stored with eosvc as soon as it holds training code or data. See [Checkpoints and storage](../model-contribution/model-template.md#checkpoints-and-storage) for the full rule. Some older models still keep files in [git-lfs](https://git-lfs.com/) while they are being migrated, so install it if you work with those models from source.
 
 {% hint style="info" %}
 Working with models from source is often recommendable to quickly explore potential issues with the model. Typically, a dedicated Conda environment will be created by Ersilia automatically at fetch time.

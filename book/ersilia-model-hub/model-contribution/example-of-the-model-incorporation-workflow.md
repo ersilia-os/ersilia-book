@@ -220,7 +220,7 @@ cp SA_Score/fpscores.pkl.gz eos9ei3/model/checkpoints/.
 ```
 
 {% hint style="info" %}
-`fpscores.pkl.gz` is small, so it is committed to Git with the rest of the repository. Follow the [Checkpoints and storage](model-template.md#checkpoints-and-storage) rule: a folder with a file of 100 MiB or more goes to eosvc, and Git LFS is not used. If the repository contains a `mock.csv` or a `.gitattributes` file from an older template, delete them.
+`fpscores.pkl.gz` is small, so it is committed to Git with the rest of the repository. Follow the [Checkpoints and storage](model-template.md#checkpoints-and-storage) rule: a folder with a file of 100 MiB or more goes to eosvc, and Git LFS is not used.
 {% endhint %}
 
 {% hint style="danger" %}
@@ -571,7 +571,7 @@ cd ~/Desktop/eos9ei3
 find model/checkpoints -type f -size +104857599c
 ```
 
-No output means the folder can be committed to Git. If a file is listed, store the whole folder with eosvc instead (see [Checkpoints and storage](model-template.md#checkpoints-and-storage)). `model/framework/fit/`, if used, always goes to eosvc. Remove any leftover `mock.csv` or `.gitattributes` file. Do not use Git LFS.
+No output means the folder can be committed to Git. If a file is listed, store the whole folder with eosvc instead (see [Checkpoints and storage](model-template.md#checkpoints-and-storage)). `model/framework/fit/` goes to eosvc as soon as it holds training code or data. Remove any leftover `mock.csv` or `.gitattributes` file. Do not use Git LFS.
 
 Now commit your work:
 

@@ -357,7 +357,7 @@ Model weights and training data are stored with the model. These rules apply to 
 4. Do not use Git LFS. Do not add a `.gitattributes` file with LFS rules.
 5. The model does not download weights at run time (for example from Hugging Face, Google Drive or Zenodo). Download them once, place them in `model/checkpoints/` and load them from there.
 
-To store a folder with eosvc, list it in an `access.json` file at the root of the repository, gitignore it, and upload it (uploading requires AWS credentials):
+To store a folder with eosvc, list it in an `access.json` file at the root of the repository, gitignore it, and upload it (uploading requires AWS credentials). The example below is for a model with both folders on eosvc; list only the folders you store with eosvc:
 
 ```
 {
@@ -377,7 +377,7 @@ eosvc upload --path checkpoints
 eosvc upload --path fit
 ```
 
-Upload only the folders that go to eosvc, one at a time (for example `eosvc upload --path fit`). Never use `eosvc upload --path .`. Leaving a folder out of `access.json` does not stop eosvc: it treats the folder as public, and CI's `eosvc download --path .` puts any S3 copy over the Git one. Never keep a folder in both Git and S3. If neither folder goes to eosvc, the repository needs no `access.json`.
+Upload only the folders that go to eosvc, one at a time (for example `eosvc upload --path fit`). Never use `eosvc upload --path .`. Leaving a folder out of `access.json` does not stop eosvc: it treats the folder as public, and CI's `eosvc download --path .` puts any S3 copy over the Git one. Never keep the same files in both Git and S3: if a folder was committed before moving it to eosvc, untrack it with `git rm -r --cached model/checkpoints` (or `model/framework/fit`). If neither folder goes to eosvc, the repository needs no `access.json`.
 
 A model without a training step keeps the template's `model/framework/fit/` skeleton (`README.md` and the empty `data/`, `results/` and `src/` folders) in Git, and does not list `fit` in `access.json` or `.gitignore`. As soon as `fit/` holds training code or data, the whole folder goes to eosvc.
 
