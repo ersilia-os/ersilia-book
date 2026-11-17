@@ -353,7 +353,7 @@ Model weights and training data are stored with the model. These rules apply to 
 
 1. Weights that the model loads at inference go in `model/checkpoints/`, not in `model/framework/code/`. Update the paths in the code accordingly.
 2. If every file in `model/checkpoints/` is under 100 MiB (104,857,600 bytes, GitHub's file size limit), commit the folder to Git. If any file is 100 MiB or larger, the whole folder is stored in S3 with [eosvc](../developer-docs/ersilia-version-control-eosvc.md) instead.
-3. `model/framework/fit/` (training code and data) is always stored with eosvc, whatever its size.
+3. `model/framework/fit/` is stored with eosvc as soon as it holds training code or data, whatever its size.
 4. Do not use Git LFS. Do not add a `.gitattributes` file with LFS rules.
 5. The model does not download weights at run time (for example from Hugging Face, Google Drive or Zenodo). Download them once, place them in `model/checkpoints/` and load them from there.
 
