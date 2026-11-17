@@ -648,7 +648,8 @@ Choose the version by the effect of the change on people who use the model, not 
   * The checkpoints change (retraining, fine-tuning, new weights). A conversion of the same weights to another file format also counts as MAJOR unless the outputs were compared and match (see MINOR).
   * The output columns change: a column is added, removed, renamed or reordered, or its type changes.
   * The model returns a different kind of result for the same input. For example, inputs that used to return a value now return an empty row.
-  * For generative models whose output is random, a change to how molecules are produced: a different sampling algorithm, model or selection criteria.
+  * The outputs for inputs that already returned a value change beyond numerical precision, whatever the cause: a dependency update, a preprocessing change, or a fix that brings the outputs back in line with the original authors' code.
+  * For generative models, a change to how molecules are produced: a different sampling algorithm, model or selection criteria.
 * MINOR (`vN.M+1.0`): changes to the code, dependencies or Docker image that keep the same output columns.
   * Dependency updates and rebuilds where the outputs match the previous release. Report any small numerical differences in the release notes.
   * Serving and performance changes that keep the same outputs. This includes:
@@ -658,21 +659,34 @@ Choose the version by the effect of the change on people who use the model, not 
     * an added GPU option
 
     Before releasing, compare the outputs of the previous and new versions on the same molecules. GPU outputs may differ slightly from CPU outputs. Report the differences and the speed-up in the release notes.
-  * Bug fixes that make the model work as documented, for example inputs that used to fail now return a result. If the fix changes outputs that users already have, describe the change in the release notes.
+  * Bug fixes that make the model work as documented without changing outputs that users already have, for example inputs that used to fail or return an empty row now return a result. If the fix also changes values for inputs that already worked, it is MAJOR.
   * A conversion of the same weights to another file format (for example ONNX, TorchScript, npz or JSON), when the outputs of the previous and new versions match within numerical precision on the same molecules. Report the largest difference in the release notes.
-  * For generative models, changes that make the output match its description without changing the method: removing invalid SMILES, duplicates or copies of the input, or ordering each row by similarity to the input.
+  * For generative models, changes that make the output match its description without changing the method: removing invalid SMILES, duplicates or copies of the input, or ordering each row by similarity to the input. This is MINOR only if the output columns stay the same and every input that returned molecules before still returns at least one. Removed molecules leave empty cells at the end of the row. If any input now returns an empty row, or the number of columns changes, it is MAJOR.
 * PATCH (`vN.M.P+1`): no change to the code, dependencies, checkpoints or outputs.
   * Metadata and README updates, including corrections to the licence, task or output fields.
   * Changes to the descriptions or direction in `run_columns.csv`, if column names, order and types stay the same.
   * A rebuilt image of unchanged code.
+
+**Numerical precision.** Two versions match when, on the same molecules, every output value differs by at most 1e-4. Report the largest difference in the release notes.
+
+#### Storage changes
+
+* Moving checkpoints or `fit/` between Git, Git LFS and eosvc, or removing a duplicate copy, needs **no release** if the files, code and outputs stay the same. Open the PR from your fork's `main`, wait for the PR test to pass, check that every file's sha256 is unchanged, and merge with `[skip ci]` in the commit message so the published image is not rebuilt.
+* Moving checkpoints into `model/checkpoints/` changes the paths in the code, so it is **MINOR**. Merge without `[skip ci]` and compare outputs as for any MINOR release. Removing unused files in the same PR is also MINOR (smaller image).
+* If the outputs or `run_output.csv` change, this is not a storage change. Use the rules above.
+
+`ersilia fetch` uses `latest` on DockerHub or `main` on GitHub, never a release tag, and each versioned image already contains its checkpoints. A move that leaves the files unchanged changes nothing for users.
 
 #### Before releasing
 
 1. Compare the previous release tag with `main` and read the changes.
 2. Check the metadata changes for licence changes.
 3. Check that the model status is Ready.
-4. Check that the image build and image tests passed on both AMD64 and ARM64 after the last code change.
-5. For MINOR and MAJOR releases, run the same molecules through the previous release image and the new image, and compare the outputs.
+4. Check that the "Test model image" workflow passed after the last code change. Open the run and check every job, not only the overall result: a green run can hide a failed ARM64 job.
+   * `test-image-amd64`, `retag-image` and `post-model-upload` must pass.
+   * `test-image-arm64` should pass. If it fails and the model cannot run on ARM64 for now, set `Docker Architecture` to AMD64 only in the metadata and say in the release notes that ARM64 is not supported. Note that the retag still pushes the untested ARM64 image to `latest`.
+   * If a job fails after `post-model-upload` has already pushed the metadata once, do not use "Re-run jobs": a re-run checks out the old commit and its metadata push is rejected. Start a fresh run of "Test and upload model" from the Actions tab instead.
+5. For MINOR and MAJOR releases, run the same molecules through the previous release image and the new image, and compare the outputs. For generative models, compare summary statistics for the same inputs instead: the share of valid, unique and novel molecules, and the distribution of similarity to the input. Report them in the release notes.
 6. Create the release with `gh release create <tag> --target <sha>`, where `<sha>` is the current `main` commit.
 7. After the release, check that the retag workflow passed, that the DockerHub version tag has the same digest as `latest`, and that the `Release` field in the metadata shows the new version.
 
