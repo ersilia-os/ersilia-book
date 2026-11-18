@@ -1,5 +1,5 @@
 # Internships
 
-This section contains the internship guidelines for the programs we have been part of, it will grow as we have more programs available!
+Ersilia is built on collaboration. We believe open science moves forward when people share their knowledge, skills and time. Over the years, interns from around the world have joined Ersilia through programs such as [Outreachy](https://www.outreachy.org/outreachy-june-2025-internship-cohort/communities/ersilia-open-source-initiative/), as well as other internship programs. They have contributed to many areas of our work, including software development, model curation, research, documentation and communications.
 
-The documents will remain open after the internship period as supporting information for past and future interns.
+We are grateful to all of them. You can meet every Ersilia intern in the [Community and Alumni ](https://ersilia.io/about/)section of our website.

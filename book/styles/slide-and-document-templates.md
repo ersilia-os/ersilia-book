@@ -19,8 +19,9 @@ Please when creating documents for Ersilia, abide by the following:
 
 ## Slide decks
 
-* Keynote template: all presentations meant for external presentation of Ersilia (partner presentations, conferences, dissemination materials) must be done with Ersilia's Keynote template and shared in .pdf version. The keynote template is available from download from this [link](https://drive.google.com/file/d/1pn8cKsOnubHQdWeJuFVNr06WgY-lQX8T/view?usp=drive_link). Detailed usage instructions are enclosed in the same document.
-* Google Drive template: quick presentation set-up for internal meetings and project update meetings. To use it, create a new GSlides document in GDrive, select From a Template and choose the ERSILIA-TEMPLATE-25-GENERAL.
+All Ersilia presentations should use the [Ersilia slide template](https://docs.google.com/presentation/d/1dyszWP2ea5r7m6usmFNpKr9mvJTaMT16nrGIhmG02gM/edit) in Google Slides. Instructions on how to use it are in the [template guidelines](https://docs.google.com/presentation/d/1YR6eJPHTZxrqsOTjBl1BpOJ2TJuIH1oaP0RTvTiMd7I/edit).
+
+We recommend using the layouts included in the template whenever possible. Because of Google Slides limitations, some slide types cannot be included as layouts. If you need one of these (for example, a chart type that is not available in the layouts), build it following the template guidelines so it stays consistent with the rest of the deck.
 
 ## Documents
 
