@@ -5,10 +5,8 @@
 ## 🚀 Ersilia Model Hub
 
 * [Overview](ersilia-model-hub/overview.md)
-* [Online inference old](ersilia-model-hub/online-inference-old.md)
 * [Online Inference](ersilia-model-hub/online-inference.md)
 * [Local inference](ersilia-model-hub/local-inference.md)
-* [Local inference old](ersilia-model-hub/local-inference-old.md)
 * [Model contribution](ersilia-model-hub/model-contribution/README.md)
   * [Model template](ersilia-model-hub/model-contribution/model-template.md)
   * [Model incorporation workflow](ersilia-model-hub/model-contribution/model-incorporation-workflow.md)
