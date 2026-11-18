@@ -18,11 +18,11 @@ All three interfaces share a key concept that makes Claude actually useful for o
 
 A skill is a reusable workflow definition for Claude. It lives in a **SKILL.md** file that tells Claude what inputs to expect, what steps to take, what tools to use, and what output to produce for a given task. Skills can also include supporting reference documents — guidelines, templates, real examples — that Claude reads automatically as part of the workflow, so the relevant context is always loaded without you having to provide it manually.
 
-Without skills, you would need to re-explain context and process to Claude every time you start a task. Skills remove that friction by encoding the "_how we do things_" layer directly into the tool.&#x20;
+Without skills, you would need to re-explain context and process to Claude every time you start a task. Skills remove that friction by encoding the "_how we do things_" layer directly into the tool.
 
 The same skill works in Chat, Cowork, and Code. A skill written once works across all three Claude interfaces — Chat, Cowork, and Code — because the `SKILL.md` format is identical everywhere; what changes is how the skill is distributed and how you invoke it (a slash command in Code, natural language in Cowork, an attached file in Chat).
 
-Anthropic maintains a registry of general-purpose skills for common tasks. Ersilia maintains its own library of skills tailored to our specific work — that is what the ersilia-skills repository is (see [ersilia-skills](https://docs.google.com/document/d/1s9O-mjzwREH5DODOfzJqQJiqGXZyLXqLxLlbUcM22hg/edit)).
+Anthropic maintains a registry of general-purpose skills for common tasks. Ersilia maintains its own library of skills tailored to our specific work — that is what the ersilia-skills repository is (see [ersilia-skills).](claude-101.md#claude-skills)
 
 ### Installing Skills in Claude Chat
 
@@ -32,13 +32,13 @@ To install a skill in **Claude Chat**, open [claude.ai](https://claude.ai/) and 
 
 To install a skill in **Claude Cowork**, open the desktop app and go to _Customize → Explore plugins_. From this screen you can upload an individual skill (a folder containing the `SKILL.md` file and any supporting reference documents), create one from scratch, or install a skill published by Anthropic. Once added, the skill becomes available across all your Cowork sessions — you do not need to enable it per conversation. To use it, just describe the task in natural language and Claude will pick the right skill based on its description.
 
-In practice, however, skills are rarely installed one by one in Cowork. Most of the time they come bundled inside a **plugin**: a single installable package that groups together a set of skills, the connectors they need (MCPs like Airtable, Slack or Drive), and any slash commands the team has defined. You can install plugins from your organization or Antropic from _Customize → Explore plugins_ and it gives you the whole setup in one step instead of uploading each skill and configuring each connector separately. You can also use the tool in _Customize → Create plugins to_ create plugins with Claude or uploaded them from your computer or the marketplace.
+In practice, however, skills are rarely installed one by one in Cowork. Most of the time they come bundled inside a **plugin**: a single installable package that groups together a set of skills, the connectors they need (MCPs like Airtable, Slack or Drive), and any slash commands the team has defined. You can install plugins from your organization or Anthropic from _Customize → Explore plugins_ and it gives you the whole setup in one step instead of uploading each skill and configuring each connector separately. You can also use the tool in _Customize → Create plugins to_ create plugins with Claude or uploaded them from your computer or the marketplace.
 
 #### Installing Anthropic skills
 
 Anthropic ships a set of built-in skills you can install directly from their registry. These are general-purpose skills for common tasks like creating new skills, building documents, designing interfaces, and more.
 
-To install them, check the available skills in the Anthropic [repository](https://github.com/anthropics/claude-plugins-official) and  run the following inside a Claude Code session:
+To install them, check the available skills in the Anthropic [repository](https://github.com/anthropics/claude-plugins-official) and run the following inside a Claude Code session:
 
 ```
 /plugin install skill-creator@claude-plugins-official
@@ -57,7 +57,7 @@ When you install a skill, it can live in two places:
 * **System-wide** skills are installed in `~/.claude/skills/`. They are available in every Claude Code session you open, regardless of which directory or repository you are working in. It is the right place for tools you use across many projects.
 * **Project-wide** skills are defined inside a specific repository, typically referenced in a `.claude/settings.json` file at the root of the project. They are only active when Claude Code is running inside that project. This is useful for skills that are tightly coupled to a specific codebase or that you do not want bleeding into unrelated work.
 
-Once a skill has been created, it can be used across the different ways of interacting with Claude.&#x20;
+Once a skill has been created, it can be used across the different ways of interacting with Claude.
 
 ## Claude Chat
 
@@ -67,7 +67,7 @@ At Ersilia we use Claude Chat as the default tool for general-purpose tasks that
 
 #### When to use it
 
-Use Claude Chat when you want a fast answer or a thinking partner and Claude does not need to touch any of our systems.&#x20;
+Use Claude Chat when you want a fast answer or a thinking partner and Claude does not need to touch any of our systems.
 
 #### How to install it
 
@@ -137,13 +137,12 @@ In Claude Code, skills are invoked as slash commands: typing `/skill-name` loads
 
 ### What to use in each case
 
-|                        |    **Chat**    |        **Cowork**       |        **Code**       |
-| ---------------------- | :------------: | :---------------------: | :-------------------: |
-| **Where**              |    claude.ai   |       Desktop app       |   Terminal / VSCode   |
-| **Touches your files** |        ❌       |            ✅            |           ✅           |
-| **Connects to apps**   |        ❌       |            ✅            |           ✅           |
-| **Runs code**          |        ❌       |       ✅ (sandbox)       |    ✅ (your machine)   |
-| **Output**             |    An answer   |   A file or app update  |        A commit       |
-| **Best for**           | Quick thinking |     Operations work     |    Engineering work   |
-| **Who uses it most**   |    Everyone    | Comms, fundraising, ops | Scientists, engineers |
-
+|                        |        **Chat**       |        **Cowork**       |        **Code**       |
+| ---------------------- | :-------------------: | :---------------------: | :-------------------: |
+| **Where**              |       claude.ai       |       Desktop app       |   Terminal / VSCode   |
+| **Touches your files** | Only files you upload |            ✅            |           ✅           |
+| **Connects to apps**   |           ✅           |            ✅            |           ✅           |
+| **Runs code**          |      ✅ (sandbox)      |       ✅ (sandbox)       |    ✅ (your machine)   |
+| **Output**             |       An answer       |   A file or app update  |        A commit       |
+| **Best for**           |     Quick thinking    |     Operations work     |    Engineering work   |
+| **Who uses it most**   |        Everyone       | Comms, fundraising, ops | Scientists, engineers |

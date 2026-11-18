@@ -1,5 +1,5 @@
 ---
-description: Sytlia is a small Python library for styling plots
+description: Stylia is a small Python library for styling plots
 ---
 
 # Scientific figures with Stylia
@@ -10,7 +10,7 @@ We now maintain a **Claude skill for stylia plotting**, which lets you generate 
 
 The skill is published in our public [ersilia-skills](https://github.com/ersilia-os/ersilia-skills) GitHub repository. To install it, download the `SKILL.md` file and drop it into your Claude (Cowork or Claude Code) skills folder. Once installed, you can invoke it from any session and use stylia without touching the code.
 
-For step-by-step instructions on how to install and use Claude skills in general, see the Claude 101 page in Gitbook.
+For step-by-step instructions on how to install and use Claude skills in general, see the [Claude 101](../agentic-ai/claude-101.md) page in Gitbook.
 
 ## Getting started
 
