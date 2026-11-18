@@ -8,7 +8,7 @@ description: >-
 
 ## Internship project
 
-The Ersilia Model Hub is an open source platform of ready-to-use AI/ML models for biomedical research. With it, scientists can browse a collection of models, select the ones relevant to their research and run predictions! For example, to predict whether a molecule will be active against Malaria. The internship project will be focused on increasing the collection of available models in the Hub.&#x20;
+The Ersilia Model Hub is an open source platform of ready-to-use AI/ML models for biomedical research. With it, scientists can browse a collection of models, select the ones relevant to their research and run predictions! For example, to predict whether a molecule will be active against Malaria. The internship project will be focused on increasing the collection of available models in the Hub.
 
 Specially important to Ersilia is the contribution period. We list below a number of tasks that must be completed in order. <mark style="color:red;">We will not judge interns on how many tasks they can complete, but on the quality of each contribution and the interest to learn, participate and help others in the community.</mark> The mentors are there and willing to help, but they also have a dedicated timeslot for reviewing contributions, please be patient if it takes a few hours to get back to you. **Almost all the information you will need to successfully complete the contribution period is enclosed in this document, please read it all before asking questions.**
 
@@ -30,9 +30,9 @@ Ersilia can only accept interns that have been approved by Outreachy and that co
 
 The contribution period runs from <mark style="color:blue;">March 6th</mark> to <mark style="color:blue;">March 31st</mark>. During this time, interested applicants are welcome to contribute to Ersilia's project following the guidelines in this document.
 
-The contribution period is organized in 4 weeks. Each week has a set of specific goals defined, with the objective that mentors can evaluate the intern's experience, interest in the community and team-building work. Once the week's objectives have been met, please focus on:&#x20;
+The contribution period is organized in 4 weeks. Each week has a set of specific goals defined, with the objective that mentors can evaluate the intern's experience, interest in the community and team-building work. Once the week's objectives have been met, please focus on:
 
-* Improving your contribution (there is always more publications to read, better bug reports to be written etc)&#x20;
+* Improving your contribution (there is always more publications to read, better bug reports to be written etc)
 * Helping out other contributors (we really value group work)
 
 {% hint style="info" %}
@@ -49,7 +49,7 @@ The first week is focused on getting to know the Ersilia community, our mission 
 
 1. [Sign up](https://join.slack.com/t/ersilia-outreachy/shared_invite/zt-1h2u8vbxh-fkyxlOJE20Bx538hQvpC~A) using your preferred email and name.
 2. Introduce yourself in the #general channel. The general channel is for random questions, interactions with other fellow contributors, writing tips and suggestions...
-3. Use the dedicated channels for questions about specific topics.&#x20;
+3. Use the dedicated channels for questions about specific topics.
 4. Contribute to your peers questions, this is about helping each other and we really value interns who work with the community.
 
 {% hint style="info" %}
@@ -64,7 +64,7 @@ Please use a Slack name that is easy to identify with your GitHub handle to make
 
 * 📖 Getting familiar with the repository structure
 * 🐛 Checking the issues to see what has the community been working on
-* 👀 Watching the repository to receive notifications if you are mentioned&#x20;
+* 👀 Watching the repository to receive notifications if you are mentioned
 * ⭐ Starring the repository if you like the work Ersilia is doing!
 
 {% hint style="danger" %}
@@ -75,9 +75,9 @@ Ersilia is an Open Source community with active contributing members. Please res
 We will be using GitHub issues a lot, so if you have never worked with GitHub before, make sure you understand how issues work!
 {% endhint %}
 
-**Community Call:** we will host an open community call (TBD). During the call we will introduce a bit more about Ersilia's work, go over the contribution period tasks and answer any questions you might have! The link to the call will be shared via Slack. We apologize in advance if the call is in a difficult time-zone for you, attendance is not compulsory and will not be taken into account when selecting the interns.&#x20;
+**Community Call:** we will host an open community call (TBD). During the call we will introduce a bit more about Ersilia's work, go over the contribution period tasks and answer any questions you might have! The link to the call will be shared via Slack. We apologize in advance if the call is in a difficult time-zone for you, attendance is not compulsory and will not be taken into account when selecting the interns.
 
-**Code of Conduct:** Ersilia is adhered to the [Contributor Covenant Code of Conduct](../../about-us/code-of-conduct.md). Any breaches of the code of conduct, specially harassment or lack of respect for fellow contributors, will have severe consequences.
+**Code of Conduct:** Ersilia is adhered to the [Contributor Covenant Code of Conduct](../../../about-us/values-and-commitment/code-of-conduct.md). Any breaches of the code of conduct, specially harassment or lack of respect for fellow contributors, will have severe consequences.
 
 #### Task 2: Open an issue
 
@@ -189,7 +189,7 @@ The models we suggest are models that are already incorporated in the [Ersilia M
 
 A big part of what we do at Ersilia is to screen the scientific literature in search of new models and datasets of interest to our community. We are always looking for models that can help speed up drug discovery against infectious and neglected diseases.
 
-In this week, focus on diving into the scientific literature, trying to find studies of interest to our community. To that end, we suggest using websites like PubMed, Google Scholar, BioRxiv and Papers with Code.&#x20;
+In this week, focus on diving into the scientific literature, trying to find studies of interest to our community. To that end, we suggest using websites like PubMed, Google Scholar, BioRxiv and Papers with Code.
 
 To get inspired, check the [Contribute models](/broken/pages/JSSwpgsz3oVYihWKgFdN) section, look at [existing models](https://ersilia-io/model-hub) in the Hub and our list of [pending models](https://airtable.com/shrTpe45mLKqaHXsc) to incorporate.
 

@@ -40,17 +40,19 @@
 * [Encryption of AI/ML models](chemistry-tools/encryption-of-ai-ml-models.md)
 * [AMR chemical collections](chemistry-tools/amr-chemical-collections.md)
 
-## 🙌 Contributors
+## 🙌 COMMUNITY & SUPPORTERS
 
-* [Internships](contributors/internships/README.md)
-  * [Outreachy Summer 2025](contributors/internships/outreachy-summer-2025.md)
-  * [Outreachy Winter 2024](contributors/internships/outreachy-winter-2024.md)
-  * [Outreachy Summer 2024](contributors/internships/outreachy-summer-2024.md)
-  * [Outreachy Winter 2023](contributors/internships/outreachy-winter-2023.md)
-  * [Outreachy Summer 2023](contributors/internships/outreachy-summer-2023.md)
-  * [Outreachy Winter 2022](contributors/internships/outreachy-winter-2022.md)
-  * [Outreachy Summer 2022](contributors/internships/outreachy-summer-2022.md)
-* [Volunteers](contributors/volunteers.md)
+* [Contributors](community-and-supporters/contributors/README.md)
+  * [Internships](community-and-supporters/contributors/internships/README.md)
+    * [Outreachy Summer 2025](community-and-supporters/contributors/internships/outreachy-summer-2025.md)
+    * [Outreachy Winter 2024](community-and-supporters/contributors/internships/outreachy-winter-2024.md)
+    * [Outreachy Summer 2024](community-and-supporters/contributors/internships/outreachy-summer-2024.md)
+    * [Outreachy Winter 2023](community-and-supporters/contributors/internships/outreachy-winter-2023.md)
+    * [Outreachy Summer 2023](community-and-supporters/contributors/internships/outreachy-summer-2023.md)
+    * [Outreachy Winter 2022](community-and-supporters/contributors/internships/outreachy-winter-2022.md)
+    * [Outreachy Summer 2022](community-and-supporters/contributors/internships/outreachy-summer-2022.md)
+  * [Volunteers](community-and-supporters/contributors/volunteers.md)
+* [How we are funded](community-and-supporters/how-we-are-funded.md)
 
 ## 🎨 Styles
 
@@ -65,12 +67,13 @@
 
 ## 🌍 About Us
 
-* [Where to find us?](about-us/where-to-find-us.md)
 * [Strategic Plan 2025-2027](about-us/strategic-plan-2025-2027.md)
+* [Values & Commitment](about-us/values-and-commitment/README.md)
+  * [Diversity and inclusion statement](about-us/values-and-commitment/diversity-and-inclusion-statement.md)
+  * [Gender Equality Plan](about-us/values-and-commitment/gender-equality-plan.md)
+  * [Code of conduct](about-us/values-and-commitment/code-of-conduct.md)
+* [Policies](about-us/policies/README.md)
+  * [Open standards and best practices](about-us/policies/open-standards-and-best-practices.md)
+  * [AI Policy](about-us/policies/ai-policy.md)
+  * [Ersilia privacy notice](about-us/policies/ersilia-privacy-notice.md)
 * [Ersilia, the Invisible City](about-us/ersilia-the-invisible-city.md)
-* [Diversity and inclusion statement](about-us/diversity-and-inclusion-statement.md)
-* [Gender Equality Plan](about-us/gender-equality-plan.md)
-* [Code of conduct](about-us/code-of-conduct.md)
-* [Open standards and best practices](about-us/open-standards-and-best-practices.md)
-* [AI Policy](about-us/ai-policy.md)
-* [Ersilia privacy notice](about-us/ersilia-privacy-notice.md)

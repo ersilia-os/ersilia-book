@@ -10,7 +10,7 @@ description: >-
 
 The Ersilia Model Hub is an open source platform of ready-to-use AI/ML models for biomedical research. With it, scientists can browse a collection of models, select the ones relevant to their research and run predictions! For example, to predict whether a molecule will be active against Malaria.
 
-The internship project will be focused on increasing the collection of available models in the Hub.&#x20;
+The internship project will be focused on increasing the collection of available models in the Hub.
 
 Specially important to Ersilia is the contribution period. We list below a number of tasks that must be completed in order. <mark style="color:red;">We will not judge interns on how many tasks they can complete, but on the quality of each contribution and the interest to learn, participate and help others in the community.</mark> The mentors are there and willing to help, but they also have a dedicated timeslot for reviewing contributions, please be patient if it takes a few hours to get back to you.
 
@@ -40,7 +40,7 @@ We use Slack as our main communication platform, both for the contribution perio
 
 1. [Sign up](https://join.slack.com/t/ersilia-outreachy/shared_invite/zt-1h2u8vbxh-fkyxlOJE20Bx538hQvpC~A) using your preferred email and name.
 2. Introduce yourself in the #general channel. The general channel is for random questions, interactions with other fellow contributors, writing tips and suggestions...
-3. Use the dedicated channels for questions about specific topics. For example, the #colab channel will be used to discuss about Google Colaboratory issues.&#x20;
+3. Use the dedicated channels for questions about specific topics. For example, the #colab channel will be used to discuss about Google Colaboratory issues.
 4. Contribute to your peers questions, this is about helping each other and we really value interns who work with the community.
 
 {% hint style="info" %}
@@ -57,7 +57,7 @@ We will be working on the Ersilia Model Hub main repository, which is hosted on 
 
 * 📖 Getting familiar with the repository structure
 * 🐛 Checking the issues to see what has the community been working on
-* 👀 Watching the repository to receive notifications if you are mentioned&#x20;
+* 👀 Watching the repository to receive notifications if you are mentioned
 * ⭐ Starring the repository if you like the work Ersilia is doing!
 
 {% hint style="danger" %}
@@ -74,11 +74,11 @@ We will host an open community call on <mark style="color:blue;">Wednesday 12th 
 
 The link to the call will be shared via Slack.
 
-We apologize in advance if the call is in a difficult time-zone for you, attendance is not compulsory and will not be taken into account when selecting the interns.&#x20;
+We apologize in advance if the call is in a difficult time-zone for you, attendance is not compulsory and will not be taken into account when selecting the interns.
 
 #### Code of Conduct
 
-Ersilia is adhered to the [Contributor Covenant Code of Conduct](../../about-us/code-of-conduct.md). Any breaches of the code of conduct, specially harassment or lack of respect for fellow contributors, will have severe consequences.
+Ersilia is adhered to the [Contributor Covenant Code of Conduct](../../../about-us/values-and-commitment/code-of-conduct.md). Any breaches of the code of conduct, specially harassment or lack of respect for fellow contributors, will have severe consequences.
 
 ### 2. Install the Ersilia Model Hub
 
@@ -154,13 +154,13 @@ To keep track of the models we have tested, please add your information to the [
 3. Change the cells of your column corresponding to the models you have tested in:
    1. <mark style="color:green;background-color:green;">Green</mark><mark style="color:green;">,</mark> if they run without a problem
    2. <mark style="color:red;background-color:red;">Red</mark>, if there was an issue
-4. If you run the model <mark style="color:green;">successfully:</mark>&#x20;
+4. If you run the model <mark style="color:green;">successfully:</mark>
    1. Write fetch and predict times on the excel cell.
    2. Go on to the next model, until you have tested the models assigned to you.
 5. If you encountered a problem:
    1. Go to Ersilia's GitHub repository and check if there is a Bug already for this model. If there is, add your error on the same thread.
    2. If not, open a Bug issue (use the provided template) and add the model identifier (eosxxxx) as issue title.
-   3.  Add the log of the error, which can be obtained by adding the following code snippet at the end of the command&#x20;
+   3.  Add the log of the error, which can be obtained by adding the following code snippet at the end of the command
 
        ```
        ersilia -v fetch modelname > my.log 2>&1
@@ -210,10 +210,10 @@ For this part, please do not launch directly onto modeling, wait for the mentor'
 2. The mentors will open a GitHub issue with the specific modeling exercise and assign it to you.
 3. Use the steps described in the [template notebook](https://colab.research.google.com/drive/1iA7kIuuoUywfoOPx-KIAk-sDY630NLMS?usp=sharing) to train a new model
 4. Answer these questions (and more that you might have) about your data and models:
-   1. What are we trying to predict? (do some reading!)&#x20;
-   2. Is this a classification or a regression problem?&#x20;
-   3. How many datapoints do we have in total and in each set (train / validation / test)?&#x20;
-   4. How many actives and inactives do we have?&#x20;
+   1. What are we trying to predict? (do some reading!)
+   2. Is this a classification or a regression problem?
+   3. How many datapoints do we have in total and in each set (train / validation / test)?
+   4. How many actives and inactives do we have?
    5. Can you show in a plot the distribution of actives/inactives, or the values for the regression?
    6. What is the performance of your model? What metrics are you using and why?
    7. How do you interpret the ROC Curve you got?

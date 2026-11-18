@@ -1,3 +1,7 @@
+---
+description: Our goals and priorities for 2025–2027.
+---
+
 # Strategic Plan 2025-2027
 
 ## Organization overview <a href="#id-9fftug6ugm8i" id="id-9fftug6ugm8i"></a>

@@ -81,7 +81,7 @@ We will be using GitHub issues a lot, so if you have never worked with GitHub be
 
 **Community call:** we will hold a community call on **March 8th 10:00 am CET** to go over the contribution period tasks and answer any questions you might have! The link will be shared via Slack. Attendance is not compulsory, we have tried to find a time that is acceptable for most time zones, we apologize in advance if it means an early start or late end of your day.
 
-**Code of Conduct:** Ersilia is adhered to the [Contributor Covenant Code of Conduct](../../about-us/code-of-conduct.md). Any breaches of the code of conduct, specially harassment or lack of respect for fellow contributors, will mean disqualification as an applicant.
+**Code of Conduct:** Ersilia is adhered to the [Contributor Covenant Code of Conduct](../../../about-us/values-and-commitment/code-of-conduct.md). Any breaches of the code of conduct, specially harassment or lack of respect for fellow contributors, will mean disqualification as an applicant.
 
 #### Task 2: Open an issue
 
@@ -200,11 +200,11 @@ The task for this week is to get familiar with Machine Learning for chemistry da
 * **T2** Reproducibility: can we reproduce the exact values / a figure / that authors obtained when training the model in the first place? This means we need to read the publication and identify for example a compound identified using that model and check that we obtain the same values.
 * **T3** Performance: can we check if the model gives accurate results in external datasets? This is more time consuming and will be done by identifying a public dataset that has not been used in model training, and running predictions to build AUROC curves - to simplify reports, we will only focus on AUROC or R2 as metrics now.
 
-For week 2, we will focus on Task 1 and Task 2.&#x20;
+For week 2, we will focus on Task 1 and Task 2.
 
 Task 1:
 
-1. Pick a model from the list:&#x20;
+1. Pick a model from the list:
    1. hERG Models:
       1. [eos2ta5](https://github.com/ersilia-os/eos2ta5)
       2. [eos30f3](https://github.com/ersilia-os/eos30f3)
@@ -217,7 +217,7 @@ Task 1:
       4. [eos6oli](https://github.com/ersilia-os/eos6oli)
 2. Using [this repository](https://github.com/GemmaTuron/model-validation-example) as an example, create a repository in your GitHub account with the appropriate structure (for example, the repository will contain a README file that will explain what is in there, steps to run/reproduce your work, the necessary datasets and folders, licenses and gitignore files)
 3. Download and run the selected model from Ersilia and make sure it works
-4. Select a list of 1000 molecules from public repositories and make sure they are represented as standard SMILES&#x20;
+4. Select a list of 1000 molecules from public repositories and make sure they are represented as standard SMILES
 5. Run predictions for the 1000 molecules, create the necessary plots and explain the results you are obtaining
 
 _Hints:_
@@ -225,7 +225,7 @@ _Hints:_
 1. _Try to understand what the problem that the model is trying to solve, and how this problem is formulated? For example, is the model trying to generate a score, or a probability._
 2. _Work on Jupyter notebooks to make it easy for the mentors to review the work._
 
-Once Task 1 is complete, ask for review from the mentors and incorporate any feedback you are given.&#x20;
+Once Task 1 is complete, ask for review from the mentors and incorporate any feedback you are given.
 
 Task 2:
 
@@ -233,7 +233,7 @@ Task 2:
 2. Try to implement the model as described by the authors (not from the Ersilia Model Hub) and reproduce the results selected from the paper. Make sure to include the results evaluation in your repository.
 3. Check that the model provides the same results when running via the Ersilia Model Hub.
 
-Once tasks 1 and 2 are complete, move onto tasks for Week 3, and yes you can start even if the week hasn't started yet! :)&#x20;
+Once tasks 1 and 2 are complete, move onto tasks for Week 3, and yes you can start even if the week hasn't started yet! :)
 
 ### 📆 WEEK 3: Validate a Model in the Wild
 

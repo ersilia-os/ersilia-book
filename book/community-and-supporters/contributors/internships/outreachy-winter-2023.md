@@ -79,7 +79,7 @@ We will be using GitHub issues a lot, so if you have never worked with GitHub be
 
 **Community call:** we will hold a community call on Friday 6th October at 5:00 pm CET to go over the contribution period tasks and answer any questions you might have! The link will be shared via Slack. Attendance is not compulsory, we have tried to find a time that is acceptable for most time zones, we apologise in advance if it means an early start or late end of your day.
 
-**Code of Conduct:** Ersilia is adhered to the [Contributor Covenant Code of Conduct](../../about-us/code-of-conduct.md). Any breaches of the code of conduct, specially harassment or lack of respect for fellow contributors, will mean disqualification as an applicant.
+**Code of Conduct:** Ersilia is adhered to the [Contributor Covenant Code of Conduct](../../../about-us/values-and-commitment/code-of-conduct.md). Any breaches of the code of conduct, specially harassment or lack of respect for fellow contributors, will mean disqualification as an applicant.
 
 #### Task 2: Open an issue
 
