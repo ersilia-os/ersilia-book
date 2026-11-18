@@ -57,7 +57,7 @@ For example
 
 Send your local files to the cloud
 
-<pre><code><strong>eosvc upload --data data/my_big_dataset
+<pre><code><strong>eosvc upload --path data/my_big_dataset
 </strong></code></pre>
 
 #### 📥 Downloading Data
@@ -65,7 +65,7 @@ Send your local files to the cloud
 Pull files from the cloud to your local machine:
 
 ```
-eosvc download --data data/my_big_dataset
+eosvc download --path data/my_big_dataset
 ```
 
 #### 🔍 Viewing Remote Files

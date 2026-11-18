@@ -28,7 +28,7 @@ Ersilia is only maintained for Linux/MacOS systems. If you are working with Wind
 #### Additional installations
 
 * DockerHub: all models incorporated in Ersilia will be Dockerized for easy deployment. While the dockerization step happens in the cloud (GitHub Actions) it is recommended to install docker for model testing purposes.
-* EOSVC: checkpoints and training data are committed to the model repository. A folder that holds a file larger than 100 MB is stored in S3 with [eosvc](https://github.com/ersilia-os/eosvc) instead; uploading requires AWS credentials.&#x20;
+* EOSVC: checkpoints in `model/checkpoints/` are committed to the model repository unless a file is 100 MiB or larger; then the whole folder is stored in S3 with [eosvc](https://github.com/ersilia-os/eosvc). `model/framework/fit/` goes to eosvc as soon as it holds training code or data. Uploading requires AWS credentials. Git LFS is not used. See [Checkpoints and storage](model-template.md#checkpoints-and-storage).&#x20;
 
 ## TL:DR
 
@@ -39,7 +39,7 @@ Summary of the contributor’s pipeline:
 3. Open a Model Request issue under the [Ersilia repository](https://github.com/ersilia-os/ersilia).
 4. Fork the repository created upon approval of the Model Request by Ersilia maintainers.
 5. Clone the model repository in your local machine and follow the steps described below:
-   1. Include the model checkpoints in the `/checkpoints` directory and commit them. If a file is larger than 100 MB, gitignore the whole folder and store it with [eosvc](https://github.com/ersilia-os/eosvc) instead.
+   1. Include the model checkpoints in the `/checkpoints` directory and commit them. If a file is 100 MiB or larger, gitignore the whole folder and store it with [eosvc](https://github.com/ersilia-os/eosvc) instead. `/framework/fit` goes to eosvc as soon as it holds training code or data. The model must not download weights at run time. See [Checkpoints and storage](model-template.md#checkpoints-and-storage).
    2. Include any code needed to run the model as .py script files in the `/framework/code` directory.
    3. Adapt the functions in `main.py` to actually run your model and provide the output in the specified format.
    4. Create the `run_columns.csv` file including information about the model output, following the indications described [here](model-template.md#columns-file).&#x20;

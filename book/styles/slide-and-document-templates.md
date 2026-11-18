@@ -19,13 +19,20 @@ Please when creating documents for Ersilia, abide by the following:
 
 ## Slide decks
 
-* Keynote template: all presentations meant for external presentation of Ersilia (partner presentations, conferences, dissemination materials) must be done with Ersilia's Keynote template and shared in .pdf version. The keynote template is available from download from this [link](https://drive.google.com/file/d/1pn8cKsOnubHQdWeJuFVNr06WgY-lQX8T/view?usp=drive_link). Detailed usage instructions are enclosed in the same document.
-* Google Drive template: quick presentation set-up for internal meetings and project update meetings. To use it, create a new GSlides document in GDrive, select From a Template and choose the ERSILIA-TEMPLATE-25-GENERAL.
+All Ersilia presentations should use the [Ersilia slide template](https://docs.google.com/presentation/d/1dyszWP2ea5r7m6usmFNpKr9mvJTaMT16nrGIhmG02gM/edit) in Google Slides. Instructions on how to use it are in the [template guidelines](https://docs.google.com/presentation/d/1YR6eJPHTZxrqsOTjBl1BpOJ2TJuIH1oaP0RTvTiMd7I/edit).
+
+We recommend using the layouts included in the template whenever possible. Because of Google Slides limitations, some slide types cannot be included as layouts. If you need one of these (for example, a chart type that is not available in the layouts), build it following the template guidelines so it stays consistent with the rest of the deck.
 
 ## Documents
 
-* Letterhead document: for official use only, create by selecting GDocs > From a Template and choosing either the LOGO template (letterhead in first page only), Template Footer (Letterhead in footer) or Template Header (letterhead in all pages)
-* Project template: for project tracking purposes, select from the GDocs > From a Template.
+We use the Ersilia document templates for all official communication with partners, funders, contributors and other external audiences. There are two versions:
+
+* [Template with the Ersilia logo in the header](https://docs.google.com/document/d/1Q6cqgObEam7CcW6KB0Vaf2AhcfLavmzWtiesjaOI8-Q/edit)
+* [Template with the Ersilia logo in the footer](https://docs.google.com/document/d/12TMm16eNaC2KHGU3aBxN8b4xiWXDaFWIkenbEuYEYvM/edit)
+
+The templates already have the correct fonts, sizes, spacing and indentation set by default, so you do not need to edit any formatting. Just select the type of text you need from the toolbar (for example, _Title_, _Heading 1_, _Normal text_, a numbered list or bullet points), and the document will apply the Ersilia format automatically.
+
+More details are in the [document guidelines](https://docs.google.com/document/d/1oZ0isI_Or-0y7dNBdhEUVpMhwpCMccVKEUYAZJMAvHE/edit).
 
 ## Repository templates
 
