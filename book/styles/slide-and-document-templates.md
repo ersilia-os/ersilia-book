@@ -27,7 +27,7 @@ We recommend using the layouts included in the template whenever possible. Becau
 
 We use the Ersilia document templates for all official communication with partners, funders, contributors and other external audiences. There are two versions:
 
-* [Template with the Ersilia logo in the header](https://docs.google.com/document/d/1Q6cqgObEam7CcW6KB0Vaf2AhcfLavmzWtiesjaOI8-Q/edit)
+* [Template with the Ersilia logo in the header](https://docs.google.com/document/d/1Jw8gruFGhPe-L-T1hQz4soFsj6DM3lh0q4tr-A0qIgs/edit?usp=drive_link)
 * [Template with the Ersilia logo in the footer](https://docs.google.com/document/d/12TMm16eNaC2KHGU3aBxN8b4xiWXDaFWIkenbEuYEYvM/edit)
 
 The templates already have the correct fonts, sizes, spacing and indentation set by default, so you do not need to edit any formatting. Just select the type of text you need from the toolbar (for example, _Title_, _Heading 1_, _Normal text_, a numbered list or bullet points), and the document will apply the Ersilia format automatically.
