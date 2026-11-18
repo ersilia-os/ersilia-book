@@ -77,6 +77,7 @@ Ersilia models include a series of workflow callers for the reusable workflows a
 * Jobs:
   * `test-image`: using the reusable workflow test-model-image, it tests the dev versions of the image for both architectures if available using the `test --deep` command. If successful, retags the image(s) as latest.
   * `post-upload`: the post-model-upload workflow is triggered if the image testing is successful. It reads the output of the test command (.json) and captures the relevant metadata (image size, computational performance etc). It also changes the status of the model to Ready. Finally it updates Airtable and the metadata and readme files in the model repository.
+  * `build-sif`: on the first release of the model, after `post-upload`, uses the reusable workflow `build-upload-sif` to build an Apptainer image (`.sif`) from the tested AMD64 Docker image, test it, upload it to the `models-sif` S3 bucket and write its URL in the `Apptainer` metadata field. See [Apptainer (Singularity) images](apptainer-singularity-images.md#how-the-images-are-built).
 
 ### Test model PR
 
@@ -93,6 +94,7 @@ Ersilia models include a series of workflow callers for the reusable workflows a
 * Runs on: whenever there is a new release (not triggered inside a GitHub action)
 * Jobs:
   * `retag`: using the retag-release-docker reusable workflow, it checks the latest tag available and tags the "latest" Docker image with it. It also updates the corresponding metadata file and Airtable.
+  * `build-sif`: uses the reusable workflow `build-upload-sif` to rebuild the Apptainer image of the release's major version, which replaces the previous file for that major version.
 
 ## Ersilia Pack
 

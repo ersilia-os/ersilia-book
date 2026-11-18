@@ -30,6 +30,10 @@ All models incorporated in Ersilia are [dockerized](https://hub.docker.com/u/ers
 Running models as Docker container is the recommended way since it maximizes interoperability across systems and persistency.
 {% endhint %}
 
+### Working with models as Apptainer images
+
+Where Docker is not available, for example on HPC clusters, models can run from an [Apptainer (Singularity)](apptainer-singularity-images.md) image, a single `.sif` file per model. The images are built from the tested Docker images as part of our [CI/CD workflows](ci-cd-workflows.md).
+
 ### Working with models from source
 
 Ersilia models can also be packaged from source. The source code and parameters for a given model are available in its corresponding GitHub repository. Checkpoints in `model/checkpoints/` are committed to the model repository, unless a file is 100 MiB or larger; then the whole folder is stored in S3 with [eosvc](https://github.com/ersilia-os/eosvc). `model/framework/fit/` is stored with eosvc as soon as it holds training code or data. See [Checkpoints and storage](../model-contribution/model-template.md#checkpoints-and-storage) for the full rule. Some older models still keep files in [git-lfs](https://git-lfs.com/) while they are being migrated, so install it if you work with those models from source.
