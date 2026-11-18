@@ -23,6 +23,7 @@
   * [Model Testing](ersilia-model-hub/developer-docs/model-testing.md)
   * [CLI Testing](ersilia-model-hub/developer-docs/cli-testing.md)
   * [Results caching](ersilia-model-hub/developer-docs/results-caching.md)
+  * [Warm serving](ersilia-model-hub/developer-docs/warm-serving.md)
   * [Best code practices](ersilia-model-hub/developer-docs/developer-guide-for-codebase-quality-and-consistency.md)
   * [Precalculation Store](ersilia-model-hub/developer-docs/precalculation-store.md)
   * [Ersilia Version Control (EOSVC)](ersilia-model-hub/developer-docs/ersilia-version-control-eosvc.md)

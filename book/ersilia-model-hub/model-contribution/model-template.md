@@ -249,79 +249,80 @@ Unless strictly necessary, the `run.sh` file should accept three and only three 
 
 {% code title="run.sh" %}
 ```bash
-python $1/code/main.py -i $2 -o $3
+python $1/code/main.py $2 $3
 ```
 {% endcode %}
 
-In this case, a Python file located in the `[FRAMEWORK_DIR]/code` folder is executed, taking as input (`-i`) the `DATA_FILE` and giving as output (`-o`) the `OUTPUT_FILE`.
+In this case, a Python file located in the `[FRAMEWORK_DIR]/code` folder is executed, taking as arguments the `DATA_FILE` and the `OUTPUT_FILE`.
 
-To understand this further, we now need to inspect the step `main.py` file in the step above, in more detail. The current template proposes the following script:
+To understand this further, we now need to inspect the `main.py` file in more detail. The current template proposes the following script:
 
 {% code title="code/main.py" %}
 ```python
 # imports
 import os
-import csv
-import joblib
 import sys
+import numpy as np
 from rdkit import Chem
 from rdkit.Chem.Descriptors import MolWt
-
-# parse arguments
-input_file = sys.argv[1]
-output_file = sys.argv[2]
+from ersilia_pack_utils.core import read_smiles, write_out
 
 # current file directory
 root = os.path.dirname(os.path.abspath(__file__))
+checkpoints = os.path.join(root, "..", "..", "checkpoints")
 
-# checkpoints directory
-checkpoints_dir = os.path.abspath(os.path.join(root, "..", "..", "checkpoints"))
 
-# read checkpoints (here, simply an integer number: 42)
-ckpt = joblib.load(os.path.join(checkpoints_dir, "checkpoints.joblib"))
+# load the model once: imports, checkpoints and anything else that is slow to set up.
+# When served, Ersilia calls this once and keeps the result in memory between batches.
+def load_tool():
+    return MolWt
 
-# model to be run (here, calculate the Molecular Weight and add ckpt (42) to it)
-def my_model(smiles_list, ckpt):
-    return [MolWt(Chem.MolFromSmiles(smi))+ckpt for smi in smiles_list]
-    
-# read SMILES from .csv file, assuming one column with header
-with open(input_file, "r") as f:
-    reader = csv.reader(f)
-    next(reader) # skip header
-    smiles_list = [r[0] for r in reader]
-    
-# run model
-outputs = my_model(smiles_list, ckpt)
 
-# write output in a .csv file
-with open(output_file, "w") as f:
-    writer = csv.writer(f)
-    writer.writerow(["value"]) # header
-    for o in outputs:
-        writer.writerow([o])
+# run the model on one batch: read the input file, predict, write the output file.
+def run_tool(model, input_file, output_file):
+    # read SMILES from .csv file, assuming one column with header
+    _, smiles_list = read_smiles(input_file)
+
+    # run model
+    outputs = np.array([[model(Chem.MolFromSmiles(smi))] for smi in smiles_list])
+
+    # check input and output have the same length
+    assert len(smiles_list) == len(outputs)
+
+    num_dims = outputs.shape[1]
+    header = [f"feat_{str(i).zfill(3)}" for i in range(num_dims)]
+
+    # write output in a .csv file
+    write_out(outputs, header, output_file, np.float32)
+
+
+if __name__ == "__main__":
+    # parse arguments
+    input_file = sys.argv[1]
+    output_file = sys.argv[2]
+    run_tool(load_tool(), input_file, output_file)
 ```
 {% endcode %}
 
-In this case, the model simply calculates the molecular weight and adds a number to it.
+In this case, the model simply calculates the molecular weight.
 
-The important steps of the script are:
+The script is organized in two functions:
 
-1. Load model parameters.
-2. Read input file.
-3. Run predictions using the input file and the model parameters.
-4. Write the output.
+1. `load_tool()` does the slow, one-time setup: imports, reading the checkpoints, building the model. It returns the model.
+2. `run_tool(model, input_file, output_file)` runs the model on one batch: it reads the input file, runs the predictions and writes the output.
 
-Most of the work of the model contributor will be to work on this or similar scripts. In the template, we provide a dummy model (i.e. add a fixed value to the molecular weight). This dummy model can can be already defined within the script (`my_model`). However, in real world cases, the model will most likely be loaded from a third party Python library, or from a script placed in the same directory.
+When the model is served, Ersilia calls `load_tool()` only once and keeps the model in memory between batches, which is often several times faster than loading the model for every batch (see [Warm serving](../developer-docs/warm-serving.md)). When `main.py` is run from the terminal, the last lines call the two functions one after the other, so `run.sh` keeps working.
+
+Most of the work of the model contributor will be to work on this or similar scripts. In the template, we provide a dummy model (the molecular weight from RDKit). However, in real world cases, the model will most likely be loaded from a third party Python library, or from a script placed in the same directory. Keep everything that is slow and only needs to happen once in `load_tool()`, and do not keep anything between batches in `run_tool()`: each batch must give the same result, whatever ran before it.
 
 To summarize, in the template, we provide a structure that follows this logic:
 
 1. The `run.sh` script executes the Python `main.py` script.
 2. The `main.py` script:
-   * Defines the model code.
-   * Loads parameters from `checkpoints`.
-   * Reads an input file containing SMILES (with header).
-   * Runs a model that calculates molecular weight and adds an integer defined by the parameters.
-   * Writes an output file containing one column corresponding to the output value (with a header).
+   * Loads the model in `load_tool()`, including its parameters from `checkpoints`.
+   * In `run_tool()`, reads an input file containing SMILES (with header), with `read_smiles` from `ersilia_pack_utils`.
+   * Runs the model, which here calculates the molecular weight.
+   * Writes an output file with one column per output value (with a header), with `write_out` from `ersilia_pack_utils`.
 
 {% hint style="info" %}
 In the template, the example provided is very simple. Depending on the model being incorporated, the logic may be different. For example, many third party models already contain a command-line option, with a specific syntax. In these cases, you may want to write scripts to adapt the input and the output, and then execute the model as-is.
