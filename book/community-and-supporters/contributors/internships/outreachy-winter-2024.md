@@ -2,6 +2,7 @@
 description: >-
   Please find here the guidelines for the Outreachy contribution period running
   from 1st to 29th October
+hidden: true
 ---
 
 # Outreachy Winter 2024

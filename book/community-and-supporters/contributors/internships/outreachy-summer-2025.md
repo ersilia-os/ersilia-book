@@ -2,6 +2,7 @@
 description: >-
   Please find here the guidelines for the Outreachy contribution period running
   from 17th March to the 15th April 2025
+hidden: true
 ---
 
 # Outreachy Summer 2025

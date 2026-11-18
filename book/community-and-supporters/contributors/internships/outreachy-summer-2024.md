@@ -2,6 +2,7 @@
 description: >-
   Please find here the guidelines for the Outreachy contribution period running
   from 4th March to 2nd April 2024.
+hidden: true
 ---
 
 # Outreachy Summer 2024

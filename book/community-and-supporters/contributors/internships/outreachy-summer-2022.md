@@ -2,6 +2,7 @@
 description: >-
   Specific instructions for the summer Ersilia interns (June 2022 - September
   2022)
+hidden: true
 ---
 
 # Outreachy Summer 2022

@@ -2,6 +2,7 @@
 description: >-
   This page describes the contribution guidelines for the interns interested in
   participating in the Outreachy round from December 2022 to March 2023
+hidden: true
 ---
 
 # Outreachy Winter 2022
