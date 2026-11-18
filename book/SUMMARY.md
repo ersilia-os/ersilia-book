@@ -63,7 +63,7 @@
 ## 🖥️ Agentic AI
 
 * [Claude 101](agentic-ai/claude-101.md)
-* [Ersilia Skills](agentic-ai/ersilia-skills.md)
+* [Claude at Ersilia](agentic-ai/ersilia-skills.md)
 
 ## 🌍 About Us
 

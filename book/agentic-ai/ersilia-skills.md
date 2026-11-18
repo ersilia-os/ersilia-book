@@ -1,20 +1,20 @@
 ---
-description: >-
-  A guide to Ersilia's Claude Code skills repository: what it contains, how to
-  install it, and how to contribute new skills.
+description: A guide on how we are incorporating Claude at Ersilia
 ---
 
-# Ersilia Skills
+# Claude at Ersilia
+
+## Claude Skills
 
 `ersilia-skills` is Ersilia's curated library of Claude Code skills (reusable AI workflows built on top of Claude Code that encode our institutional knowledge into slash commands). Instead of re-explaining context to Claude each time you start a task, you invoke a skill and Claude already knows the process, the Ersilia conventions, and the expected outputs.
 
-## What's in this repository
+### What's in this repository
 
 * `skills/` : The heart of the repository. Each subdirectory is one skill (a self-contained folder with a `SKILL.md` file that defines the workflow Claude follows when you invoke the skill). Most skills also include a `references/` folder with supporting documents (guidelines, templates, real examples, troubleshooting notes) that Claude reads as context during execution.
 * `setup.sh`: A one-time installation script. When you run it, it creates symlinks from every skill directory in this repository into `~/.claude/skills/`, which is the folder Claude Code reads to discover locally installed skills. It also installs the post-merge git hook
 * `.git-hooks/`: Contains a `post-merge` hook that runs automatically every time you do a `git pull`. It re-runs `setup.sh` in the background, so any new skills added to the repository since your last pull are immediately linked into your local Claude Code installation.
 
-## Setup
+### Setup
 
 {% hint style="info" %}
 Prerequisites:
@@ -70,7 +70,7 @@ In any Claude Code session, type the skill name as a slash command:
 
 Claude will load the skill's workflow and follow it. Some skills accept arguments (like a model ID or a file path); the skill's description shown in Claude Code will tell you what to provide.
 
-## Skill Catalogue
+### Skill Catalogue
 
 At Ersilia, we have identified three key goals we want to make progress on, and for each one we have mapped specific skills we believe can help us get there: better public reach, Ersilia Model Hub growth, and improving scientific literacy.
 
@@ -120,7 +120,7 @@ Several of these skills are designed to be chained together as part of a larger 
 | paper-to-model-assessment | Summarize a given paper and put it in context of Ersilia's interests.                                                                                                                                        |
 | peer-reviewing            | Emulate a peer review and suggest how to address changes.                                                                                                                                                    |
 
-## Contributing
+### Contributing
 
 To add a new skill:
 
@@ -134,3 +134,7 @@ To make the process easier, use Anthropic's built-in `skill-creator` skill. Once
 
 4. Add a `references/` folder with any supporting documents Claude should read — guidelines, examples, templates, troubleshooting notes.
 5. Open a pull request. The post-merge hook will ensure collaborators get the skill automatically after they pull
+
+## Ersilia MCP
+
+The [Ersilia MCP](https://github.com/ersilia-os/ersilia-mcp) server connects Claude and other AI assistants directly to Ersilia’s tools. Through the MCP, users can run models from the Ersilia Model Hub, query precalculated results stored in Isaura, and work with models running locally (a GitHub Codespaces setup is available for testing). The project was developed by volunteer [Rachel Stanik](https://www.linkedin.com/in/rachel-stanik/), who worked closely with our team over several months. We plan to use it in our research and workshops and as part of our work on agentic automation at Ersilia.

@@ -29,8 +29,8 @@ This GEP applies to:
 
 This GEP:
 
-* Is formally approved by the board of directors and is made available on Ersilia’s GitBook webpage ([https://ersilia.gitbook.com/ersilia-book](https://ersilia.gitbook.com/ersilia-book)).&#x20;
-* Is made available in English, the working language of Ersilia.&#x20;
+* Is formally approved by the board of directors and is made available on Ersilia’s GitBook webpage ([https://ersilia.gitbook.com/ersilia-book](https://ersilia.gitbook.com/ersilia-book)).
+* Is made available in English, the working language of Ersilia.
 * Is shared with all staff, collaborators and volunteers at Ersilia.
 * Complies with the General Data Protection Regulation (GDPR).
 
@@ -42,7 +42,7 @@ Ersilia recognises that sustainable organisational change requires dedicated tim
 
 #### Equality Lead
 
-The Programmes & Partnerships Manager (PPM) will serve as Equality Lead with allocated time to implement and monitor this GEP. The Equality Lead’s responsibilities include:
+The Programs & Partnership Manager (PPM) will serve as Equality Lead with allocated time to implement and monitor this GEP. The Equality Lead’s responsibilities include:
 
 * Overseeing implementation of GEP actions and targets
 * Serving as the primary point of contact for equality matters for staff, collaborators, and partners
@@ -56,7 +56,7 @@ An Equality Committee, comprising the Equality Lead and the Executive Director, 
 
 #### Wider Staff Participation
 
-Gender equality is the responsibility of all staff, not only the Equality Lead. Staff across all roles are expected to engage with equality training, contribute to a respectful workplace culture, and flag concerns or ideas to the Equality Lead.&#x20;
+Gender equality is the responsibility of all staff, not only the Equality Lead. Staff across all roles are expected to engage with equality training, contribute to a respectful workplace culture, and flag concerns or ideas to the Equality Lead.
 
 #### Financial Resources
 
@@ -80,7 +80,7 @@ The Equality Lead will collect and maintain the following data, disaggregated by
 
 #### Data Collection Process
 
-Data will primarily be collected through HR records, onboarding forms, and internal surveys. In line with GDPR, all personal data will be handled confidentially, stored securely, and only reported in aggregate.&#x20;
+Data will primarily be collected through HR records, onboarding forms, and internal surveys. In line with GDPR, all personal data will be handled confidentially, stored securely, and only reported in aggregate.
 
 #### Annual Reporting
 
@@ -94,7 +94,7 @@ Ersilia will implement structured awareness-raising and training activities on g
 * Awareness programmes on inclusive practices
 * Capacity building for integrating the gender dimension in research
 
-These training sessions will be held once a year  in-person, online, or through self-study materials and coordinated by the Equality Lead. Whenever a new member joins the Ersilia team, a workshop on equality will be held to explain Ersilia’s principles of equality as set out in this document.
+These training sessions will be held once a year in-person, online, or through self-study materials and coordinated by the Equality Lead. Whenever a new member joins the Ersilia team, a workshop on equality will be held to explain Ersilia’s principles of equality as set out in this document.
 
 ## Key Thematic Areas and Measures
 
@@ -104,7 +104,7 @@ Flexibility is recognised as a key enabler of equity and participation, which Er
 
 * Flexible working arrangements: remote work, flexible hours, and asynchronous communication norms are standard across the organisation
 * Parental and family leave: Ersilia supports staff in accessing all applicable statutory leave rights. Leave periods will not disadvantage career progression or project participation
-* Inclusive organisational culture: Ersilia commits to inclusive language, dignified workplace interactions, and active visibility of diverse role models.&#x20;
+* Inclusive organisational culture: Ersilia commits to inclusive language, dignified workplace interactions, and active visibility of diverse role models.
 * Post-leave reintegration: staff returning from career breaks will receive support, including catch-up briefings and adjusted workloads during the transition period
 
 ### Gender Balance in Leadership and Decision-Making
@@ -123,7 +123,7 @@ In addition, Ersilia commits to gender-neutral and inclusive recruitment practic
 
 ### Gender dimension on research
 
-Ersilia’s mission centres on AI-driven drug discovery for neglected diseases, which predominantly affect communities in the Global South. Integrating sex and gender analysis into our research is both a scientific and ethical imperative. To that Ersilia will:&#x20;
+Ersilia’s mission centres on AI-driven drug discovery for neglected diseases, which predominantly affect communities in the Global South. Integrating sex and gender analysis into our research is both a scientific and ethical imperative. To that Ersilia will:
 
 * Integrate sex and gender analysis in research design when relevant — including in computational models, training datasets, and study populations used in drug discovery projects
 * Promote diversity in research teams and study populations
@@ -155,14 +155,14 @@ Ersilia will define and track the following Key Performance Indicators (KPIs) to
 
 ## Implementation timeline
 
-| Action                                       | Timeline - Responsible persn                                       |
-| -------------------------------------------- | ------------------------------------------------------------------ |
-| GEP adoption and publication                 | Immediately upon signing — Executive Director                      |
-| Designate Equality Lead & Equality Committee | Immediately — Executive Director                                   |
-| Baseline sex/gender data collection          | Within 3 months — Equality Lead                                    |
-| First Equality Committee review meeting      | Within 6 months — Equality Lead + Exec Director                    |
-| First annual GEP progress report published   | Within the first annual report after GEP approval  — Equality Lead |
-| Full review and update of GEP                | 24 months post-adoption — Equality Lead + Exec Director            |
-| Ongoing training, monitoring, and reporting  | Continuous — Equality Lead                                         |
+| Action                                       | Timeline - Responsible persn                                      |
+| -------------------------------------------- | ----------------------------------------------------------------- |
+| GEP adoption and publication                 | Immediately upon signing — Executive Director                     |
+| Designate Equality Lead & Equality Committee | Immediately — Executive Director                                  |
+| Baseline sex/gender data collection          | Within 3 months — Equality Lead                                   |
+| First Equality Committee review meeting      | Within 6 months — Equality Lead + Exec Director                   |
+| First annual GEP progress report published   | Within the first annual report after GEP approval — Equality Lead |
+| Full review and update of GEP                | 24 months post-adoption — Equality Lead + Exec Director           |
+| Ongoing training, monitoring, and reporting  | Continuous — Equality Lead                                        |
 
 <br>
