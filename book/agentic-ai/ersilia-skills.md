@@ -1,5 +1,5 @@
 ---
-description: A guide on how we are incorporating Claude at Ersilia
+description: A guide of how we have incorporated Claude at Ersilia
 ---
 
 # Claude at Ersilia
