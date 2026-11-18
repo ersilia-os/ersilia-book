@@ -1,21 +1,18 @@
 # Table of contents
 
-## 🤗 Welcome to Ersilia!
-
-* [The Ersilia Open Source Initiative](README.md)
-* [Ten principles](welcome-to-ersilia/ten-principles.md)
-* [Ersilia's ecosystem](welcome-to-ersilia/ersilias-ecosystem.md)
+* [🤗 Welcome to Ersilia!](README.md)
 
 ## 🚀 Ersilia Model Hub
 
-* [Getting started](ersilia-model-hub/getting-started.md)
-* [Online inference](ersilia-model-hub/online-inference.md)
+* [Overview](ersilia-model-hub/overview.md)
+* [Online inference old](ersilia-model-hub/online-inference-old.md)
+* [Online Inference](ersilia-model-hub/online-inference.md)
 * [Local inference](ersilia-model-hub/local-inference.md)
+* [Local inference old](ersilia-model-hub/local-inference-old.md)
 * [Model contribution](ersilia-model-hub/model-contribution/README.md)
   * [Model template](ersilia-model-hub/model-contribution/model-template.md)
-  * [Model incorporation workflow](ersilia-model-hub/model-contribution/example-of-the-model-incorporation-workflow.md)
+  * [Model incorporation workflow](ersilia-model-hub/model-contribution/model-incorporation-workflow.md)
   * [Troubleshooting models](ersilia-model-hub/model-contribution/troubleshooting-models.md)
-  * [BioModels annotation](ersilia-model-hub/model-contribution/biomodels-annotation.md)
 * [For developers](ersilia-model-hub/developer-docs/README.md)
   * [Command line interface](ersilia-model-hub/developer-docs/command-line-interface.md)
   * [Python API](ersilia-model-hub/developer-docs/python-api.md)
@@ -40,20 +37,6 @@
 * [Encryption of AI/ML models](chemistry-tools/encryption-of-ai-ml-models.md)
 * [AMR chemical collections](chemistry-tools/amr-chemical-collections.md)
 
-## 🙌 COMMUNITY & SUPPORTERS
-
-* [Contributors](community-and-supporters/contributors/README.md)
-  * [Internships](community-and-supporters/contributors/internships/README.md)
-    * [Outreachy Summer 2025](community-and-supporters/contributors/internships/outreachy-summer-2025.md)
-    * [Outreachy Winter 2024](community-and-supporters/contributors/internships/outreachy-winter-2024.md)
-    * [Outreachy Summer 2024](community-and-supporters/contributors/internships/outreachy-summer-2024.md)
-    * [Outreachy Winter 2023](community-and-supporters/contributors/internships/outreachy-winter-2023.md)
-    * [Outreachy Summer 2023](community-and-supporters/contributors/internships/outreachy-summer-2023.md)
-    * [Outreachy Winter 2022](community-and-supporters/contributors/internships/outreachy-winter-2022.md)
-    * [Outreachy Summer 2022](community-and-supporters/contributors/internships/outreachy-summer-2022.md)
-  * [Volunteers](community-and-supporters/contributors/volunteers.md)
-* [How we are funded](community-and-supporters/how-we-are-funded.md)
-
 ## 🎨 Styles
 
 * [Brand guidelines](styles/brand-guidelines.md)
@@ -72,8 +55,10 @@
   * [Diversity and inclusion statement](about-us/values-and-commitment/diversity-and-inclusion-statement.md)
   * [Gender Equality Plan](about-us/values-and-commitment/gender-equality-plan.md)
   * [Code of conduct](about-us/values-and-commitment/code-of-conduct.md)
+  * [Ten principles](about-us/values-and-commitment/ten-principles.md)
 * [Policies](about-us/policies/README.md)
   * [Open standards and best practices](about-us/policies/open-standards-and-best-practices.md)
   * [AI Policy](about-us/policies/ai-policy.md)
   * [Ersilia privacy notice](about-us/policies/ersilia-privacy-notice.md)
+* [Community and supporters](about-us/community-and-supporters.md)
 * [Ersilia, the Invisible City](about-us/ersilia-the-invisible-city.md)

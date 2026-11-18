@@ -1,53 +1,31 @@
 ---
-description: >-
-  We equip laboratories in the Global South with data science tools for
-  infectious disease research
+description: Open handbook for the Ersilia Open Source Initiative
 ---
 
-# The Ersilia Open Source Initiative
+# 🤗 Welcome to Ersilia!
 
-## The organization
+Ersilia is a tech nonprofit building open source AI for global health. We work alongside researchers in the Global South to discover new medicines for infectious and neglected diseases. To learn about our projects, publications and impact, visit [ersilia.io](https://ersilia.io/).
 
-The [Ersilia Open Source Initiative](https://ersilia.io) (Ersilia) is a tech non-profit organization incorporated as a Foundation in Catalunya, Spain. We are located in [Norrsken House](https://www.norrsken.org/houses/barcelona), Barcelona.
+This book holds the documentation for Ersilia's open source tools, together with the guidelines, policies and strategic plans.&#x20;
 
-### Mission
+## Start here
 
-To equip laboratories in Low and Middle Income Countries with state of the art artificial intelligence tools for infectious and neglected disease research.
+<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Run a model</strong></td><td>Find a model in the Ersilia Model Hub and run it.</td><td><a href="https://ersilia.gitbook.io/ersilia-book/ersilia-model-hub/getting-started">https://ersilia.gitbook.io/ersilia-book/ersilia-model-hub/getting-started</a></td></tr><tr><td><strong>Contribute a model</strong></td><td>Bring a published model into the Hub, from the template to testing.</td><td><a href="https://ersilia.gitbook.io/ersilia-book/ersilia-model-hub/model-contribution">https://ersilia.gitbook.io/ersilia-book/ersilia-model-hub/model-contribution</a></td></tr><tr><td><strong>Develop the Model Hub</strong></td><td>The command line, Python API, CI/CD and testing behind the Hub.</td><td><a href="https://ersilia.gitbook.io/ersilia-book/ersilia-model-hub/developer-docs">https://ersilia.gitbook.io/ersilia-book/ersilia-model-hub/developer-docs</a></td></tr><tr><td><strong>Explore our chemistry tools</strong></td><td>LazyQSAR, ZairaChem, Olinda and other libraries for drug discovery data.</td><td><a href="https://ersilia.gitbook.io/ersilia-book/chemistry-tools/automated-activity-prediction-models">https://ersilia.gitbook.io/ersilia-book/chemistry-tools/automated-activity-prediction-models</a></td></tr><tr><td><strong>Work with Claude at Ersilia</strong></td><td>Set-up instructions and the skills we share for agentic AI.</td><td><a href="https://ersilia.gitbook.io/ersilia-book/contributors/internships">https://ersilia.gitbook.io/ersilia-book/contributors/internships</a></td></tr><tr><td><strong>Check out the AI Incubator</strong></td><td>A six-month annual program for African scientists</td><td><a href="https://ersilia.gitbook.io/ersilia-book/agentic-ai/claude-101">https://ersilia.gitbook.io/ersilia-book/agentic-ai/claude-101</a></td></tr></tbody></table>
 
-### Vision
+## Open by default
 
-A world with egalitarian access to healthcare.
+Openness is one of our principles, so the documents that shape how we work are public too.
 
-### Goals
+* [Ten principles](https://ersilia.gitbook.io/ersilia-book/welcome-to-ersilia/ten-principles)
+* [Strategic Plan 2025–2027](https://ersilia.gitbook.io/ersilia-book/about-us/strategic-plan-2025-2027)
+* [Code of conduct](https://ersilia.gitbook.io/ersilia-book/about-us/code-of-conduct)
+* [Diversity and inclusion statement](https://ersilia.gitbook.io/ersilia-book/about-us/diversity-and-inclusion-statement)
+* [Gender Equality Plan](https://ersilia.gitbook.io/ersilia-book/about-us/gender-equality-plan)
+* [AI Policy](https://ersilia.gitbook.io/ersilia-book/about-us/ai-policy)
+* [Open standards and best practices](https://ersilia.gitbook.io/ersilia-book/about-us/open-standards-and-best-practices)
+* [Privacy notice](https://ersilia.gitbook.io/ersilia-book/about-us/ersilia-privacy-notice)
+* [Annual reports and transparency](https://ersilia.gitbook.io/ersilia-annual-reports)
 
-1. **To facilitate adoption of artificial intelligence and machine learning (AI/ML) models for biomedical research**. We bridge the gap between data scientists and experimental researchers, making AI/ML expertise available to scientists worldwide.&#x20;
-2. **To support research into infectious and neglected diseases in LMICs**. We focus on implementing our tools locally in institutions across the global south. We prioritize projects where the scientific leadership is within domestic institutions and local researchers.
-3. **To build capacity in data science and AI/ML**. Together with our partners, we organize workshops and seminars for experimental scientists.
-4. **To advocate for open science**. We firmly believe that an open science framework is the key to establishing sustainable collaborations. We strive to keep openness at all levels, including scientific findings, strategic decision-making, and funding.
+## Need help?
 
-## Governance
-
-As a Foundation, Ersilia is governed by the **Board of Trustees** (_Patronat_), a body that serves voluntarily and oversees the alignment between Ersilia's work and its philanthropic mission. The board meets a minimum of four times a year to provide strategic decision making and support to Ersilia’s core team. Our Trustees are:&#x20;
-
-* [Miquel Duran-Frigola](https://www.linkedin.com/in/miquel-duran-frigola-06b00347/), PhD (President)
-* [Edoardo Gaude](https://www.linkedin.com/in/edo-gaude-02283945/), PhD (Secretary)
-* [Anna Homs Riba](https://www.linkedin.com/in/anna-homs-riba-79186190/), PhD (Vocal)
-
-In addition, Ersilia is supported by a **Board of Advisors**:
-
-* [Alacia Armstrong](https://www.linkedin.com/in/alacia-armstrong-she-her-0a215b3b/), MSc&#x20;
-* [Akash Rungta](https://www.linkedin.com/in/akash-rungta/), MSc&#x20;
-
-## How are we funded
-
-Ersilia is funded by a combination of research grants from public entities (including the Spanish Government, the NIH, and the European Union), private foundations (including Schmidt Sciences, Mozilla Foundation and Bill and Melinda Gates Foundation) and donations from philantrophic bodies and corporate contributors (including Splunk, HPE, BlackRock and UPS). A full disclosure of our funding sources can be found in our [website](https://ersilia.io/about).
-
-## Learn more about us
-
-* Visit our [website](https://ersilia.io).
-* Subscribe to our [newsletter](http://eepurl.com/hkX1sH).
-* Follow us on [LinkedIn](https://linkedin.com/company/ersiliaio), [Bluesky](https://bsky.app/profile/ersilia.io) and [Mastodon](https://fosstodon.org/@ersiliaio).
-* Read our stories covering open science, decolonised research, drug discovery, and more in [Medium](https://medium.com/ersiliaio).
-* Browse our open source [tools](https://github.com/ersilia-os).
-* Write to us at [hello@ersilia.io](mailto:hello@ersilia.io).
-
+For technical questions, open an issue on [GitHub](https://github.com/ersilia-os/ersilia/issues). For anything else, write to us at [hello@ersilia.io](mailto:hello@ersilia.io).

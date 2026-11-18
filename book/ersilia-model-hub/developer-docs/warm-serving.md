@@ -1,5 +1,7 @@
 ---
-description: Keep a served model loaded in memory between batches, instead of starting it again for every batch.
+description: >-
+  Keep a served model loaded in memory between batches, instead of starting it
+  again for every batch.
 ---
 
 # Warm serving
@@ -12,7 +14,7 @@ With warm serving, the model is loaded **once**, when the server starts, in a lo
 
 ## How a model opts in
 
-The model's `main.py` defines two functions, as in the current [model template](../model-contribution/model-template.md#the-model-folder):
+The model's `main.py` defines two functions, as in the current [model template](/broken/pages/1rWVOadpE8EzGF2KGjbF#the-model-folder):
 
 ```python
 def load_tool():
@@ -83,12 +85,12 @@ Everything lives in [ersilia-pack](https://github.com/ersilia-os/ersilia-pack):
 
 A worker problem never loses a batch or changes a result:
 
-| What happens | What Ersilia does |
-| --- | --- |
-| `load_tool()` raises an error | The model stays on `run.sh` for the rest of the server's life |
+| What happens                              | What Ersilia does                                                     |
+| ----------------------------------------- | --------------------------------------------------------------------- |
+| `load_tool()` raises an error             | The model stays on `run.sh` for the rest of the server's life         |
 | The worker dies between or during a batch | That batch is rerun with `run.sh`; the next batch starts a new worker |
-| `run_tool()` raises an error | The batch fails, exactly as a failing `run.sh` does |
-| `ersilia close` | The worker is stopped; no process is left behind |
+| `run_tool()` raises an error              | The batch fails, exactly as a failing `run.sh` does                   |
+| `ersilia close`                           | The worker is stopped; no process is left behind                      |
 
 Set `ERSILIA_WARM=0` to turn warm serving off. Every batch then goes through `run.sh`.
 
@@ -100,17 +102,17 @@ Set `ERSILIA_WARM=0` to turn warm serving off. Every batch then goes through `ru
 
 We measured end to end with the Ersilia CLI (`fetch → serve → run ×3 → close`) on nine models of different task types. Values are the median of three runs, 100 molecules in batches of 20 (eos57bx: 6 molecules in batches of 2).
 
-| Model | Before (s) | Warm (s) | Speed-up | Load time (once) |
-| --- | --- | --- | --- | --- |
-| eos4n4d | 23.0 | 2.4 | 9.5× | 3.14 s |
-| eos9o72 | 14.5 | 1.9 | 7.8× | 2.24 s |
-| eos96f4 | 9.5 | 2.1 | 4.6× | 1.05 s |
-| eos57bx | 568.5 | 203.3 | 2.8× | 3.37 s |
-| eos45di | 16.9 | 6.2 | 2.7× | 1.79 s |
-| eos18ie | 43.2 | 18.4 | 2.4× | 4.48 s |
-| eos12x7 | 1.5 | 0.8 | 1.9× | 0.09 s |
-| eos7jio | 1.7 | 1.0 | 1.7× | 0.09 s |
-| eos2mrz | 0.9 | 0.8 | 1.1× | 0.02 s |
+| Model   | Before (s) | Warm (s) | Speed-up | Load time (once) |
+| ------- | ---------- | -------- | -------- | ---------------- |
+| eos4n4d | 23.0       | 2.4      | 9.5×     | 3.14 s           |
+| eos9o72 | 14.5       | 1.9      | 7.8×     | 2.24 s           |
+| eos96f4 | 9.5        | 2.1      | 4.6×     | 1.05 s           |
+| eos57bx | 568.5      | 203.3    | 2.8×     | 3.37 s           |
+| eos45di | 16.9       | 6.2      | 2.7×     | 1.79 s           |
+| eos18ie | 43.2       | 18.4     | 2.4×     | 4.48 s           |
+| eos12x7 | 1.5        | 0.8      | 1.9×     | 0.09 s           |
+| eos7jio | 1.7        | 1.0      | 1.7×     | 0.09 s           |
+| eos2mrz | 0.9        | 0.8      | 1.1×     | 0.02 s           |
 
 On 1,000 molecules, eos4n4d went from 47.5 s to 6.8 s. Outputs were identical for all nine models, and models that were not adapted were unaffected.
 

@@ -15,7 +15,7 @@ To contribute models at Ersilia you need to be familiar with:
 
 ### Installation
 
-It is recommended to install Ersilia locally in \[test] mode to enable for model testing upon incorporation.&#x20;
+It is recommended to install Ersilia locally in \[test] mode to enable for model testing upon incorporation.
 
 ```bash
 conda create -n ersilia python=3.12
@@ -28,7 +28,7 @@ Ersilia is only maintained for Linux/MacOS systems. If you are working with Wind
 #### Additional installations
 
 * DockerHub: all models incorporated in Ersilia will be Dockerized for easy deployment. While the dockerization step happens in the cloud (GitHub Actions) it is recommended to install docker for model testing purposes.
-* EOSVC: checkpoints in `model/checkpoints/` are committed to the model repository unless a file is 100 MiB or larger; then the whole folder is stored in S3 with [eosvc](https://github.com/ersilia-os/eosvc). `model/framework/fit/` goes to eosvc as soon as it holds training code or data. Uploading requires AWS credentials. Git LFS is not used. See [Checkpoints and storage](model-template.md#checkpoints-and-storage).&#x20;
+* EOSVC: checkpoints in `model/checkpoints/` are committed to the model repository unless a file is 100 MiB or larger; then the whole folder is stored in S3 with [eosvc](https://github.com/ersilia-os/eosvc). `model/framework/fit/` also goes to eosvc if it contains data. Uploading requires AWS credentials. Git LFS is not used. See [Checkpoints and storage](/broken/pages/1rWVOadpE8EzGF2KGjbF#checkpoints-and-storage).
 
 ## TL:DR
 
@@ -39,13 +39,13 @@ Summary of the contributor’s pipeline:
 3. Open a Model Request issue under the [Ersilia repository](https://github.com/ersilia-os/ersilia).
 4. Fork the repository created upon approval of the Model Request by Ersilia maintainers.
 5. Clone the model repository in your local machine and follow the steps described below:
-   1. Include the model checkpoints in the `/checkpoints` directory and commit them. If a file is 100 MiB or larger, gitignore the whole folder and store it with [eosvc](https://github.com/ersilia-os/eosvc) instead. `/framework/fit` goes to eosvc as soon as it holds training code or data. The model must not download weights at run time. See [Checkpoints and storage](model-template.md#checkpoints-and-storage).
+   1. Include the model checkpoints in the `/checkpoints` directory and commit them. If a file is 100 MiB or larger, gitignore the whole folder and store it with [eosvc](https://github.com/ersilia-os/eosvc) instead. `/framework/fit` goes to eosvc as soon as it holds training code or data. The model must not download weights at run time. See [Checkpoints and storage](/broken/pages/1rWVOadpE8EzGF2KGjbF#checkpoints-and-storage).
    2. Include any code needed to run the model as .py script files in the `/framework/code` directory.
    3. Adapt the functions in `main.py` to actually run your model and provide the output in the specified format.
-   4. Create the `run_columns.csv` file including information about the model output, following the indications described [here](model-template.md#columns-file).&#x20;
-   5. Include the dependencies (specifying the version) in the `install.yml` file, following the rules described [here](https://ersilia.gitbook.io/ersilia-book/ersilia-model-hub/model-contribution/model-template#the-install.yml-file).&#x20;
-   6. Complete all fields on the `metadata.yml`. Note that many are pre-defined, ensure you are using the correct notation. Further details are described [here](https://ersilia.gitbook.io/ersilia-book/ersilia-model-hub/model-contribution/model-template#metadata-at-model-contribution-time).&#x20;
-   7. Include input and output examples for the model, named `run_input.csv` and `run_output.csv`, respectively, following the architecture described [here](https://ersilia.gitbook.io/ersilia-book/ersilia-model-hub/model-contribution/model-template#example-files). &#x20;
+   4. Create the `run_columns.csv` file including information about the model output, following the indications described [here](/broken/pages/1rWVOadpE8EzGF2KGjbF#columns-file).
+   5. Include the dependencies (specifying the version) in the `install.yml` file, following the rules described [here](https://ersilia.gitbook.io/ersilia-book/ersilia-model-hub/model-contribution/model-template#the-install.yml-file).
+   6. Complete all fields on the `metadata.yml`. Note that many are pre-defined, ensure you are using the correct notation. Further details are described [here](https://ersilia.gitbook.io/ersilia-book/ersilia-model-hub/model-contribution/model-template#metadata-at-model-contribution-time).
+   7. Include input and output examples for the model, named `run_input.csv` and `run_output.csv`, respectively, following the architecture described [here](https://ersilia.gitbook.io/ersilia-book/ersilia-model-hub/model-contribution/model-template#example-files).
 6. Open a PR to the main branch of the model repository. A series of automated tests will be triggered. Ensure they are passing.
 7. Check if your PR has been successfully merged and the model is uploaded to AWS S3 and DockerHub.
 8. Delete your fork of the model repository.
@@ -53,5 +53,5 @@ Summary of the contributor’s pipeline:
 If it is your first time incorporating a model in the Ersilia Model Hub, make sure to read with detail the following sections:
 
 * [Model template](model-template.md): detailed explanation of the folder structure and all the files present in the eos-template.
-* [Model incorporation workflow](example-of-the-model-incorporation-workflow.md): exemplified step by step model incorporation.
+* [Model incorporation workflow](model-incorporation-workflow.md): exemplified step by step model incorporation.
 * [Troubleshooting models](troubleshooting-models.md): pointers of what to check if your incorporated model is not working.

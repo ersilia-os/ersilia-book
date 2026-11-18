@@ -1,41 +1,83 @@
----
-description: Documentation to run Ersilia models online
----
+# Online Inference
 
-# Online inference
+The [Ersilia Hub](https://hub.ersilia.io/) lets you run models in your browser, with no installation or coding. Upload your molecules, choose a model, and download the predictions.
 
-To ensure users from all backgrounds are able to benefit from our tools, we provide a ready-to-use, no-code solution to obtain predictions for your molecules.&#x20;
+## Before you begin
 
-## 1. Select your model of interest
+* You can submit up to 1,000 molecules per run.
+* Not all models are available in the Hub. To request a model, write to [hello@ersilia.io](mailto:hello@ersilia.io).
+* You need to register as a user the first time you use the Hub.
 
-We offer a broad range of models, from bioactivity prediction against several pathogens (malaria, tuberculosis, schistosomiasis, ESKAPE pathogens...) to ADME endpoints and toxicity predictions. Use our [dynamic interface](https://ersilia.io/model-hub) to browse models according to your needs and take note of the model identifier you wish to use!
-
-{% hint style="success" %}
-Please ensure you understand the output of each model before using it. _For example, a classifier will output the probability of being active in a particular assay, e.g. probability that a molecule kills the malaria parasite in an in vitro assay, and a regressor might output the predicted IC50 value at which the molecule inhibits the growth of the parasite._&#x20;
-{% endhint %}
-
-## 2. Prepare your input data
-
-The molecules must be displayed in SMILES notation. You can use [PubChem](https://pubchem.ncbi.nlm.nih.gov/) to find the SMILES notation of a given compound: simply introduce the compound name on the search bar (for example, aspirin), select the best result and scroll to the SMILES section within "Name and Identifiers" (in this case; CC(=O)OC1=CC=CC=C1C(=O)O). If your starting input data is an `.sdf` file, use your preferred visualiser, like ChemDraw, to open the molecule and obtain its SMILES representation. To deal with multiple molecular file formats, including SDF, you can use [OpenBabel](https://openbabel.org/) to convert them into SMILES notation. Alternatively, you can also use free software like [Marvin.js](https://marvinjs-demo.chemaxon.com/latest/demo.html) to draw a molecule and then simply click on save 💾 it as a SMILES.
-
-Collect your list of SMILES in a `.csv` or `.txt` file **containing a single column with a header**, for example "smiles" or "input"**.**
-
-## 3. Run predictions and download results
-
-Go to our [online inference app](https://ersilia-self-service.streamlit.app/) and select your model of choice from the drop down list. Copy the list of SMILES (maximum allowed 100 molecules) and click on "Run Predictions!". Wait a few minutes to download your results.
-
-{% hint style="danger" %}
-Posting to this free online service will make your molecules public. Please consider [local inference](local-inference.md) if you are working with IP-protected molecules.
+{% hint style="warning" %}
+Your molecules are stored on Ersilia's servers on AWS. We don't publish or use them, but if you're working with confidential or IP-protected molecules, run models on your own machine with [local inference](local-inference.md) instead.
 {% endhint %}
 
 {% hint style="info" %}
-If you wish to run larger annotations, for example running several predictions against a database of >1k molecules, please contact Ersilia directly to obtain a customized solution: hello@ersilia.io
+For large jobs, or models that aren't in the Hub, use [local inference](local-inference.md). We can offer limited support with the setup if you need it.
 {% endhint %}
 
-## 4. Check your predictions
+## Run a model
 
-By default, Ersilia will provide a downloadable `.csv` file summarizing the results, containing the following columns:
+{% stepper %}
+{% step %}
+#### Find a model
 
-* key: 32-character unique identifier of the molecule created by Ersilia
-* input: the input SMILES (please note that these might have been standardized if they were not provided in the standard format).
-* Model output: one or several columns containing the predictions of the selected model. Explantion about each column's meaning can be found on the model's GitHub repository under `model/framework/columns`. For example, for model `eos3b5e` you can go to [https://github/ersilia-os/eos3b5e](https://github.com/ersilia-os/eos3b5e) and navigate to the [run\_columns.csv](https://github.com/ersilia-os/eos3b5e/blob/main/model/framework/columns/run_columns.csv) file.
+Ersilia offers a broad range of models, from bioactivity against pathogens such as malaria, tuberculosis, schistosomiasis, and the ESKAPE pathogens, to ADME and toxicity predictions. Browse them in the [Ersilia catalog](https://catalog.ersilia.io/).
+
+{% hint style="success" %}
+Make sure you understand what a model predicts before you use it. For example, a classifier outputs the probability of being active in a particular assay, such as the probability that a molecule kills the malaria parasite in vitro. A regressor might output a predicted IC50, the concentration at which the molecule inhibits the parasite's growth.
+{% endhint %}
+{% endstep %}
+
+{% step %}
+#### Prepare your molecules
+
+Models take chemical structures as input, written as SMILES strings. To get them:
+
+* **From a compound name:** search for the compound on [PubChem](https://pubchem.ncbi.nlm.nih.gov/), for example aspirin, open the best result, and find the SMILES string under **Names and Identifiers**. For aspirin, it's `CC(=O)OC1=CC=CC=C1C(=O)O`.
+* **From an SDF or other file format:** open the file in a molecule visualizer such as ChemDraw, or convert it with [OpenBabel](https://openbabel.org/).
+* **From a drawing:** draw the molecule in [Marvin JS](https://marvinjs-demo.chemaxon.com/latest/demo.html) and save it as SMILES.
+
+Save your molecules in a CSV file with a single column and a header, such as `smiles` or `input`:
+
+{% code title="input.csv" %}
+```
+smiles
+C1=C(SC(=N1)SC2=NN=C(S2)N)[N+](=O)[O-]
+CC(C)CC1=CC=C(C=C1)C(C)C(=O)O
+```
+{% endcode %}
+{% endstep %}
+
+{% step %}
+#### Run predictions
+
+Go to [hub.ersilia.io](https://hub.ersilia.io/) and sign in, then choose your model from the dropdown list.
+
+Click **Attach file**, select your CSV file, and start the run.
+
+Most models finish in a few seconds. The slowest can take up to 30 minutes.
+{% endstep %}
+
+{% step %}
+#### Download your results
+
+When the run is complete, download your predictions as a CSV file.
+{% endstep %}
+{% endstepper %}
+
+## Understand model outputs
+
+Ersilia hosts many kinds of models, so the output depends on the model you run. Every output file contains at least two columns:
+
+* `key`: a 32-character unique identifier that Ersilia creates for each molecule.
+* `input`: the input SMILES string. Ersilia might standardize SMILES strings that weren't in standard format.
+
+The remaining columns contain the model's predictions. To learn what each column means, what type of data it holds, and how to interpret its values, check the model's documentation in either of these places:
+
+* The README file in the model's GitHub repository, for example [ersilia-os/eos3b5e](https://github.com/ersilia-os/eos3b5e).
+* The `run_columns.csv` file in the model's repository, at `model/framework/columns/run_columns.csv`, which defines every output column.
+
+## Get help
+
+If something doesn't work, write to [hello@ersilia.io](mailto:hello@ersilia.io) with the model you used and a description of the problem.

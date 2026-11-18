@@ -10,7 +10,7 @@ This chapter is mainly intended to developers who want to contribute to Ersilia'
 
 ## The Ersilia CLI
 
-The main codebase of Ersilia is the [Ersilia CLI](https://github.com/ersilia-os/ersilia). For a full reference of all commands available, please visit [this page](command-line-interface.md). A detailed reference of the Ersilia API can be accessed [here](https://ersilia-os.github.io/ersilia).&#x20;
+The main codebase of Ersilia is the [Ersilia CLI](https://github.com/ersilia-os/ersilia). For a full reference of all commands available, please visit [this page](command-line-interface.md). A detailed reference of the Ersilia API can be accessed [here](https://ersilia-os.github.io/ersilia).
 
 To start contributing to Ersilia, please [fork our master branch](https://github.com/ersilia-os/ersilia/fork) and work on it locally. We recommend installing Ersilia in editable mode inside a Conda environment:
 
@@ -36,7 +36,7 @@ Where Docker is not available, for example on HPC clusters, models can run from 
 
 ### Working with models from source
 
-Ersilia models can also be packaged from source. The source code and parameters for a given model are available in its corresponding GitHub repository. Checkpoints in `model/checkpoints/` are committed to the model repository, unless a file is 100 MiB or larger; then the whole folder is stored in S3 with [eosvc](https://github.com/ersilia-os/eosvc). `model/framework/fit/` is stored with eosvc as soon as it holds training code or data. See [Checkpoints and storage](../model-contribution/model-template.md#checkpoints-and-storage) for the full rule. Some older models still keep files in [git-lfs](https://git-lfs.com/) while they are being migrated, so install it if you work with those models from source.
+Ersilia models can also be packaged from source. The source code and parameters for a given model are available in its corresponding GitHub repository. Checkpoints in `model/checkpoints/` are committed to the model repository, unless a file is 100 MiB or larger; then the whole folder is stored in S3 with [eosvc](https://github.com/ersilia-os/eosvc). `model/framework/fit/` is stored with eosvc as soon as it holds training code or data. See [Checkpoints and storage](/broken/pages/1rWVOadpE8EzGF2KGjbF#checkpoints-and-storage) for the full rule. Some older models still keep files in [git-lfs](https://git-lfs.com/) while they are being migrated, so install it if you work with those models from source.
 
 {% hint style="info" %}
 Working with models from source is often recommendable to quickly explore potential issues with the model. Typically, a dedicated Conda environment will be created by Ersilia automatically at fetch time.
@@ -58,4 +58,3 @@ An important part of the Ersilia infrastructure is the packaging of models with 
 {% hint style="warning" %}
 The legacy method for packaging models was strongly based on [BentoML](https://github.com/bentoml/). This is progressively being deprecated in favor our Ersilia Pack, which is built on top of [FastAPI](https://fastapi.tiangolo.com/).
 {% endhint %}
-

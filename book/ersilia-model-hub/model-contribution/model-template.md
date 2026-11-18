@@ -1,251 +1,126 @@
----
-description: >-
-  This pages provides a deep dive into the structure of the model template for
-  new model incorporation.
----
-
 # Model template
 
-## Anatomy of the Ersilia Model Template
+Every model in the Ersilia Model Hub lives in its own GitHub repository, created from the [Ersilia model template](https://github.com/ersilia-os/eos-template). This page describes what each part of that repository does. Use it as a reference whether you incorporate a model manually or with the skills: either way, the result must follow these rules.
 
-Each model in the Ersilia Model Hub is contained within an individual GitHub repository. Each model repository is created using the [**Ersilia Model Template**](https://github.com/ersilia-os/eos-template) upon approval of the Model Request issue. When the new repository is created, please fork it and work on modifying the template from your own user. Open a pull request when the model is ready.
-
-{% hint style="danger" %}
-When you have finished the model incorporation, please delete the fork from your own GitHub user. This avoids outdated copies of the models.
-{% endhint %}
-
-Below, we describe the main files you will find in the newly created model repository. Note that some of them are automatically updated and you do not have to modify them, like the `README.md`.
-
-### The `eos` identifier
-
-Each model in the Ersilia Model Hub has an Ersilia Open Source (EOS) identifier. This identifier determines the name of the GitHub repository containing the model:
+## Repository structure
 
 ```
-https://github.com/ersilia-os/[EOS_IDENTIFIER]
+eosXXXX/
+├── metadata.yml          # all information about the model
+├── install.yml           # dependencies
+├── README.md             # generated automatically, don't edit
+├── LICENSE
+├── access.json           # only if folders are stored with eosvc
+└── model/
+    ├── checkpoints/      # model weights and other model data
+    └── framework/
+        ├── run.sh        # entry point Ersilia calls
+        ├── code/
+        │   └── main.py
+        ├── columns/
+        │   └── run_columns.csv
+        ├── examples/
+        │   ├── run_input.csv
+        │   └── run_output.csv
+        └── fit/          # training code and data, if any
 ```
 
-The `eos` identifier follows this regular expression: `eos[1-9][a-z0-9]{3}`. That is:
+## How a model repository is created
 
-* The `eos` prefix, plus...
-* one digit (`1-9`) (the `0` is reserved for test models), plus...
-* three alphanumeric (`a-z` and `0-9`) characters.
+When an Ersilia maintainer approves a model request, the model's repository is automatically created from the template. Fork it, make your changes in your fork, and open a pull request when the model is ready.
 
-{% hint style="success" %}
-`eos` identifiers are automatically assigned at repository creation. Please do not modify them.
+{% hint style="warning" %}
+After your pull request is merged, delete your fork, so outdated copies of the model don't stay around.
 {% endhint %}
 
-### The `metadata.yml` file
+## The `eos` identifier
 
-The `metadata.yml` file is where all the model information can be found. This is the only place where you should modify or update the model description, interpretation etc. The Airtable backend, the browsable [interface](https://ersilia.io/model-hub) of the Ersilia Model Hub and the `README.md` file will automatically be updated from the `metadata.yml` upon merge of the Pull Request. It is important to understand the flow of information: the metadata file is updated sequentially, some of the fields require input from the Model Contributor and some others are automatically added ans should not be modified.
+Each model has an Ersilia Open Source (EOS) identifier, which is also the name of its repository: `https://github.com/ersilia-os/[EOS_IDENTIFIER]`.
 
-{% hint style="danger" %}
-Note that all fields are filled in as Python strings, therefore misspellings or lower / uppercase will affect their recognition as valid values.
-{% endhint %}
+The identifier matches the regular expression `eos[1-9][a-z0-9]{3}`: the prefix `eos`, one digit from 1 to 9 (0 is reserved for test models), and three lowercase letters or digits. Identifiers are assigned automatically when the repository is created. Don't change them.
 
-#### Metadata at Model Request
+## The `metadata.yml` file
 
-The model contributor is asked to fill in a few metadata fields in the Model Request issue. Those will be automatically included in the `metadata.yml` file of the created repository:
+`metadata.yml` holds all the information about the model, and it's the only place to edit it. When a pull request is merged, the Ersilia catalog, the Airtable backend, and the repository's `README.md` are updated from this file.
 
-**Identifier:** the `eos` identifier described above. It will be automatically filled in. _<mark style="color:red;">Do not modify</mark>._
-
-**Slug:** a one-word or multi-word (linked by a hypen) human-readable identifier, stored as a string, to be used as an alternative to the EOS ID. It will be filled in from the Model Request issue. It can be modified afterwards if necessary.
-
-**Title:** a self-descriptive model title. This field is a single string between 10-300 characters long.
-
-**Description**: minimum information about model type, results and the training dataset. This field is a single string of minimum 200 characters.
+The file is filled in over time: some fields come from the model request, some are completed by the contributor, and some are added by Ersilia's workflows. Fields with predefined values are checked by automated tests, so spelling and capitalization must match exactly. The accepted values for each field are listed in the [metadata files](https://github.com/ersilia-os/ersilia/tree/master/ersilia/hub/content/metadata) of the Ersilia repository.
 
 {% hint style="info" %}
-Some contributors may find it difficult to come up with a good description for the model. You can find some inspiration in [Semantic Scholar](https://semanticscholar.org). This portal provides an AI-based TL;DR short description of many indexed papers.
+If the accepted values don't cover your model, for example a disease that isn't listed as a tag, open a pull request to add it to the [metadata files](https://github.com/ersilia-os/ersilia/tree/master/ersilia/hub/content/metadata). Ersilia maintainers review these additions.
 {% endhint %}
 
-**Tag:** labels to facilitate model search. For example, a model that predicts activity against malaria could have _P.falciparum_ as tag. This field is a list with one or more accepted values since models can have more than one [tag](https://github.com/ersilia-os/ersilia/blob/master/ersilia/hub/content/metadata/tag.txt). Select between one and five relevant from the following categories. Tags are predefined in a list at Model Request time. Do not deviate from that. This field is a list of strings.
+### Metadata at model request
 
-* Disease: `AIDS`, `Alzheimer`, `Cancer`, `Cardiotoxicity`, `Cytotoxicity`, `COVID19`, `Dengue`, `Malaria`, `Neglected tropical disease`, `Schistosomiasis`, `Tuberculosis`.
-* Organism: `A.baumannii`, `E.coli`, `E.faecium`, `HBV`, `HIV`, `Human`, `K.pneumoniae`, `Mouse`, `M.tuberculosis`, `P.aeruginosa`, `P.falciparum`, `Rat`, `Sars-CoV-2`, `S.aureus`, `ESKAPE`.
-* Target: `BACE`, `CYP450`, `GPCR`, `hERG`.
-* Experiment: `Fraction bound`, `IC50`, `Half-life`, `LogD`, `LogP`, `LogS`, `MIC90`, `Molecular weight`, `Papp`, `pKa`.
-* Application: `ADME`, `Antimicrobial activity`, `Antiviral activity`, `Bioactivity profile`, `Lipophilicity`, `Metabolism`, `Microsomal stability`, `Natural product`, `Price`, `Quantum properties`, `Side effects`, `Solubility`, `Synthetic accessibility`, `Target identification`, `Therapeutic indication`, `Toxicity`.
-* Dataset: `ChEMBL`, `DrugBank`, `MoleculeNet`, `Tox21`, `ToxCast`, `ZINC`, `TDCommons`.
-* Chemoinformatics: `Chemical graph model`, `Chemical language model`, `Chemical notation`, `Chemical synthesis`, `Compound generation`, `Descriptor`, `Drug-likeness`, `Embedding`, `Fingerprint`, `Similarity`.
+These fields are filled in from the model request issue.
 
-**Publication:** link to the original publication. Please refer to the journal page whenever possible, instead of PubMed, ResearchGate or other secondary webs. If the model is not published in a scientific journal, please contact Ersilia maintainers. This field is a string with URL format.
+<table data-search="false"><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td>Identifier</td><td>The <code>eos</code> identifier. Filled in automatically. Don't edit.</td></tr><tr><td>Slug</td><td>A human-readable alternative to the identifier, one or more lowercase words joined by hyphens.</td></tr><tr><td>Title</td><td>A self-descriptive title, 10 to 300 characters.</td></tr><tr><td>Description</td><td>The model type, its results, and the training data, in at least 200 characters.</td></tr><tr><td>Tag</td><td>One to five labels that help people find the model, such as <code>Malaria</code> or <code>P.falciparum</code>. Use only the values in <a href="https://github.com/ersilia-os/ersilia/blob/master/ersilia/hub/content/metadata/tag.txt">tag.txt</a>.</td></tr><tr><td>Publication</td><td>A link to the original publication, on the journal's site when possible. If the model isn't published in a journal, contact Ersilia maintainers.</td></tr><tr><td>Source Code</td><td>A link to the original code. For models trained by Ersilia without other source code, link the ML package used for training.</td></tr><tr><td>License</td><td>The license of the original code, as an SPDX identifier, or <code>None</code> if the code has no license. Respect the original license's requirements, for example by keeping its license file with the code.</td></tr></tbody></table>
 
-**Source Code:** link to the original code repository of the model. If the model is a _de-novo_ incorporation without another source code, please link the ML package used to train the model. This field is a string with URL format.
+### Metadata at model contribution time
 
-**License:** License of the original code. Only SPDX abbreviations are accepted, and listed in the Model Request issue. If the code was released without a license, please add `None` in this field. Make sure to abide by requirements of the original license when re-licensing or sub-licensing third-party author code (such as adding the license file together with the original code). This field is a string with only one accepted value.
+Complete these fields before you open your pull request.
 
-#### Metadata at model contribution time
+<table data-search="false"><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td>Status</td><td><code>In Progress</code> during incorporation. It changes to <code>Ready</code> automatically. Don't edit.</td></tr><tr><td>Deployment</td><td>Where the model can run: <code>Local</code>, <code>Online</code>, or both.</td></tr><tr><td>Source</td><td><code>Local</code> if the model runs on Ersilia's infrastructure or the user's machine, or <code>Online</code> if it sends inputs to a server outside Ersilia. Ersilia can't guarantee the privacy of inputs sent to <code>Online</code> models.</td></tr><tr><td>Source Type</td><td><code>External</code> for third-party models, <code>Internal</code> for models developed by Ersilia, or <code>Replicated</code> for models retrained following the original authors' instructions.</td></tr><tr><td>Task</td><td><code>Annotation</code>, <code>Representation</code>, or <code>Sampling</code>.</td></tr><tr><td>Subtask</td><td>For Annotation: <code>Property calculation or prediction</code> or <code>Activity prediction</code>. For Representation: <code>Featurization</code> or <code>Projection</code>. For Sampling: <code>Similarity search</code> or <code>Generation</code>.</td></tr><tr><td>Input</td><td>The input type. Currently always <code>Compound</code>.</td></tr><tr><td>Input Dimension</td><td>The number of inputs per prediction. Currently always <code>1</code>. You can still pass a list of molecules: each prediction uses one.</td></tr><tr><td>Output</td><td><code>Score</code> (for example, a probability), <code>Value</code> (a measured or calculated property), <code>Compound</code> (a new molecule), or <code>Text</code>.</td></tr><tr><td>Output Dimension</td><td>The number of output values per input.</td></tr><tr><td>Output Consistency</td><td><code>Fixed</code> if the model always gives the same prediction for the same molecule, or <code>Variable</code> if not, as with most generative models.</td></tr><tr><td>Interpretation</td><td>How to read the results. For a classifier, include the experimental settings and the cutoff used, for example the IC50 threshold and the parasite strain.</td></tr><tr><td>Biomedical Area</td><td>One or more research areas, such as <code>ADMET</code> and <code>Malaria</code>. Use <code>Any</code> for models that apply to all areas, such as featurizers.</td></tr><tr><td>Target Organism</td><td>The pathogen or organism the model relates to, such as <code>Plasmodium falciparum</code> or <code>Homo sapiens</code>, or <code>Any</code>.</td></tr><tr><td>Publication Type</td><td><code>Peer reviewed</code>, <code>Preprint</code>, or, only in exceptional cases, <code>Other</code>.</td></tr><tr><td>Publication Year</td><td>The year the original model was published.</td></tr></tbody></table>
 
-Before opening the first PR to add the model to Ersilia, the contributor must manually fill in the rest of metadata fields available in the file as specified below. The quality of the metadata is checked by automated GitHub Actions. The fields are constrained to certain parameters (length, list or string etc). Please make sure to revise the self-explanatory message on the Action run if the metadata check fails. Please double check and make amendments if necessary. All accepted and predefined fields in Ersilia Metadata are listed in these .txt [files](https://github.com/ersilia-os/ersilia/tree/master/ersilia/hub/content/metadata). If you wish to include a new one, please open a PR in Ersilia.
+### Metadata updated by Ersilia
 
-**Status:** at model incorproation, the status is In Progress. This will automatically be moved to Ready once it is fully incorporated. Do not modify it.
+Ersilia's workflows add these fields after the pull request passes its tests. Don't edit or remove them. To learn how they're filled in, see [CI/CD workflows and testing](/broken/pages/385bd86cc3e849cbf4cba1525c7fbd61a0c233f7#ci-cd-workflows-and-testing).
 
-**Deployment:** the model is available only for local inference (Local) or also online inference (Online) in Ersilia's servers. Note the difference with the actual Model Source. A model whose source is Local can still be deployed Online. This field is a list with only Local and/or Online as accepted values.
+<table data-search="false"><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td>Contributor</td><td>The contributor's GitHub username.</td></tr><tr><td>Incorporation Date</td><td>When the model was first added to the Hub, as <code>YYYY-MM-DD</code>.</td></tr><tr><td>S3</td><td>The URL of the zipped model in Ersilia's AWS storage.</td></tr><tr><td>DockerHub</td><td>The URL of the model's Docker image.</td></tr><tr><td>Docker Architecture</td><td>The architectures the image is available for, usually <code>AMD64</code> and <code>ARM64</code>.</td></tr><tr><td>Apptainer</td><td>The URL of the model's SIF image</td></tr><tr><td>Model Size, Environment Size, Image Size</td><td>The size of the repository, the conda environment, and the Docker image, in MB.</td></tr><tr><td>Computational Performance 1 to 5</td><td>The time to run 1, 10, 100, 1,000, and 10,000 inputs, in seconds.</td></tr><tr><td>Last Packaging Date</td><td>When the model was last packaged and uploaded to Docker Hub, as <code>YYYY-MM-DD</code>.</td></tr><tr><td>Release</td><td>The model's version, following semantic versioning. The first release is <code>v1.0.0</code>.</td></tr></tbody></table>
 
-**Source:** whether the model runs locally (Local; in your computer if fetched locally, or on an Ersilia cloud for online deployed models) or Online (posts predictions to a server **external** to Ersilia). Note we cannot guarantee privacy of your predictions or input SMILES for Online models. This field is a string with only one accepted value.
+## The `README.md` file
 
-**Source Type:** where does the model come from. Most typically they are External models (third party) or Internal (developed by the Ersilia team). In some cases we might encounter Replicated models (re-trained using original author's guides). This field is a string with only one accepted value.
+The `README.md` file is generated from `metadata.yml` when a pull request is merged. Don't edit it by hand.
 
-**Task**: the ML task performed by the model. This field is typically a list, with one ore more than one entries. The only accepted [tasks](https://github.com/ersilia-os/ersilia/blob/master/ersilia/hub/content/metadata/task.txt) are: `Annotation`, `Representation`, `Sampling`. This field is a string with only one accepted value.
+## The `LICENSE` file
 
-**Subtask:** more granular task description. Annotation models can be `Property calculation or prediction` or `Activity prediction`. Representation models can be `Featurization` or `Projection` and Sampling models can be `Similarity` search or `Generation`. This field is a string with only one accepted value.
+Code written for Ersilia is licensed under [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html), so the repository's main `LICENSE` file is GPLv3. Code from third parties keeps its own license notice, in the folder where that code lives.
 
-**Input**: data type required by the model. Currently all Ersilia models accept only `Compound` as input. This field is a string with only one accepted value.
+## The `install.yml` file
 
-**Input dimension:** data format required by the model. Currently all Ersilia models accept only One (in numeric, `1`) as input dimension. This does not mean we cannot pass a list of inputs to the model, but the predictions are done on one input, not a combination of them. This field is an integer with only one accepted value.
+`install.yml` lists everything the model needs to run. Ersilia uses it to build the model's conda environment or Docker image. It has two required keys:
 
-**Output:** data type outputted by the model. The only accepted output formats are: `Score` (for example a probability), `Value` (an experimental value, a molecular descriptor, a calculated property...) `Compound` (a new compound), `Text` (natural language text, for example a description). This field is a list.
-
-**Output Dimension:** similar to the input dimension, what is the length of the output per each input? . This field is an integer with only one accepted value.
-
-**Output Consistency:** the model produces always the same prediction given the same molecule (`Fixed`) or not (`Variable`). Most QSAR models are Fixed, with the exception of Generative models. This field is a string with only one accepted value.
-
-**Interpretation:** provide a brief description of how to interpret the model results. For example, in the case of a binary classification model for antimalarial activity based on experimental IC50, indicate the experimental settings (time of incubation, strain of parasite...) and the selected cut-off for the classification. This field is a single string.
-
-**Biomedical area:** the pertinent area of research or disease targeted. More than one can be selected from the same model, for example ADMET and Malaria, if both are relevant. `Any` can be used when the model could be applied to all fields of disease (for example a featurizer). This field is a list of strings.
-
-**Target organism:** if existing, the pathogen the model is related to, for example _Plasmodium falciparum,_ or organism in case of ADMET, for example _Mus musculus_ or _Homo sapiens._ If the model is unrelated to any organism, select `Any`. This field is a list of strings.
-
-**Publication type:** peer reviewed, preprint or other. Most Ersilia models are peer-reviewed, and only on exception "Other" is accepted. This field is a string with only one accepted value.
-
-**Publication year:** year of publication of the original model. This field is an integer with only one accepted value.
-
-{% hint style="info" %}
-If the predetermined fields are not sufficient for your use case, you can open a pull request to include new ones to our [repository](https://github.com/ersilia-os/ersilia/tree/master/ersilia/hub/content/metadata). Please do so only if strictly necessary (for example, if a disease is not already in the Tag field).
-
-Ersilia maintainers will review and approve / reject PRs for additions to the existing lists of approved items.
-{% endhint %}
-
-#### Metadata updated by Ersilia
-
-Once a PR successfuly passes the tests, Ersilia will run a series of workflows that will sequentially include the following metadata fields in the `.yml` file. Those should <mark style="color:red;">not</mark> be edited or removed.
-
-**Contributor:** the github handle of the model contributor.
-
-**Incorporation Date:** date when the model was first included in Ersilia, this is a string with the format YYYY-MM-DD.
-
-**S3:** URL of the model zipped and stored in AWS as a backend
-
-**DockerHub:** URL of the Docker image of the model, part of Ersilia's organization Docker Community.
-
-**Docker Architecture:** list of the docker architectures available for the model, in most cases both AMD64 and ARM64 are available but in some models one of the two backends is not available. (specially relevant to MacOS users)
-
-**Model Size:** total size of the model repository in MB.
-
-**Environment Size:** size of the conda environment required to build the model, in MB.
-
-**Image Size:** size of the Docker image of the model, in MB.
-
-**Computational Performance 1,2,3,4 and 5:** fields storing the time required to run 1 , 10, 100, 1000 and 10000 inputs through the model, in seconds.
-
-**Last Packaging Date**: date when the model was last packaged and uploaded to DockerHub. This is a string with the format YYYY-MM-DD.
-
-**Release**: tagged version released via GitHub. By default, once a model is incorporated it will be assigned the first release (v1.0.0). Releases follow semantic versioning.
-
-{% hint style="info" %}
-To learn more about how those fields are filled in, go to the [Developers CI/CD](../developer-docs/#ci-cd-workflows-and-testing) section.
-{% endhint %}
-
-### The [`README`](https://github.com/ersilia-os/eos-template/blob/main/README.md) file
-
-The `README.md` file is where we give basic information about the model. It reads from the metadata.yml file and it will be automatically updated thanks to a GitHub Action once the Pull Request is approved.
-
-Please do not modify it manually.
-
-### The [`LICENSE`](https://github.com/ersilia-os/eos-template/blob/main/LICENSE) file
-
-By default, all code written in contribution to Ersilia should be licensed under a [GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.en.html). The main `LICENSE` file of the repository, therefore, will be a GPLv3 as specified by [GitHub.](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository)
-
-However, the license notices for code developed by **third parties** must be kept in the respective folders where the third-party code is found.
-
-### The [`install.yml`](https://github.com/ersilia-os/eos-template/blob/main/install.yml) file
-
-Ersilia uses an `install.yml` file to specify installation instructions. The YAML syntax is easy to read and maintain. This file specifies which Python version to use to build a conda environment, or a Docker image for the model.
-
-This dependency configuration file has two top level keys, namely, `python`, and `commands.` They dependencies are to be specified in the following manner:
-
-* `python` key expects a string value denoting a python version (eg `"3.10"`). **Only Python 3.8 or above are accepted.**
-* `commands` key expects a list of values, each of which is a list on its own, denoting the dependencies required by the model. Currently, dependencies from `pip` and `conda` are supported.
-* `pip` dependencies are expected to be three element lists in the format `["pip", "library", "version"]`
-* `conda` dependencies are expected to be four element lists in the format `["conda", "library", "version", "channel"]`, where channel is the conda channel to install the required library.
-* When the model is run from source, Ersilia always defaults to creating a conda environment for the model to provide isolation. However, when the model is Dockerized, whether conda is used in that process depends entirely on there being conda dependencies in this file.
-
-The `install.yml` available in the Ersilia Model Template only defines two top-level keys as follows:
-
-```yaml
-python: "3.10"        # REQUIRED; value must be a string
-commands:            # REQUIRED; value must be a sequence (list)
-  - ["pip", "package", "1.2.3"]
-  - ["pip", "git+https://…"]
-  - ["conda", "install", "-c", "channel", "pkg=4.5.6"]
-```
-
-The commands key only allows the following entries:
-
-* String: any shell command passed verbatim
-
-```yaml
-- "apt-get update"
-- "mkdir -p /data"
-```
-
-* List with pip: a two-element list for Git URLs that begin with `git+https://`, `git+ssh://`, or `https://` or a list with three or more elements containing the package name (compulsory), package version (compulsory) and optional pip flags
-
-```yaml
-- ["pip", "git+https://github.com/user/repo.git"]
-- ["pip", "mypkg", "0.1.2", "--upgrade", "--no-deps"]
-```
-
-* List with conda: users can specify a long version (recommended) where channels are indicated by `-c` or use a shorthand form with the following order: `conda`, package name, version string, then any channels. If the `-y` flag is not added, it will be automatically appended in both cases. Packages must have the version specified either as `package=version` or as `"[package", "version"].` If no channel is specified, default will be used
-
-```yaml
-- ["conda", "install", "-y", "-c", "channel", "package=version"] #long one channel
-- ["conda", "install", "-y", "-c", "channel1", "-c", "channel2","package=version"] #long two channels
-- ["conda", "package", "version", "channel1", "channel2", "-y"] #short version with channels specified
-- ["conda", "package", "2024.3.6"] # short version no channel specified
-```
-
-This example demonstrates an installation instructions for an environment using Python 3.10.
+* `python`: the Python version, as a string. Python 3.8 or later.
+* `commands`: a list of installation commands.
 
 {% code title="install.yml" %}
 ```yaml
 python: "3.10"
 commands:
-    - ["pip", "rdkit-pypi", "2022.3.1b1"]
-    - ["conda", "pandas", "1.3.5", "default"]
+  - ["pip", "rdkit-pypi", "2022.3.1b1"]
+  - ["conda", "pandas", "1.3.5", "default"]
 ```
 {% endcode %}
 
-In this example, the `rdkit-pypi==2022.3.1b1` will be installed using `pip`, while `pandas==1.3.5` will be installed using `conda` through the default package channel on conda.
+Each entry in `commands` takes one of these forms:
 
-The `install.yml` file can contain as many commands as necessary. Please limit the packages to the bare minimum required, sometimes models have additional packages for extra functionalities that are not required to actually run the model. It is good practice to trim to the minimum the package dependencies to avoid conflicts. Always pin the version of the package for model persistency.
+* **A shell command, as a string**, passed as is: `"apt-get update"`.
+* **A pip package**, as `["pip", "package", "version"]`, optionally followed by pip flags: `["pip", "mypkg", "0.1.2", "--no-deps"]`. For packages installed from Git, use a two-item list: `["pip", "git+https://github.com/user/repo.git"]`.
+* **A conda package**, either in full form, `["conda", "install", "-y", "-c", "channel", "package=version"]` (recommended), or in short form, `["conda", "package", "version", "channel"]`. Ersilia adds `-y` if it's missing, and uses the default channel if none is given.
 
-{% hint style="warning" %}
-The `install.yml` file contains the installation instructions of the model. Therefore, the content of this file can be very variable, since each model will have its own dependencies.
-{% endhint %}
+When the model runs from source, Ersilia always creates a conda environment for it. When the model is packaged in Docker, conda is used only if `install.yml` includes conda packages.
 
-### The [`model`](https://github.com/ersilia-os/eos-template/tree/main/model) folder
+Keep the dependencies to the minimum the model needs to run, and always pin their versions, so the model keeps working over time.
 
-The `model` folder is the most important one. It contains two sub-folders:
+## The `model` folder
 
-* `framework`: In this folder, we keep all the necessary code to run the model (assuming dependencies are already installed) as well as example files.
-* `checkpoints`: In this folder, we store the model data (pretrained model parameters, scaling data, etc).
+The `model` folder contains exactly two subfolders:
+
+* `framework`: the code that runs the model, with the example and columns files.
+* `checkpoints`: the model's weights and other model data.
 
 {% hint style="danger" %}
-The `model` folder **should not** contain anything other than the `framework` and `checkpoints` subfolder. When the Ersilia CLI eventually fetches the model, it does a reorganization of the code and the only subfolders it keeps are these two. Any other file or folder at the `model/` directory level will be overlooked.
+Don't put anything else directly in `model`. When Ersilia fetches a model, it keeps only these two subfolders and ignores everything else.
 {% endhint %}
 
-{% hint style="info" %}
-Often, the separation between `framework` and `checkpoints` is not easy to determine. Sometimes, models obtained from third parties have model data embedded within the code or as part of the repository. Even then, the weights must go to `model/checkpoints/`: move them there and update the paths in the code (see [Checkpoints and storage](#checkpoints-and-storage)).
-{% endhint %}
+### The `run.sh` file
 
-The `framework` subfolder contains at least one Bash file, named `run.sh`. This file will run as follows:
+`run.sh`, in `framework`, is the entry point Ersilia calls to run the model. It takes three arguments, and only three unless strictly necessary:
 
 ```bash
 bash run.sh [FRAMEWORK_DIR] [DATA_FILE] [OUTPUT_FILE]
 ```
 
-Unless strictly necessary, the `run.sh` file should accept three and only three arguments, namely `FRAMEWORK_DIR`, `DATA_FILE` and `OUTPUT_FILE`. In the current template, we provide the following example:
+In the template, it runs `main.py`:
 
 {% code title="run.sh" %}
 ```bash
@@ -253,13 +128,19 @@ python $1/code/main.py $2 $3
 ```
 {% endcode %}
 
-In this case, a Python file located in the `[FRAMEWORK_DIR]/code` folder is executed, taking as arguments the `DATA_FILE` and the `OUTPUT_FILE`.
+### The `main.py` file
 
-To understand this further, we now need to inspect the `main.py` file in more detail. The current template proposes the following script:
+`main.py` is where most of the incorporation work happens. It's organized in two functions:
+
+* `load_tool()` does the slow, one-time setup, such as imports, reading the checkpoints, and building the model, and returns the model.
+* `run_tool(model, input_file, output_file)` runs the model on one batch: it reads the input file, makes the predictions, and writes the output file.
+
+When a model is served, Ersilia calls `load_tool()` once and keeps the model in memory between batches, which is often several times faster than loading it for every batch. See [Warm serving](/broken/pages/4b09deb4e600f661a7da950857f73a7825e2be44). Don't keep anything between batches in `run_tool()`: each batch must give the same result, whatever ran before it.
+
+In the template, the model is a placeholder that calculates molecular weight:
 
 {% code title="code/main.py" %}
 ```python
-# imports
 import os
 import sys
 import numpy as np
@@ -267,309 +148,89 @@ from rdkit import Chem
 from rdkit.Chem.Descriptors import MolWt
 from ersilia_pack_utils.core import read_smiles, write_out
 
-# current file directory
 root = os.path.dirname(os.path.abspath(__file__))
 checkpoints = os.path.join(root, "..", "..", "checkpoints")
 
 
-# load the model once: imports, checkpoints and anything else that is slow to set up.
-# When served, Ersilia calls this once and keeps the result in memory between batches.
+# Load the model once. When served, Ersilia keeps the result in memory between batches.
 def load_tool():
     return MolWt
 
 
-# run the model on one batch: read the input file, predict, write the output file.
+# Run the model on one batch.
 def run_tool(model, input_file, output_file):
-    # read SMILES from .csv file, assuming one column with header
     _, smiles_list = read_smiles(input_file)
-
-    # run model
     outputs = np.array([[model(Chem.MolFromSmiles(smi))] for smi in smiles_list])
-
-    # check input and output have the same length
     assert len(smiles_list) == len(outputs)
-
-    num_dims = outputs.shape[1]
-    header = [f"feat_{str(i).zfill(3)}" for i in range(num_dims)]
-
-    # write output in a .csv file
+    header = [f"feat_{str(i).zfill(3)}" for i in range(outputs.shape[1])]
     write_out(outputs, header, output_file, np.float32)
 
 
 if __name__ == "__main__":
-    # parse arguments
-    input_file = sys.argv[1]
-    output_file = sys.argv[2]
-    run_tool(load_tool(), input_file, output_file)
+    run_tool(load_tool(), sys.argv[1], sys.argv[2])
 ```
 {% endcode %}
 
-In this case, the model simply calculates the molecular weight.
+`read_smiles` and `write_out`, from `ersilia_pack_utils`, read a CSV file of SMILES with a header and write the output with one column per value. In a real model, `load_tool()` usually loads the model from a third-party library or from other scripts in `code`. Many third-party models already have a command-line interface. In that case, you can write scripts that adapt the input and output, and run the model as is.
 
-The script is organized in two functions:
+### Example files
 
-1. `load_tool()` does the slow, one-time setup: imports, reading the checkpoints, building the model. It returns the model.
-2. `run_tool(model, input_file, output_file)` runs the model on one batch: it reads the input file, runs the predictions and writes the output.
+The `framework/examples` folder holds an example input and its expected output, which Ersilia's tests use to check the model:
 
-When the model is served, Ersilia calls `load_tool()` only once and keeps the model in memory between batches, which is often several times faster than loading the model for every batch (see [Warm serving](../developer-docs/warm-serving.md)). When `main.py` is run from the terminal, the last lines call the two functions one after the other, so `run.sh` keeps working.
+* `run_input.csv`: a single `smiles` column with three molecules.
+* `run_output.csv`: the model's output for those three molecules, with only the output columns, not `key` or `input`.
 
-Most of the work of the model contributor will be to work on this or similar scripts. In the template, we provide a dummy model (the molecular weight from RDKit). However, in real world cases, the model will most likely be loaded from a third party Python library, or from a script placed in the same directory. Keep everything that is slow and only needs to happen once in `load_tool()`, and do not keep anything between batches in `run_tool()`: each batch must give the same result, whatever ran before it.
+Ersilia routinely checks the model's output against `run_output.csv`, except for models with `Variable` output consistency, so make sure it's correct.
 
-To summarize, in the template, we provide a structure that follows this logic:
+### Columns file
 
-1. The `run.sh` script executes the Python `main.py` script.
-2. The `main.py` script:
-   * Loads the model in `load_tool()`, including its parameters from `checkpoints`.
-   * In `run_tool()`, reads an input file containing SMILES (with header), with `read_smiles` from `ersilia_pack_utils`.
-   * Runs the model, which here calculates the molecular weight.
-   * Writes an output file with one column per output value (with a header), with `write_out` from `ersilia_pack_utils`.
+The `framework/columns/run_columns.csv` file describes every output column. It has four columns:
+
+* `name`: the column name, exactly as the model outputs it. Use lowercase letters, digits, and underscores only. For models that generate molecules, use `smi_00`, `smi_01`, and so on. For featurizers without specific names, use `feat_00`, `feat_01`, and so on, padded with zeros to the same length.
+* `type`: `string`, `float`, or `integer`. A model can mix `float` and `integer` columns, but not text and numbers.
+* `direction`: `high` or `low`, depending on which values mean more of what the column measures. For example, a probability of activity has direction `high`. Leave it empty if direction doesn't apply, such as for generated molecules.
+* `description`: a one-line description of the column, without commas.
+
+## Checkpoints and storage
+
+These rules apply to every model repository:
+
+1. Weights that the model loads at inference go in `model/checkpoints/`, not in `model/framework/code/`. Update the paths in the code to match.
+2. If every file in `model/checkpoints/` is smaller than 100 MiB (104,857,600 bytes, GitHub's file size limit), commit the folder to Git. If any file is 100 MiB or larger, store the whole folder in S3 with [eosvc](/broken/pages/4a4e8645310ccaf00f9db4613e5ecf07c2dc8e2d) instead.
+3. Store `model/framework/fit/` with eosvc as soon as it holds training code or data, whatever its size.
+4. Don't use Git LFS, and don't add a `.gitattributes` file with LFS rules.
+5. The model must not download weights at run time, for example from Hugging Face, Google Drive, or Zenodo. Download them once, put them in `model/checkpoints/`, and load them from there.
 
 {% hint style="info" %}
-In the template, the example provided is very simple. Depending on the model being incorporated, the logic may be different. For example, many third party models already contain a command-line option, with a specific syntax. In these cases, you may want to write scripts to adapt the input and the output, and then execute the model as-is.
-
-Each script will be one `.py` file, we can create as many as necessary and rename them appropriately (see below for examples).
+Uploading to eosvc requires AWS credentials. If you're an external contributor, an Ersilia maintainer will help you with this step.
 {% endhint %}
 
-#### Example files
+To store a folder with eosvc, list it in an `access.json` file at the root of the repository, add it to `.gitignore`, and upload it. This example is for a model with both folders on eosvc. List only the folders you store with eosvc:
 
-To ensure Ersilia is running the model appropriately, we provide an example of the expected input and output files. Those are stored in the `framework/examples` folder and consist of:
-
-* `run_input.csv`: csv file with a single column, header smiles and three rows containing one SMILES each. These can be generated using the example command at Ersilia (from an existing served model) or sourced from ChEMBL.
-* `run_output.csv`: the expected output of the model when running the run.sh, this means only the output columns for the three example inputs selected (netiher the key or smiles has to be present in this file)
-
-The run\_output and the actual output of Ersilia will be routinely tested except for models labelled as Variable. Make sure to add the right output.
-
-#### Columns file
-
-Information about the model output is provided in the `framework/columns` folder. This is a csv file named `run_columns.csv` that must have the following columns:
-
-* Name: column name exactly as outputted by Ersilia. Column names must all be lowercase, without spaces or hypens (use only underscores). In the case of models outputting new molecules, we suggest using smi\_00, smi\_01, smi\_02... as column names, and for featurizers, unless they have specific names, please use feat\_00, feat\_01... Use zfill to complete the column number appropriately.
-* Type: string, float or integer are the only accepted types. A model can contain mixed output columns that are integer and float, but string outputs cannot be passed along with numeric outputs.
-* Direction: direction for the interpretation of the value provided. For example, a probability will be direction high. Only `high` and `low` are accepted, if no direction is relevant (for example for a generative model outputting a smiles as a result) leave empty
-* Description: one line description of the column (importantly, without commas)
-
-### Checkpoints and storage
-
-Model weights and training data are stored with the model. These rules apply to every model repository:
-
-1. Weights that the model loads at inference go in `model/checkpoints/`, not in `model/framework/code/`. Update the paths in the code accordingly.
-2. If every file in `model/checkpoints/` is under 100 MiB (104,857,600 bytes, GitHub's file size limit), commit the folder to Git. If any file is 100 MiB or larger, the whole folder is stored in S3 with [eosvc](../developer-docs/ersilia-version-control-eosvc.md) instead.
-3. `model/framework/fit/` is stored with eosvc as soon as it holds training code or data, whatever its size.
-4. Do not use Git LFS. Do not add a `.gitattributes` file with LFS rules.
-5. The model does not download weights at run time (for example from Hugging Face, Google Drive or Zenodo). Download them once, place them in `model/checkpoints/` and load them from there.
-
-To store a folder with eosvc, list it in an `access.json` file at the root of the repository, gitignore it, and upload it (uploading requires AWS credentials). The example below is for a model with both folders on eosvc; list only the folders you store with eosvc:
-
-```
+{% code title="access.json" %}
+```json
 {
     "checkpoints": "public",
     "fit": "public"
 }
 ```
+{% endcode %}
 
+{% code title=".gitignore" %}
 ```
 #eosvc managed
 model/checkpoints/*
 model/framework/fit/*
 ```
+{% endcode %}
 
 ```bash
 eosvc upload --path checkpoints
 eosvc upload --path fit
 ```
 
-Upload only the folders that go to eosvc, one at a time (for example `eosvc upload --path fit`). Never use `eosvc upload --path .`. Leaving a folder out of `access.json` does not stop eosvc: it treats the folder as public, and CI's `eosvc download --path .` puts any S3 copy over the Git one. Never keep the same files in both Git and S3: if a folder was committed before moving it to eosvc, untrack it with `git rm -r --cached model/checkpoints` (or `model/framework/fit`). If neither folder goes to eosvc, the repository needs no `access.json`.
-
-A model without a training step keeps the template's `model/framework/fit/` skeleton (`README.md` and the empty `data/`, `results/` and `src/` folders) in Git, and does not list `fit` in `access.json` or `.gitignore`. As soon as `fit/` holds training code or data, the whole folder goes to eosvc.
-
-{% hint style="info" %}
-Some older models still keep files in Git LFS. They are being migrated (see [ersilia#1967](https://github.com/ersilia-os/ersilia/issues/1967)). To work with one of them from source, install [git-lfs](https://git-lfs.com/).
+{% hint style="danger" %}
+Upload only the folders that go to eosvc, one at a time. Never run `eosvc upload --path .`. Leaving a folder out of `access.json` doesn't stop eosvc: it treats the folder as public, and the CI's `eosvc download --path .` replaces the Git copy with any copy in S3. Never keep the same files in both Git and S3. If you committed a folder before moving it to eosvc, untrack it with `git rm -r --cached model/checkpoints` (or `model/framework/fit`).
 {% endhint %}
 
-## The Legacy Model Template
-
-At the time of writing this tutorial, the Ersilia Model Hub has approximately 150 models developed with this template. As mentioned above, this legacy template served as an inspiration for the current workflow, however there are several key differences that should be called out. These differences largely pertain to how dependencies are specified in these models, the tools used to create a model server, and source files facilitating that process.
-
-### The [`Dockerfile`](https://github.com/ersilia-os/eos-template/blob/42ce4063e67122968c3c948bd8ea142ac621c105/Dockerfile) file
-
-Ersilia uses a `Dockerfile` file to specify installation instructions. The reason for this is that Docker provides the maximum level of isolation possible (i.e. a container), which may be needed to run models in some systems. However, in most practical scenarios, a Docker container will not be necessary and a Conda environment, or even a Virtualenv environment, will suffice. The Ersilia CLI will decide which isolation level to provide depending on the content of the `Dockerfile:`
-
-The `Dockerfile` uses a templated file, where the lines beginning with `RUN` are scanned; installer commands are normalized, all other shell commands are preserved.
-
-1. Non-`pip`/`conda` RUN commands\
-   – Entire line (after `RUN`) is retained as a single string.
-2. Pip installs:
-   * Token count must be ≥3 (`pip`, `install`, `pkg_spec`)
-   * `pkg_spec` starting with `git+` → `["pip", "git+…"]`
-   *   Otherwise, `pkg_spec` must contain `==version`; its absence will raise the following error:
-
-       ```
-       ValueError("pip install must specify version or git URL")
-       ```
-   * Additional tokens → appended as flags, resulting in\
-     `["pip", "pkg", "ver", …flags]`
-3. Conda installs:
-
-* Tokens must begin with `conda install` and package version must be specified
-* Entire token list returned, e.g.:\
-  `["conda", "install", "-y", "numpy=1.23.0", "-c", "conda-forge"]`
-
-The python version is specified from the first line, even though BentoML is no longer in use.
-
-<pre class="language-docker"><code class="lang-docker"><strong>Dockerfile 
-</strong>FROM bentoml/model-server:0.11.0-py310
-…
-
-RUN pip install mypkg==0.3.1
-RUN pip install mypkg[option]==0.3.1
-RUN pip install git+https://github.com/user/repo.git
-RUN conda install -y numpy=1.23.0 -c conda-forge -c other-channel -y
-
-WORKDIR /repo 
-COPY . /repo
-</code></pre>
-
-### The [`service`](https://github.com/ersilia-os/eos-template/blob/42ce4063e67122968c3c948bd8ea142ac621c105/src/service.py) file
-
-The service file is located in `src/service.py`. It contains the necessary code to facilitate model bundling with BentoML.
-
-There are three main classes in the `service` file, namely `Model`, `Artifact` and `Service`.
-
-#### The `Model` class
-
-This class is simply a wrapper for the AI/ML model. Typically, when incorporating **external** (type 1) models, the `run.sh` script will already capture the logic within the `Model` class, in which case the `Model` class is simply redundant. However, when incorporating **internally developed** (types 2 and 3) models into the hub, we can make use of the artifacts for standard modeling frameworks (e.g. sklearn, PyTorch, and Keras) provided by BentoML, and the `Model` class becomes necessary for BentoML compatibility. Hence, the `Model` class enables generalization between these types of model additions.
-
-Typically, the central method of the `Model` class is the `run` method.
-
-```python
-class Model (object):
-    ...
-    def run(self, smiles_list):
-        ...
-```
-
-In this case, the model takes as input a list of molecules represented as SMILES strings. This is the standard input type for models focused on chemistry data as input.
-
-{% hint style="warning" %}
-Models incorporated with this workflow do not allow for multiple endpoints, or "methods". All models developed in this manner only have a single `run` API.
-{% endhint %}
-
-In its simplest form, the `Model` class just points Ersilia to the `model` directory and then creates a Bash file to execute the necessary commands to run the model. It is actually a very simple class, although it may look overwhelming at first. We break it down below:
-
-First, a temporary directory is created:
-
-```python
- class Model(object):
-    ...
-    def run(self, smiles_list):
-        tmp_folder = tempfile.mkdtemp(prefix="eos-")
-        data_file = os.path.join(tmp_folder, self.DATA_FILE)
-        output_file = os.path.join(tmp_folder, self.OUTPUT_FILE)
-        log_file = os.path.join(tmp_folder, self.LOG_FILE)
-        ...
-```
-
-Then, a data file is created in the temporary directory. In this example, it is simply a one-column `csv` file having a header (`smiles`) and a list of molecules in SMILES format (one per row):
-
-```python
-class Model(object):
-    ...
-    def run(self, smiles_list):
-        ...
-        with open(data_file, "w") as f:
-            f.write("smiles"+os.linesep)
-            for smiles in smiles_list:
-                f.write(smiles+os.linesep)
-        ...
-```
-
-Now we already have the input file of the `run.sh`script, located in the `model/framework/` directory, as specified [above](model-template.md#the-model-folder). The following creates a dummy Bash script in the temporary directory and runs the command from there. The output is saved in the temporary directory too. [Remember](model-template.md#the-model-folder) that the `run.sh` script expects three arguments, `FRAMEWORK_DIR`_,_ `DATA_FILE` and `OUTPUT_FILE`.
-
-```python
-class Model(object):
-    ...
-    def run(self, smiles_list):
-        ...
-        run_file = os.path.join(tmp_folder, self.RUN_FILE)
-        with open(run_file, "w") as f:
-            lines = [
-                "bash {0}/run.sh {0} {1} {2}".format(
-                    self.framework_dir,
-                    data_file,
-                    output_file
-                )
-            ]
-            f.write(os.linesep.join(lines))
-        cmd = "bash {0}".format(run_file)
-        with open(log_file, "w") as fp:
-            subprocess.Popen(
-                cmd, stdout=fp, stderr=fp, shell=True, env=os.environ
-            ).wait()
-        ...
-```
-
-The last step is to read from the output in the temporary directory and return it in a JSON-serializable format. The output in the example is a `csv` table, with one or multiple columns, containing numeric data. The table has a header, which is read and saved as metadata.
-
-```python
-class Model(object):
-    ...
-    def run(self, smiles_list):
-        ...
-        with open(output_file, "r") as f:
-            reader = csv.reader(f)
-            h = next(reader)
-            R = []
-            for r in reader:
-                R += [{"outcome": [Float(x) for x in r]}]
-        meta = {
-            "outcome": h
-        }
-        result = {
-            "result": R,
-            "meta": meta
-        }
-        shutil.rmtree(tmp_folder)
-        return result
-```
-
-You will see that, in the template, pointers to potential edits are highlighted with the tag `# EDIT` . Necessary edits relate to the the format of the input data, or the serialization to JSON format from the output data.
-
-{% hint style="info" %}
-Advanced contributors may want to modify the `Model` class to load a model in-place (for example, a Scikit-Learn model) instead of executing a Bash command in the `model/framework/` directory.
-{% endhint %}
-
-#### The `Artifact` class
-
-This class mirrors [BentoML artifacts](https://docs.bentoml.org/en/0.13-lts/api/index.html). It simply contains `load`, `save`, `get and pack` functionalities:
-
-```python
-class Artifact(BentoServiceArtifact):
-    ...
-    def pack(self, model):
-        ...
-    def load(self, path):
-        ...
-    def get(self):
-        ...
-    def save(self, dst):
-        ...
-```
-
-You <mark style="color:red;">**don't have to modify**</mark> this class.
-
-#### The `Service` class
-
-This class is used to create the service. The service exposes the `run` API:
-
-```python
-@artifacts([Artifact("model")])
-class Service(BentoService):
-    @api(input=JsonInput(), batch=True)
-    def run(self, input: List[JsonSerializable]):
-        input = input[0]
-        smiles_list = [inp["input"] for inp in input]
-        output = self.artifacts.model.run(smiles_list)
-        return [output]
-```
-
-By default, Ersilia works with JSON inputs, which are deserialized as a SMILES list inside the API, in this case. The deafult API is `run`. The general rule is, <mark style="color:red;">**do not modify**</mark> it.
+If neither folder goes to eosvc, the repository doesn't need an `access.json` file. A model without a training step keeps the template's `model/framework/fit/` skeleton (a `README.md` file and empty `data`, `results`, and `src` folders) in Git, and doesn't list `fit` in `access.json` or `.gitignore`.

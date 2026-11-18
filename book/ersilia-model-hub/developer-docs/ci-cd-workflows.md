@@ -9,7 +9,7 @@ description: >-
 
 ## Ersilia CLI
 
-These workflows ensure that we push quality code to [Ersilia](https://github.com/ersilia-os/ersilia), incorporating testing by individual components as well as end-to-end.&#x20;
+These workflows ensure that we push quality code to [Ersilia](https://github.com/ersilia-os/ersilia), incorporating testing by individual components as well as end-to-end.
 
 ### Testing
 
@@ -21,9 +21,9 @@ These workflows ensure that we push quality code to [Ersilia](https://github.com
 * Runs on: automatically when a PR is open on the Ersilia master branch or a push is made directly to master.
 * Jobs:
   * `install-ersilia`, installs Ersilia from Python 3.8 to Python 3.12 on an Ubuntu base.
-  * `test-docker`  is the next step to follow after we confirm that Ersilia can be installed in environments created with different Python versions. This step tests whether dockerized models can be fetched using the ersilia CLI, ie the happy flow works without issues.
-  * `test-os`  Since Ersilia is supported only on Linux distributions, and MacOS, this job ensures that Ersilia can be installed and run on both of these platforms, presently only utilizing a Python 3.10 environment.&#x20;
-  * `run-pytest`  This is the main step that carries out unit testing within Ersilia ensuring that different components continue to work without issues.
+  * `test-docker` is the next step to follow after we confirm that Ersilia can be installed in environments created with different Python versions. This step tests whether dockerized models can be fetched using the ersilia CLI, ie the happy flow works without issues.
+  * `test-os` Since Ersilia is supported only on Linux distributions, and MacOS, this job ensures that Ersilia can be installed and run on both of these platforms, presently only utilizing a Python 3.10 environment.
+  * `run-pytest` This is the main step that carries out unit testing within Ersilia ensuring that different components continue to work without issues.
   * `run-cli-test-single` This an integration level test that ensures different components within Ersilia interact cohesively in running a single model using the Ersilia CLI. More details on how this is implemented can be found [here](cli-testing.md).
   * `run-cli-test-multiple` Similar to the job described above, this job tests the functionality in Ersilia to simultaneously run multiple models. More details around implementation of the specific tests and the testing frameworks used can be found [here](cli-testing.md).
   * `test-colab-notebook` This test ensures that Ersilia can run in IPython notebooks, such as Jupyter or Google Colab. Specifically, this test checks whether a notebook containing Ersilia code can be executed successfully.
@@ -33,12 +33,12 @@ These workflows ensure that we push quality code to [Ersilia](https://github.com
 
 #### Ersilia Release
 
-* Objective: Distribute Ersilia as source, as a Docker image, as a PyPI package, and as a conda-forge package.&#x20;
+* Objective: Distribute Ersilia as source, as a Docker image, as a PyPI package, and as a conda-forge package.
 * Workflow name: Ersilia Release
 * Workflow file: [publish.yml](https://github.com/ersilia-os/ersilia/blob/master/.github/workflows/publish.yaml)
 * Runs on: At the beginning of each month 3:00 AM UTC
 * Jobs:
-  * `version` increments the version of the codebase and creates a new release tag, while also updating this information in the [CITATION.cff](https://github.com/ersilia-os/ersilia/blob/master/CITATION.cff), and [CODEMETA.json](https://github.com/ersilia-os/ersilia/blob/master/codemeta.json) files.&#x20;
+  * `version` increments the version of the codebase and creates a new release tag, while also updating this information in the [CITATION.cff](https://github.com/ersilia-os/ersilia/blob/master/CITATION.cff), and [CODEMETA.json](https://github.com/ersilia-os/ersilia/blob/master/codemeta.json) files.
   * `gh-release` Utilizing the tag created in the previous job, a GitHub release is created. The GitHub CLI is used to automatically create this release and utilize the commit history from the `master` branch to generate release notes.
   * `pypi-release` Finally, we utilize the release artifacts created from the GitHub release job of the workflow to publish a new version of Ersilia on the Python Packaging Index (PyPI).
   * The completion of this release workflow triggers the Docker build workflow mentioned above.
@@ -51,9 +51,9 @@ These workflows ensure that we push quality code to [Ersilia](https://github.com
 * Objective: Contribute new models to the Ersilia Model Hub
 * Workflow name: Approve Command Dispatch
 * Workflow file: [approve-dispatch.yml](https://github.com/ersilia-os/ersilia/blob/master/.github/workflows/approve-dispatch.yml)
-* Runs on: When an Ersilia maintainer comments `/approve`  on a [Model Request](https://github.com/ersilia-os/ersilia/issues/new?assignees=\&labels=new-model\&projects=\&template=model_request.yml\&title=%F0%9F%A6%A0+Model+Request%3A+%3Cname%3E) issue submitted by a model contributor. A small action named `approve-trigger.yml` first checks if we are effectively on a Model request issue.
-* Jobs:&#x20;
-  * `approve-command-dispatch`  The Model Request issue is parsed to ensure all required fields are filled in. If the metadata is correct, a new model repository is created from the [eos-template](https://github.com/ersilia-os/eos-template) and a record is generated in Airtable. The repository includes all the files in eos-template and a mock Git LFS object to allow for uploading Git LFS objects in the repository if required. The issue creator is notified to prompt them to start contributing to the model. Read on more about model contributions in our Model Contribution [guidelines](../model-contribution/example-of-the-model-incorporation-workflow.md).&#x20;
+* Runs on: When an Ersilia maintainer comments `/approve` on a [Model Request](https://github.com/ersilia-os/ersilia/issues/new?assignees=\&labels=new-model\&projects=\&template=model_request.yml\&title=%F0%9F%A6%A0+Model+Request%3A+%3Cname%3E) issue submitted by a model contributor. A small action named `approve-trigger.yml` first checks if we are effectively on a Model request issue.
+* Jobs:
+  * `approve-command-dispatch` The Model Request issue is parsed to ensure all required fields are filled in. If the metadata is correct, a new model repository is created from the [eos-template](https://github.com/ersilia-os/eos-template) and a record is generated in Airtable. The repository includes all the files in eos-template and a mock Git LFS object to allow for uploading Git LFS objects in the repository if required. The issue creator is notified to prompt them to start contributing to the model. Read on more about model contributions in our Model Contribution [guidelines](/broken/pages/p1yNOvFUzBmqgTqBza3C).
 
 ## Ersilia Models
 
@@ -84,7 +84,7 @@ Ersilia models include a series of workflow callers for the reusable workflows a
 * Objective: test that the model incorporation is complete
 * Workflow file: [test-model-pr.yml](https://github.com/ersilia-os/eos-template/blob/main/.github/workflows/test-model-pr.yml)
 * Runs on: whenever a PR is opened to the model repository
-* Jobs:&#x20;
+* Jobs:
   * `test-model-pr`: using the workflow of the same name, the workflow installs ersilia, clones the code in the PR and performs a `test --shallow` to check the model is able to work within Ersilia.
 
 ### Retag release docker:
@@ -100,7 +100,7 @@ Ersilia models include a series of workflow callers for the reusable workflows a
 
 * Objective: Check code formatting, run unit and pipeline tests across multiple Python versions, and, if successful, build and upload multi-architecture Ersilia-Pack Docker images to DockerHub.
 * Workflow file: [upload-ersiliapack-to-dockerhub.yml](https://github.com/ersilia-os/ersilia-pack/blob/main/.github/workflows/upload-ersiliapack-to-dockerhub.yml)
-* Runs on: Whenever code is pushed to the `main` branch, or when a pull request is opened against the `main` branch.&#x20;
+* Runs on: Whenever code is pushed to the `main` branch, or when a pull request is opened against the `main` branch.
 * Jobs:
   * `ruff-format`: checks the codebase for proper formatting and linting errors using Ruff on Python 3.12.
   * `run-pytest`: depends on `ruff-format`. It sets up a Miniconda environment, installs required dependencies, and runs standard unit tests using `pytest`.
@@ -150,4 +150,3 @@ The primary goal of this combined suite of workflows is to ensure the continuous
 * Workflow file: [update\_metadata.yml](https://github.com/ersilia-os/ersilia-maintenance/blob/main/.github/workflows/update_metadata.yml)
 * Runs on:
 * Jobs:
-
