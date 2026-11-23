@@ -63,7 +63,7 @@ Complete these fields before you open your pull request.
 
 ### Metadata updated by Ersilia
 
-Ersilia's workflows add these fields after the pull request passes its tests. Don't edit or remove them. To learn how they're filled in, see [CI/CD workflows and testing](/broken/pages/385bd86cc3e849cbf4cba1525c7fbd61a0c233f7#ci-cd-workflows-and-testing).
+Ersilia's workflows add these fields after the pull request passes its tests. Don't edit or remove them. To learn how they're filled in, see [CI/CD workflows and testing](../developer-docs/testing-and-quality/ci-cd-workflows.md).
 
 <table data-search="false"><thead><tr><th>Field</th><th>Description</th></tr></thead><tbody><tr><td>Contributor</td><td>The contributor's GitHub username.</td></tr><tr><td>Incorporation Date</td><td>When the model was first added to the Hub, as <code>YYYY-MM-DD</code>.</td></tr><tr><td>S3</td><td>The URL of the zipped model in Ersilia's AWS storage.</td></tr><tr><td>DockerHub</td><td>The URL of the model's Docker image.</td></tr><tr><td>Docker Architecture</td><td>The architectures the image is available for, usually <code>AMD64</code> and <code>ARM64</code>.</td></tr><tr><td>Apptainer</td><td>The URL of the model's SIF image</td></tr><tr><td>Model Size, Environment Size, Image Size</td><td>The size of the repository, the conda environment, and the Docker image, in MB.</td></tr><tr><td>Computational Performance 1 to 5</td><td>The time to run 1, 10, 100, 1,000, and 10,000 inputs, in seconds.</td></tr><tr><td>Last Packaging Date</td><td>When the model was last packaged and uploaded to Docker Hub, as <code>YYYY-MM-DD</code>.</td></tr><tr><td>Release</td><td>The model's version, following semantic versioning. The first release is <code>v1.0.0</code>.</td></tr></tbody></table>
 
@@ -135,7 +135,7 @@ python $1/code/main.py $2 $3
 * `load_tool()` does the slow, one-time setup, such as imports, reading the checkpoints, and building the model, and returns the model.
 * `run_tool(model, input_file, output_file)` runs the model on one batch: it reads the input file, makes the predictions, and writes the output file.
 
-When a model is served, Ersilia calls `load_tool()` once and keeps the model in memory between batches, which is often several times faster than loading it for every batch. See [Warm serving](/broken/pages/4b09deb4e600f661a7da950857f73a7825e2be44). Don't keep anything between batches in `run_tool()`: each batch must give the same result, whatever ran before it.
+When a model is served, Ersilia calls `load_tool()` once and keeps the model in memory between batches, which is often several times faster than loading it for every batch. See [Warm serving](../developer-docs/running-models/warm-serving.md). Don't keep anything between batches in `run_tool()`: each batch must give the same result, whatever ran before it.
 
 In the template, the model is a placeholder that calculates molecular weight:
 
@@ -196,7 +196,7 @@ The `framework/columns/run_columns.csv` file describes every output column. It h
 These rules apply to every model repository:
 
 1. Weights that the model loads at inference go in `model/checkpoints/`, not in `model/framework/code/`. Update the paths in the code to match.
-2. If every file in `model/checkpoints/` is smaller than 100 MiB (104,857,600 bytes, GitHub's file size limit), commit the folder to Git. If any file is 100 MiB or larger, store the whole folder in S3 with [eosvc](/broken/pages/4a4e8645310ccaf00f9db4613e5ecf07c2dc8e2d) instead.
+2. If every file in `model/checkpoints/` is smaller than 100 MiB (104,857,600 bytes, GitHub's file size limit), commit the folder to Git. If any file is 100 MiB or larger, store the whole folder in S3 with [eosvc](../developer-docs/data-storage/ersilia-version-control.md) instead.
 3. Store `model/framework/fit/` with eosvc as soon as it holds training code or data, whatever its size.
 4. Don't use Git LFS, and don't add a `.gitattributes` file with LFS rules.
 5. The model must not download weights at run time, for example from Hugging Face, Google Drive, or Zenodo. Download them once, put them in `model/checkpoints/`, and load them from there.

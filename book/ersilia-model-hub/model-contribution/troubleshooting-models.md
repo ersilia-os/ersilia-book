@@ -50,7 +50,7 @@ bash run.sh . examples/run_input.csv output.csv
 Compare `output.csv` with `examples/run_output.csv`. The most common causes of failure are:
 
 * **Imports**: relative imports that break when Ersilia runs the code from another folder. Use absolute paths.
-* **Input and output formats**: the model reads or writes data in a different format from the one Ersilia expects. See [The `main.py` file](/broken/pages/3b5e87dd516f84eabe2d51d5c104e131bff01b3a#the-main.py-file).
+* **Input and output formats**: the model reads or writes data in a different format from the one Ersilia expects. See [The `main.py` file](model-template.md#the-main.py-file).
 * **CPU and GPU settings**: some models, for example many built with PyTorch, assume a GPU is available.
 {% endstep %}
 
@@ -68,11 +68,11 @@ Two of Ersilia's skills for Claude Code automate this work:
 * `/ersilia-model-test` tests a model the way Ersilia will run it in the Hub, and reports where it fails. For example: `/ersilia-model-test eos3b5e ~/models/eos3b5e`.
 * `/model-fixing` reviews where a model failed its tests and fixes it automatically.
 
-To set them up, see [Ersilia Skills](/broken/pages/ae0ebbeae2cc55c7b1662ed65113ae127abb11fb). If you work without the skills, the steps above and the detailed guides in the archive cover the same ground.
+To set them up, see [Ersilia Skills](../../agentic-ai/ersilia-skills.md). If you work without the skills, the steps above and the detailed guides in the archive cover the same ground.
 
 ## Go deeper
 
-For problems the steps above don't solve, the [archive](https://ersilia.gitbook.io/ersilia-book/archive) has detailed guides on:
+For problems the steps above don't solve, the [Archive](https://app.gitbook.com/s/LNLMUraHo6ztNotxIuIq/) has detailed guides on:
 
 * Packaging a model locally with [ersilia-pack](https://github.com/ersilia-os/ersilia-pack) to find where packaging fails.
 * Inspecting a model's Docker image.

@@ -1,8 +1,7 @@
 ---
 description: >-
   This guide outlines the rules and tools used to ensure quality and consistency
-  in Ersilia's codebase. By adhering to these practices, we aim to maintain a
-  high standard of code readability, maintainab
+  in Ersilia's codebase.
 ---
 
 # Best code practices
@@ -11,19 +10,14 @@ description: >-
 
 When contributing to the codebase, ensure the following:
 
-*   **Code Style**: Run Ruff locally to check for compliance:
+*   **Code Style**: we use Ruff for code consistency. Ruff and pre-commit come with Ersilia's test dependencies: `pip install -e ".[test]"` from your clone.
 
     ```bash
     ruff check . --fix
-    ```
-
-    ```bash
     ruff format .
     ```
 * **Documentation**: All public methods and classes must have a NumPy-style docstring, including an `Examples` section for public classes.
 * **Testing**: Ensure all tests pass before committing changes.
-
-By following these guidelines, we can maintain a robust and consistent codebase. If you have any questions or need assistance, please reach out to the team lead.
 
 ## Standard Overview
 
@@ -33,7 +27,28 @@ Our pipeline includes the following tools:
 2. **Pre-commit Hooks**: Ensures code compliance with defined rules before committing.
 3. **Docstring Standards**: Public methods and classes use the NumPy docstring convention.
 
-### 1. Pre-commit Hooks
+{% hint style="info" %}
+Ruff and pre-commit come with Ersilia's test dependencies: `pip install -e ".[test]"` from your clone.
+{% endhint %}
+
+### Ruff
+
+We use Ruff for code styling. Run it before pushing any code to Ersilia:
+
+```bash
+ruff check . --fix
+ruff format .
+```
+
+In short, Ruff:
+
+* Lines up to 88 characters, double quotes, and spaces for indentation.
+* Code targets Python 3.10.
+* Import sorting, common errors, and warnings are checked.
+* Public classes and public methods must have a docstring. Docstrings for packages, magic methods, and `__init__` are not required.
+* The `test` folder isn't checked.
+
+### Pre-commit Hooks
 
 Pre-commit hooks are configured to run Ruff and enforce the rules automatically before commits. Ensure the following steps are followed:
 
@@ -47,7 +62,7 @@ Pre-commit hooks are configured to run Ruff and enforce the rules automatically 
    * Check for formatting issues.
    * Fix fixable issues where applicable.
 
-### 2. Docstring Standards
+### Docstring Standards
 
 We follow the NumPy docstring convention for all public methods and classes. Below is an example for public methods and classes:
 

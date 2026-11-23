@@ -14,6 +14,7 @@ If you already have conda and Docker running, these commands install Ersilia and
 conda create -n ersilia python=3.12 -y
 conda activate ersilia
 pip install ersilia
+ersilia fetch eos3b5e
 ersilia serve eos3b5e
 ersilia run -i input.csv -o output.csv
 ersilia close
@@ -24,7 +25,7 @@ For a step-by-step setup, keep reading.
 ## Before you begin
 
 * **Operating system:** Ersilia runs on Linux and macOS. On Windows, use the [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/install).
-* **Python:** Ersilia supports Python 8 and above. The commands on this page use Python 3.12.
+* **Python:** Ersilia supports Python 3.10 and above. The commands on this page use Python 3.12.
 * **Conda:** Install [Miniconda](https://www.anaconda.com/docs/getting-started/miniconda/install) or [Anaconda](https://www.anaconda.com/docs/getting-started/anaconda/install), following the instructions for your operating system.
 * **Docker:** [Install Docker](https://docs.docker.com/get-docker/) and make sure it's running before you use Ersilia. Models are distributed as Docker images on Docker Hub.
 
@@ -83,7 +84,7 @@ Each model has an identifier, such as `eos3b5e`. Find the model you need and its
 Download the model and its dependencies to your machine.
 
 ```bash
-ersilia fetch eos2r5a
+ersilia fetch eos3b5e
 ```
 
 {% hint style="warning" %}
@@ -97,11 +98,11 @@ Ersilia downloads models from Docker Hub, so make sure Docker is running before 
 Start the model so it's ready to accept inputs.
 
 ```bash
-ersilia serve eos2r5a
+ersilia serve eos3b5e
 ```
 
 {% hint style="info" %}
-If the model isn't on your machine yet, `serve` fetches it automatically: from Docker Hub first, or from S3 if Docker isn't running.
+If you serve a model you haven’t fetched yet, Ersilia asks whether to fetch it first.
 {% endhint %}
 {% endstep %}
 
@@ -138,7 +139,7 @@ input_list = [
     "CC(C)CC1=CC=C(C=C1)C(C)C(=O)O"
 ]
 
-mdl = Model(model="eos2r5a")
+mdl = Model(model="eos3b5e")
 mdl.fetch()
 mdl.serve()
 df = mdl.run(input_list)
