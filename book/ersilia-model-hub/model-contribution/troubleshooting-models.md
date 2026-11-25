@@ -2,7 +2,7 @@
 
 This page covers technical problems, such as installation errors, missing dependencies, or failing tests. It doesn't cover whether a model's predictions are accurate for your use case.
 
-When Ersilia fetches a model, it tests it on three random molecules. If the model can't produce an output, the fetch stops with an error like this:
+When Ersilia fetches a model, it runs it on the first three molecules of the model's example input, `run_input.csv`. If the model can't produce an output, the fetch stops with an error like this:
 
 ```
 Error occurred while fetching model: eos3b5e
@@ -22,6 +22,10 @@ If the fetch still fails, and you're a user rather than a contributor, [open an 
 ## Diagnose a model you're incorporating
 
 If you're incorporating or fixing a model, work from a local copy of its repository, so you can change the code and fetch it again without network issues.
+
+{% hint style="warning" %}
+When Ersilia deletes a model, which also happens when you fetch it again or run `ersilia test`, it removes every conda environment whose name starts with the model identifier, and runs `docker system prune -f`, which removes all stopped containers and unused images on your machine. Don't name your own environments after the model, for example `eos3b5e-dev`.
+{% endhint %}
 
 {% stepper %}
 {% step %}
@@ -51,6 +55,7 @@ Compare `output.csv` with `examples/run_output.csv`. The most common causes of f
 * **Imports**: relative imports that break when Ersilia runs the code from another folder. Use absolute paths.
 * **Input and output formats**: the model reads or writes data in a different format from the one Ersilia expects. See [The `main.py` file](model-template.md#the-main.py-file).
 * **CPU and GPU settings**: some models, for example many built with PyTorch, assume a GPU is available.
+* **Dependency versions**: a pinned version is no longer available to install, or a package that isn't pinned has changed. Pin every package in `install.yml` to a version that is still available.
 {% endstep %}
 
 {% step %}
@@ -65,13 +70,13 @@ Once the model runs on its own, remove any temporary changes, such as `print` st
 Two of Ersilia's skills for Claude Code automate this work:
 
 * `/ersilia-model-test` tests a model the way Ersilia will run it in the Hub, and reports where it fails. For example: `/ersilia-model-test eos3b5e ~/models/eos3b5e`.
-* `/model-fixing` reviews where a model failed its tests and fixes it automatically.
+* `/model-fixing` proposes fixes for the checks that failed, applies them once you agree, and runs the test again.
 
 To set them up, see [Ersilia Skills](../../agentic-ai/ersilia-skills.md). If you work without the skills, the steps above and the detailed guides in the archive cover the same ground.
 
 ## Go deeper
 
-For problems the steps above don't solve, the [Archive](https://app.gitbook.com/s/LNLMUraHo6ztNotxIuIq/) has detailed guides on:
+For problems the steps above don't solve, the [archived Troubleshooting models page](https://ersilia.gitbook.io/ersilia-book/ersilia-book/ersilia-book-archive/ersilia-model-hub/troubleshooting-models) has detailed guides on:
 
 * Packaging a model locally with [ersilia-pack](https://github.com/ersilia-os/ersilia-pack) to find where packaging fails.
 * Inspecting a model's Docker image.
