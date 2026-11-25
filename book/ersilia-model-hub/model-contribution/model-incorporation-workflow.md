@@ -51,7 +51,7 @@ Skill: `/model-incorporation-request`
 
 #### Fork and clone the repository
 
-Fork the model's repository to your GitHub account and clone your fork. Commit all your work to your fork's `main` branch, not to a feature branch: the pull request checks test the `main` branch of your fork.
+Fork the model's repository to your GitHub account and clone your fork. You'll commit your work there and open the pull request from it.
 
 The `/model-incorporation-request` skill does this for you once the request is approved.
 {% endstep %}
@@ -104,7 +104,7 @@ Skill: `/model-incorporation-reproduce`
 
 #### Open the pull request
 
-Commit your work to your fork's `main` and open a pull request from it to the `main` branch of the model's repository. Say in the pull request how you tested the model and reproduced its results. Automated checks run on every pull request, so make sure they all pass.
+Commit your work to your fork and open a pull request to the `main` branch of the model's repository. Say in the pull request how you tested the model and reproduced its results. Automated checks run on every pull request, so make sure they all pass.
 
 Skill: `/model-incorporation-pr`. Before pushing, it offers to run `/model-optimization`, which removes dependencies the model doesn't use without changing its outputs.
 {% endstep %}
