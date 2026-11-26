@@ -10,6 +10,7 @@
 * [Model contribution](ersilia-model-hub/model-contribution/README.md)
   * [Model template](ersilia-model-hub/model-contribution/model-template.md)
   * [Model incorporation workflow](ersilia-model-hub/model-contribution/model-incorporation-workflow.md)
+  * [Incorporate a model manually](ersilia-model-hub/model-contribution/manual-incorporation.md)
   * [Troubleshooting models](ersilia-model-hub/model-contribution/troubleshooting-models.md)
 * [For developers](ersilia-model-hub/developer-docs/README.md)
   * [Interfaces](ersilia-model-hub/developer-docs/interfaces/README.md)
