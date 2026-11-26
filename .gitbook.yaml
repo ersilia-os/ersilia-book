@@ -1,1 +1,6 @@
 root: ./book/
+
+redirects:
+  # Linked from the Versioning section of eos-template's CLAUDE.md (and the model
+  # repositories created from it) as ...#model-releases; the page no longer exists.
+  ersilia-model-hub/model-contribution/example-of-the-model-incorporation-workflow: ersilia-model-hub/model-contribution/model-versioning.md
