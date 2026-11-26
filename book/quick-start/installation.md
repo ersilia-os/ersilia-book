@@ -14,11 +14,9 @@ Although _not_ strictly necessary, we encourage the use of **Conda environments*
 
 Docker containers are an excellent way to share applications and simplify the management of system requirements and configurations. Please [install Docker](https://www.docker.com) to ensure that all our AI/ML assets will work smoothly in your local device.
 
-### Git and Git LFS
+### Git
 
 All of our code is hosted in the [Ersilia Github Organization](https://github.com/ersilia-os) profile. The Ersilia tool needs to fetch code from GitHub, so make sure Git is installed on your device. You can follow [these instructions](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git). In addition, we highly recommend the fantastic [GitHub CLI](https://cli.github.com/manual/installation), which is used by Ersilia if available.
-
-Some older models still keep their parameters in **Git Large File Storage** (LFS) while they are migrated to Git or eosvc. If you fetch these models from GitHub, make sure this Git extension is [installed](https://git-lfs.github.com). New models do not need it.
 
 ## Install on Linux and MacOSX
 
@@ -118,17 +116,3 @@ gh auth login
 ```
 
 And then follow the instructions.
-
-### Git LFS
-
-Git Large File Storage (LFS) is only needed for older models that have not yet moved to Git or eosvc. It can be installed from Conda as well:
-
-```
-conda install git-lfs -c conda-forge
-```
-
-Activate Git LFS:
-
-```
-git-lfs install
-```

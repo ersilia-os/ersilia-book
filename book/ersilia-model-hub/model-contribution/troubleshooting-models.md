@@ -16,7 +16,6 @@ Many fetch errors come from the environment rather than the model. Before you in
 * **You have enough disk space.** We recommend at least 10 GB free. A `No space left on device` message in the log means you need to free some up.
 * **Your connection works.** Run the fetch in verbose mode, `ersilia -v fetch eos3b5e`, and look for errors such as `TimeoutError` or `NewConnectionError`, usually from the `urllib3` library. If you see them, try another network, and turn off any VPN or firewall.
 * **Ersilia can create its folders.** Ersilia stores models in an `eos` folder in your home directory, with each model in `eos/dest`. If the folder isn't created, check that your user has permission to create folders there.
-* **Git LFS is active, for older models.** Some older models still keep files in Git LFS. To fetch one of them from source, install and activate [git-lfs](https://git-lfs.com/).
 
 If the fetch still fails, and you're a user rather than a contributor, [open an issue on GitHub](https://github.com/ersilia-os/ersilia/issues) with the model identifier, your operating system, and the output of the verbose fetch.
 
