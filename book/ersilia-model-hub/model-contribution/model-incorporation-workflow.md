@@ -120,7 +120,7 @@ Skill: `/model-incorporation-release`
 
 **Request the model.** `/model-incorporation-request` proposes every field of the request from the paper and the source code, and opens the issue once you confirm. *Check:* the name, the description, the publication and the license, against the paper. The request for HADES is [ersilia-os/ersilia#1907](https://github.com/ersilia-os/ersilia/issues/1907). Once it was approved, the repository [ersilia-os/eos3xhm](https://github.com/ersilia-os/eos3xhm) was created, and the skill forked it and cloned the fork.
 
-**Fill in the metadata.** `/model-incorporation-metadata` proposes a value for every field of `metadata.yml`, and writes them once you confirm. *Check:* every field against the paper, including the ones you didn't write. For HADES, the description copied from the request had been changed on the way: "1,177 approved oral drugs" had become "1, 177", and we corrected it. `ersilia test` doesn't catch this kind of error; only reading does. The main fields in [`metadata.yml`](https://github.com/ersilia-os/eos3xhm/blob/v1.0.1/metadata.yml) are:
+**Fill in the metadata.** `/model-incorporation-metadata` proposes a value for every field of `metadata.yml`, and writes them once you confirm. *Check:* every field against the paper, including the ones you didn't write. The main fields in [`metadata.yml`](https://github.com/ersilia-os/eos3xhm/blob/v1.0.1/metadata.yml) are:
 
 ```yaml
 Task: Annotation
@@ -150,9 +150,9 @@ hades_score,float,high,Probability that the molecule resembles an approved oral 
 | Brier score | 0.070 | 0.0700 |
 | Large-error rate (above 0.7) | 6.17% | 6.165% |
 
-**Open the pull request.** `/model-incorporation-pr` commits the work, asks before pushing, and opens the pull request with a description of what was tested and reproduced. *Check:* that description, and that every automated check passes. For HADES, this is [ersilia-os/eos3xhm#1](https://github.com/ersilia-os/eos3xhm/pull/1).
+**Open the pull request.** `/model-incorporation-pr` commits the work, asks before pushing, and opens the pull request with the `semver:major` version label and a description of what was tested and reproduced. *Check:* that description, and that every automated check passes. For HADES, this is [ersilia-os/eos3xhm#1](https://github.com/ersilia-os/eos3xhm/pull/1).
 
-**Release the model.** After the merge, the workflows release the model automatically. An Ersilia maintainer then runs `/model-incorporation-release` to check every workflow and the release, file the paper and close the request. HADES was released as `v1.0.0` the same day. `v1.0.1` later moved its checkpoints from eosvc to Git when the storage rule changed, without changing the model.
+**Release the model.** After the merge, the workflows release the model automatically. An Ersilia maintainer then runs `/model-incorporation-release` to check every workflow and the release, file the paper and close the request. HADES was released as `v1.0.0` the same day.
 
 ## Get help
 
