@@ -98,7 +98,7 @@ Skill: `/model-incorporation-reproduce`
 {% step %}
 #### Open the pull request
 
-Commit your work to your fork and open a pull request to the `main` branch of the model's repository. Two automated checks run on every pull request: the same test you ran in the Test step, and a check that the pull request has a version label, which an Ersilia maintainer adds. Make sure they pass. An Ersilia maintainer then reviews the pull request and merges it.
+Commit your work to your fork and open a pull request to the `main` branch of the model's repository. Two automated checks run on every pull request: the same test you ran in the Test step, and a check that the pull request has a version label, which an Ersilia maintainer adds; see [Model versioning](model-versioning.md). Make sure they pass. An Ersilia maintainer then reviews the pull request and merges it.
 
 Skill: `/model-incorporation-pr`
 {% endstep %}

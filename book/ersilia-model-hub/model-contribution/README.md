@@ -14,6 +14,7 @@ Every model goes through the same steps: request it, fill in its metadata, add i
 * [Model incorporation workflow](model-incorporation-workflow.md): the steps to incorporate a model, with a worked example. Start here.
 * [Incorporate a model manually](manual-incorporation.md): every step done by hand, for contributors who don't use the skills.
 * [Troubleshooting models](troubleshooting-models.md): what to do when a model fails to fetch, run, or pass its tests.
+* [Model versioning](model-versioning.md): how models are versioned and released, and which version label a pull request needs.
 
 ### Get help
 

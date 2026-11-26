@@ -324,7 +324,7 @@ Open a pull request from your fork to the `main` branch of `ersilia-os/eosXXXX`.
 Two checks run on every pull request:
 
 * **Test model on PR** runs the same test as in [Test the model](#test-the-model).
-* **Check version label** checks that the pull request has a version label. An Ersilia maintainer adds it.
+* **Check version label** checks that the pull request has a version label, `semver:major` for a new model. An Ersilia maintainer adds it; see [Model versioning](model-versioning.md).
 
 If a check fails, push the fix to the same pull request. An Ersilia maintainer reviews the pull request and merges it once every check passes.
 
