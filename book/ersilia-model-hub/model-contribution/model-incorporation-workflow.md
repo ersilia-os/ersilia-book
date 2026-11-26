@@ -4,7 +4,7 @@ Anyone can contribute a model to the Ersilia Model Hub. If you're a researcher w
 
 Every incorporation goes through the same steps, described on this page. You can do them in two ways:
 
-* **Manually**, following the steps below. The [Model template](model-template.md) page describes every file you have to fill in.
+* **Manually**, following [Incorporate a model manually](manual-incorporation.md), which walks through every step with a worked example.
 * **With Ersilia's skills for Claude Code**, which automate most of the work. Each step below names the skill that does it. If you work manually, your goal is to produce the same result as the skill. Each skill's `SKILL.md` file in [ersilia-skills](https://github.com/ersilia-os/ersilia-skills) describes exactly what it does, so you can also use it as a checklist.
 
 Either way, the decisions are yours: whether a model is worth incorporating, whether its results are reproduced faithfully, and whether the final pull request is right.
@@ -33,49 +33,47 @@ If the model's checkpoints include a file of 100 MiB or more, or if you include 
 
 Good candidates are published, open source models relevant to infectious or neglected disease research, with code and trained weights available and a license that allows redistribution. Before you start, follow the original authors' instructions to run the model on your machine, and note its dependencies.
 
-Skill: `/paper-to-model-assessment` summarizes the paper and looks for similar models already in the Hub.
+Skill: `/paper-to-model-assessment` summarizes the paper and checks whether the Hub already has a similar model.
 
 ## Incorporate the model
 
 {% stepper %}
 {% step %}
-
 #### Request the model
 
-Open a model request issue on [ersilia-os/ersilia](https://github.com/ersilia-os/ersilia), describing the model and its source. An Ersilia maintainer reviews it and approves it by commenting `/approve`. This creates the model's repository under `ersilia-os` from the model template, with its identifier, for example `eos2r5a`.
+Open a model request issue on [ersilia-os/ersilia](https://github.com/ersilia-os/ersilia). The form asks for the model's name, a short description, a slug, tags, the publication, the source code and the license. An Ersilia maintainer reviews the request and, once it's approved, creates the model's repository from the model template, with its identifier, for example `eos3xhm`.
+
+Fork that repository to your GitHub account and clone your fork. You'll do all the following steps in your clone and open the pull request from your fork.
 
 Skill: `/model-incorporation-request`
 {% endstep %}
 
 {% step %}
-
-#### Fork and clone the repository
-
-Fork the model's repository to your GitHub account and clone your fork. You'll commit your work there and open the pull request from it.
-
-The `/model-incorporation-request` skill does this for you once the request is approved.
-{% endstep %}
-
-{% step %}
-
 #### Fill in the metadata
 
-Complete `metadata.yml` with the information from the paper and the source repository. Check the source and license fields carefully against the original publication. The output dimension and the interpretation must match the output columns you define in the next step, so check them again once the code is in place.
+Complete `metadata.yml` with the information from the paper and the source repository: what the model does, its task and inputs and outputs, the publication, the source code and the license. Many fields only accept values from a fixed list, described in [The `metadata.yml` file](model-template.md#the-metadata.yml-file). Check the source and license fields carefully against the original publication.
+
+The output dimension and the interpretation must match the output columns you define in the next step, so check them again once the code is in place.
 
 Skill: `/model-incorporation-metadata`
 {% endstep %}
 
 {% step %}
-
 #### Add the model code
 
-Add the model's code and checkpoints to the [model template](model-template.md), and adapt it so the model reads Ersilia's input and writes output in the expected format. This means describing the output columns in `run_columns.csv`, pinning the dependencies in `install.yml`, and running the model to produce the example files `run_input.csv` and `run_output.csv`. The model must not download weights at run time.
+Add the model's code and checkpoints to the [model template](model-template.md), and adapt it so the model reads Ersilia's input and writes output in the expected format. By the end of this step, the repository contains:
+
+* the model's checkpoints in `model/checkpoints/` and its code in `model/framework/code/`, with `main.py` running the model;
+* `install.yml`, listing the dependencies with pinned versions;
+* `run_columns.csv`, describing each output column;
+* `run_input.csv` and `run_output.csv`, an example input and the output the model gives for it.
+
+The model must not download weights at run time.
 
 Skill: `/model-incorporation-code`
 {% endstep %}
 
 {% step %}
-
 #### Test the model
 
 Test the model the way Ersilia will run it in the Hub:
@@ -84,44 +82,77 @@ Test the model the way Ersilia will run it in the Hub:
 ersilia test eosXXXX --shallow --from_dir path/to/eosXXXX
 ```
 
-The same test runs automatically on your pull request. If a check fails, see [Troubleshooting models](troubleshooting-models.md).
+The test installs the model from your clone, runs it with every input and output format, checks that the metadata and the output files agree, and checks that repeated runs give the same results. The same test runs automatically on your pull request. If a check fails, see [Troubleshooting models](troubleshooting-models.md).
 
-Skills: `/ersilia-model-test` runs the test and diagnoses failures, and `/model-fixing` applies the fixes.
+Skills: `/ersilia-model-test`, then `/model-fixing` if a check fails
 {% endstep %}
 
 {% step %}
-
 #### Reproduce the original results
 
-Run the model as incorporated and check that it gives the same results as the original work. First compare its outputs with those of the authors' code on the same molecules. Then, for a model that predicts a property or an activity, check the performance reported in the paper; for a model that produces embeddings, check the vectors match the original code; for a generative model, check the generated molecules resemble the training set.
-
-This is the most important check. Don't open the pull request if the results don't match the original work: comment on your model request issue instead.
+Check that the model, as incorporated, gives the same outputs as the authors' code on the same molecules. If it doesn't, the incorporation has a bug: fix it before you continue. Then compare its performance with what the paper reports, where the data allow. If a result can't be reproduced or differs from the paper, say so in the pull request and explain why, for example that the data isn't public or that the released weights differ from the paper's.
 
 Skill: `/model-incorporation-reproduce`
 {% endstep %}
 
 {% step %}
-
 #### Open the pull request
 
-Commit your work to your fork and open a pull request to the `main` branch of the model's repository. Say in the pull request how you tested the model and reproduced its results. Automated checks run on every pull request, so make sure they all pass.
+Commit your work to your fork and open a pull request to the `main` branch of the model's repository. Two automated checks run on every pull request: the same test you ran in the Test step, and a check that the pull request has a version label, which an Ersilia maintainer adds. Make sure they pass. An Ersilia maintainer then reviews the pull request and merges it.
 
-Skill: `/model-incorporation-pr`. Before pushing, it offers to run `/model-optimization`, which removes dependencies the model doesn't use without changing its outputs.
+Skill: `/model-incorporation-pr`
 {% endstep %}
 
 {% step %}
-
 #### Release the model
 
-After an Ersilia maintainer merges the pull request, the model is released and published to GitHub, Docker Hub, and as an SIF image. Ersilia maintainers run this step: they check that every workflow passed, file the model's paper and close the model request.
+After the merge, Ersilia's workflows test the model again, publish it to Docker Hub and as an SIF image, and release it as `v1.0.0`. Ersilia maintainers then check that every workflow passed, file the model's paper and close the model request.
 
 Skill: `/model-incorporation-release`
 {% endstep %}
 {% endstepper %}
 
-## Example: incorporating eosXXXX
+## Example: incorporating eos3xhm
 
-<!-- TODO: walkthrough of one real incorporation, one block per step with its real output (issue, metadata excerpt, run_columns.csv, test result, reproduction table, pull request, release). Model to be chosen; eos2r5a can't be used because it predates the current template. -->
+[HADES](https://github.com/Narek-Petros-yan/HADES) ([*J. Chem. Inf. Model.*, 2026](https://doi.org/10.1021/acs.jcim.5c02953)) scores how closely a compound resembles an approved oral drug. This example walks through its incorporation as `eos3xhm` with the skills: for each step, what the skill does, what you should check, and what the step produced for HADES. The skills propose and you decide: only you can confirm that the model's details are correct. The files linked below are from the release `v1.0.1`.
+
+**Choose a model.** `/paper-to-model-assessment` summarizes the paper and looks for similar models in the Hub. For HADES, it found two drug-likeness models already there. *Check:* what the new model adds. HADES is trained on approved oral drugs, unlike the other two, so we went ahead.
+
+**Request the model.** `/model-incorporation-request` proposes every field of the request from the paper and the source code, and opens the issue once you confirm. *Check:* the name, the description, the publication and the license, against the paper. The request for HADES is [ersilia-os/ersilia#1907](https://github.com/ersilia-os/ersilia/issues/1907). Once it was approved, the repository [ersilia-os/eos3xhm](https://github.com/ersilia-os/eos3xhm) was created, and the skill forked it and cloned the fork.
+
+**Fill in the metadata.** `/model-incorporation-metadata` proposes a value for every field of `metadata.yml`, and writes them once you confirm. *Check:* every field against the paper, including the ones you didn't write. For HADES, the description copied from the request had been changed on the way: "1,177 approved oral drugs" had become "1, 177", and we corrected it. `ersilia test` doesn't catch this kind of error; only reading does. The main fields in [`metadata.yml`](https://github.com/ersilia-os/eos3xhm/blob/v1.0.1/metadata.yml) are:
+
+```yaml
+Task: Annotation
+Subtask: Property calculation or prediction
+Output:
+  - Score
+Output Dimension: 1
+Interpretation: Probability that a compound resembles an approved oral drug;
+  values above 0.63 indicate likely oral drug-likeness.
+License: MIT
+```
+
+**Add the model code.** `/model-incorporation-code` adds the authors' code and checkpoints to the template, writes `main.py`, pins the dependencies in `install.yml`, describes the outputs in `run_columns.csv`, and runs the model to produce the example files. *Check:* that the output columns and their direction make sense, and that a molecule that can't be read gets an empty row instead of being dropped. For HADES, the checkpoints are five classifiers; the largest is 64 MB, under the 100 MiB limit, so all of them are in Git. Its [`run_columns.csv`](https://github.com/ersilia-os/eos3xhm/blob/v1.0.1/model/framework/columns/run_columns.csv) has one column:
+
+```
+name,type,direction,description
+hades_score,float,high,Probability that the molecule resembles an approved oral drug with 0.63 the recommended cutoff
+```
+
+**Test the model.** `/ersilia-model-test` runs `ersilia test --shallow` and explains any check that fails; `/model-fixing` applies the fixes once you agree. For HADES, every check passed.
+
+**Reproduce the original results.** `/model-incorporation-reproduce` compares the model with the authors' code, then recomputes the metrics the paper reports. *Check:* the reproduced numbers against the paper yourself, and that any gap is explained. For HADES, the outputs matched the authors' code on 20 molecules (Spearman correlation 1.000), and the paper's results reproduced on its 1,622-molecule test set:
+
+| Metric | Paper | Reproduced |
+|---|---|---|
+| Accuracy | 0.909 | 0.9094 |
+| Brier score | 0.070 | 0.0700 |
+| Large-error rate (above 0.7) | 6.17% | 6.165% |
+
+**Open the pull request.** `/model-incorporation-pr` commits the work, asks before pushing, and opens the pull request with a description of what was tested and reproduced. *Check:* that description, and that every automated check passes. For HADES, this is [ersilia-os/eos3xhm#1](https://github.com/ersilia-os/eos3xhm/pull/1).
+
+**Release the model.** After the merge, the workflows release the model automatically. An Ersilia maintainer then runs `/model-incorporation-release` to check every workflow and the release, file the paper and close the request. HADES was released as `v1.0.0` the same day. `v1.0.1` later moved its checkpoints from eosvc to Git when the storage rule changed, without changing the model.
 
 ## Get help
 
