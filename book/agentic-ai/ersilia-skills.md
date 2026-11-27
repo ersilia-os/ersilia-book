@@ -1,5 +1,6 @@
 ---
 description: A guide of how we have incorporated Claude at Ersilia
+hidden: true
 ---
 
 # Claude at Ersilia
