@@ -33,6 +33,8 @@ If the model's checkpoints include a file of 100 MiB or more, or if you include 
 
 Good candidates are published, open source models relevant to infectious or neglected disease research, with code and trained weights available and a license that allows redistribution. Before you start, follow the original authors' instructions to run the model on your machine, and note its dependencies.
 
+To help you decide whether a model is worth incorporating, you can use the [paper-to-model-assessment ](https://github.com/ersilia-os/ersilia-skills/tree/main/skills/paper-to-model-assessment)skill for Claude Code. Given the paper's PDF, it summarises it, checks whether similar models already exist in the Hub, and assesses its relevance to Ersilia.
+
 ## Incorporate the model
 
 {% stepper %}
@@ -92,6 +94,8 @@ After an Ersilia maintainer merges the pull request, the model is released and p
 Skill: `/model-incorporation-release`
 {% endstep %}
 {% endstepper %}
+
+Once a month, Ersilia maintainers use the [model-incorporation-digest](https://github.com/ersilia-os/ersilia-skills/tree/main/skills/model-incorporation-digest) skill to summarise all the models incorporated into the Hub during that month, crediting their original authors and flagging any metadata that needs fixing.
 
 ## Example: incorporating eos2r5a
 
