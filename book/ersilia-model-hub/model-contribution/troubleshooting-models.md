@@ -37,7 +37,7 @@ Fetch the model from your clone in verbose mode, and save the log to a file:
 ersilia -v fetch eos3b5e --from_dir eos3b5e > out.log 2>&1
 ```
 
-Read the whole log, not just the last lines. Look for error messages, dependency conflicts, and memory or connection problems.
+The folder must be named exactly like the model identifier. If you renamed your clone, Ersilia can't find the model and fails with "Bundle path not found". Read the whole log, not just the last lines. Look for error messages, dependency conflicts, and memory or connection problems.
 {% endstep %}
 
 {% step %}
@@ -52,7 +52,7 @@ bash run.sh . examples/run_input.csv output.csv
 
 Compare `output.csv` with `examples/run_output.csv`. The most common causes of failure are:
 
-* **Imports**: relative imports that break when Ersilia runs the code from another folder. Use absolute paths.
+* **Imports and paths**: `main.py` runs as a script, from another folder. Don't use relative imports such as `from . import helper`: helper files next to `main.py` can be imported directly. Build file paths from the location of the file, for example with `os.path.dirname(os.path.abspath(__file__))`, as the template does, and don't write paths that only exist on your machine.
 * **Input and output formats**: the model reads or writes data in a different format from the one Ersilia expects. See [The `main.py` file](model-template.md#the-main.py-file).
 * **CPU and GPU settings**: some models, for example many built with PyTorch, assume a GPU is available.
 * **Dependency versions**: a pinned version is no longer available to install, or a package that isn't pinned has changed. Pin every package in `install.yml` to a version that is still available.
@@ -61,9 +61,26 @@ Compare `output.csv` with `examples/run_output.csv`. The most common causes of f
 {% step %}
 #### Fetch again
 
-Once the model runs on its own, remove any temporary changes, such as `print` statements, update `install.yml` with the package versions that work, and fetch the model from your local copy again.
+Once the model runs on its own, remove any temporary changes, such as `print` statements, update `install.yml` with the package versions that work, and fetch the model from your local copy again. Then run the test again, as described in the [Test step](model-incorporation-workflow.md#incorporate-the-model).
 {% endstep %}
 {% endstepper %}
+
+## Fix a failing test
+
+`ersilia test` saves a report, `eosXXXX-test.json`, and prints every check. Ignore the checks that say "not present": Ersilia's workflows fill them in after the merge. Fix the first failing check first, because a model that doesn't run makes the others fail too.
+
+| Failing check | Likely cause | Fix |
+|---|---|---|
+| `simple_model_run` | The model doesn't run: an import or path error, a missing dependency, or the input isn't read correctly | Run the model without Ersilia, as in the steps above, and read the error |
+| `model_description`, `metadata_*` | A value that isn't in the accepted list, a list written as a single value, placeholder text, or a description shorter than 200 or longer than 600 characters | Compare with [The `metadata.yml` file](model-template.md#the-metadata.yml-file) |
+| `columns`, `metadata_dim_and_run_column_file_dim_check` | The names or the number of rows of `run_columns.csv` differ from what `main.py` writes or from `Output Dimension` | Make `run_columns.csv` match the output columns, and `Output Dimension` its number of rows |
+| `install_yaml_check` | A command isn't written as a list, or a package has no pinned version | Write `["pip", "package", "version"]` and pin every version |
+| `check_consistency_of_model_output` | The output changes between runs, or differs between Ersilia and `bash run.sh`: for example dropout is still active, a random seed is missing, or temporary files have unstable names | Set the seed, call `model.eval()` for PyTorch models, and use stable file names. If the model is random by design, set `Output Consistency` to `Variable` |
+| Empty values for some molecules | The model can't process them | Return an empty value and keep the row. Don't drop the molecule and don't invent a value |
+
+## Fix a failing check on your pull request
+
+The same test runs on your pull request with `ersilia -v test eosXXXX --shallow --from_dir eosXXXX`. Open the failed run from the pull request's Checks tab, read the first error, and reproduce it locally with that command. The first fetch of a model with heavy dependencies can take more than 10 minutes, so if the run fails while the environment is being built and the model works on your machine, say so in the pull request. If the version label check fails, an Ersilia maintainer has to add the label, which is `semver:major` for a new model. See [Model versioning](model-versioning.md).
 
 ## Use the skills
 
@@ -85,4 +102,4 @@ For problems the steps above don't solve, the [archived Troubleshooting models p
 
 ## Ask for help
 
-If you can't fix the model, open a bug report on [ersilia-os/ersilia](https://github.com/ersilia-os/ersilia/issues). Include the model identifier, your operating system, the full `out.log` file, and what you've already tried.
+If you can't fix the model, comment on your model request issue or on your pull request, and an Ersilia maintainer will help. Include the model identifier, your operating system, the full `out.log` file, and what you've already tried. If you think the problem is in Ersilia itself, open a bug report on [ersilia-os/ersilia](https://github.com/ersilia-os/ersilia/issues) with the same information.
