@@ -22,7 +22,7 @@ Without skills, you would need to re-explain context and process to Claude every
 
 The same skill works in Chat, Cowork, and Code. A skill written once works across all three Claude interfaces — Chat, Cowork, and Code — because the `SKILL.md` format is identical everywhere; what changes is how the skill is distributed and how you invoke it (a slash command in Code, natural language in Cowork, an attached file in Chat).
 
-Anthropic maintains a registry of general-purpose skills for common tasks. Ersilia maintains its own library of skills tailored to our specific work — that is what the ersilia-skills repository is (see [ersilia-skills).](claude-101.md#claude-skills)
+Anthropic maintains a registry of general-purpose skills for common tasks. Ersilia maintains its own library of skills tailored to our specific work in the [ersilia-skills](https://github.com/ersilia-os/ersilia-skills/tree/main) repository.
 
 ### Installing Skills in Claude Chat
 
@@ -58,6 +58,30 @@ When you install a skill, it can live in two places:
 * **Project-wide** skills are defined inside a specific repository, typically referenced in a `.claude/settings.json` file at the root of the project. They are only active when Claude Code is running inside that project. This is useful for skills that are tightly coupled to a specific codebase or that you do not want bleeding into unrelated work.
 
 Once a skill has been created, it can be used across the different ways of interacting with Claude.
+
+#### Ersilia's skills
+
+Our skills are published in the public [ersilia-skills GitHub](https://github.com/ersilia-os/ersilia-skills/tree/main) repository. Each skill is documented in the section of this book where it is used. Skills that run on a schedule are described in Automations.
+
+_Setup_
+
+You need Claude Code and Git. Clone the repository and run the setup script:
+
+```
+git clone https://github.com/ersilia-os/ersilia-skills.git
+cd ersilia-skills
+bash setup.sh
+```
+
+To check that it works, open a Claude Code session and run `/test-skill`.
+
+_Keeping skills up to date_
+
+Run `git pull` in the repository from time to time. The setup script installs a hook that links any new skills automatically after each pull.
+
+_Contributing a skill_
+
+Create a branch, add a folder under `skills/` with a `SKILL.md` file (and a `references/` folder if Claude needs supporting documents), and open a pull request. The easiest way to write a new skill is with Anthropic's skill-creator, described above.
 
 ## Claude Chat
 
