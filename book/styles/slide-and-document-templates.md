@@ -30,3 +30,5 @@ Ersilia has three kinds of repository templates, extensively explained in their 
 * Ersilia Model Template ([eos-template](https://github.com/ersilia-os/eos-template)): template for Ersilia Model Hub Models.
 * Ersilia Analysis Repository ([eos-analysis-template](https://github.com/ersilia-os/eos-analysis-template)): template for a scientific project (data analysis, plotting etc)
 * Ersilia Python Package ([eos-python-package](https://github.com/ersilia-os/eos-python-package)): template to build a python package following Ersilia's structure.
+
+Each template includes a CLAUDE.md file that gives Claude context for that type of repository and is copied into every new repository. To keep these files short, accurate and consistent, we run the [org-context](https://github.com/ersilia-os/ersilia-skills/tree/main/skills/org-context) skill regularly. It reviews them and proposes changes, which are only applied after approval.&#x20;
