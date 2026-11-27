@@ -19,6 +19,8 @@ When contributing to the codebase, ensure the following:
 * **Documentation**: All public methods and classes must have a NumPy-style docstring, including an `Examples` section for public classes.
 * **Testing**: Ensure all tests pass before committing changes.
 
+To check a whole repository against these standards, you can use the [repository-auditing ](https://github.com/ersilia-os/ersilia-skills/tree/main/skills/repository-auditing)skill for Claude Code. It reviews the code style, docstrings, README, licence and repository settings, and produces a report of what needs fixing, ordered by priority, without changing anything.&#x20;
+
 ## Standard Overview
 
 Our pipeline includes the following tools:

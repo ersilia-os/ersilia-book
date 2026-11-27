@@ -30,13 +30,13 @@ Our models support scientific decisions and every prediction is accompanied by a
 
 #### Collaborative work and training activities
 
-Where AI is used in collaborative work with partners and in our training programs, the same principles apply, and partners retain ownership of their data and results.&#x20;
+Where AI is used in collaborative work with partners and in our training programs, the same principles apply, and partners retain ownership of their data and results.
 
-Our flagship capacity building program, the AI Incubator, has its own [AI Policy ](https://app.gitbook.com/s/HHO5jOS38euA5IqOgq6G/resources/ai-policy) and [intellectual property](https://app.gitbook.com/s/HHO5jOS38euA5IqOgq6G/resources/intellectual-property) property sections related to the use of AI during the program and the intelectual property of the projects data and outcomes.
+Our flagship capacity building program, the AI Incubator, has its own [AI Policy ](https://app.gitbook.com/s/HHO5jOS38euA5IqOgq6G/resources/ai-policy)and [intellectual property](https://app.gitbook.com/s/HHO5jOS38euA5IqOgq6G/resources/intellectual-property) property sections related to the use of AI during the program and the intelectual property of the projects data and outcomes.
 
 ### Data Collection Practices
 
-Explicit consent is obtained from all users before collecting or processing their data, and clear information is provided about what data is collected and how it is used (see our [Privacy Notice](ersilia-privacy-notice.md)).&#x20;
+Explicit consent is obtained from all users before collecting or processing their data, and clear information is provided about what data is collected and how it is used (see our [Privacy Notice](ersilia-privacy-notice.md)).
 
 #### Partner data and third-party AI tools
 
@@ -105,12 +105,14 @@ AI systems are not listed as authors on Ersilia publications. This position is s
 
 Where AI has been used substantively in preparing a publication, we disclose which tool was used, how it was used, and how the authors validated the output — following the specific requirements of the target journal. Language editing alone generally does not require disclosure, but we check the journal's rule.
 
+Before submitting a manuscript, we can use the [peer-reviewing](https://github.com/ersilia-os/ersilia-skills/tree/main/skills/peer-reviewing) skill for Claude Code to get a critical read of the draft, as a reviewer would. It flags weaknesses in methods, evidence and reproducibility, and suggests suitable journals. It is designed as a review aid, not a substitute for the authors' own judgement.
+
 ### Contributions to Our Code
 
 These expectations apply to everyone contributing to Ersilia repositories, including our own team.
 
-* Responsibility: Ersilia staff and collaborators are responsible for any code they submit, regardless of how it was produced. They must understand the code and be able to explain it during review.&#x20;
-* Disclosure: Where AI has assisted, record it using an `Assisted-by:` trailer in the commit metadata.&#x20;
+* Responsibility: Ersilia staff and collaborators are responsible for any code they submit, regardless of how it was produced. They must understand the code and be able to explain it during review.
+* Disclosure: Where AI has assisted, record it using an `Assisted-by:` trailer in the commit metadata.
 * Autonomous agents: AI agents do not open pull requests autonomously in Ersilia repositories. A person reviews the code, understands it, and submits it under their own name.
 * Licensing: The Ersilia Model Hub is released under [GPLv3](https://choosealicense.com/licenses/gpl-3.0/); other Ersilia repositories may use different open-source licences, and contributions must be compatible with the licence of the repository they are submitted to. Where a model is packaged from existing published work, its original licence is recorded and respected. We reserve the right to reject any contribution, AI-assisted or not, where provenance or copyright is in question.
 
@@ -129,8 +131,6 @@ The models we develop and release under free and open-source licences are narrow
 We align our practice with the [ERA Living Guidelines on the responsible use of generative AI in research](https://research-and-innovation.ec.europa.eu/news/all-research-and-innovation-news/updated-era-living-guidelines-responsible-use-generative-ai-research-2026-05-08_en), and with the principles of the African Union [Continental AI Strategy](https://au.int/en/documents/20240809/continental-artificial-intelligence-strategy) and [Data Policy Framework](https://oecd.ai/en/dashboards/policy-initiatives/au-data-policy-framework-2933) — in particular the principle that AI developed for African contexts should be shaped by African researchers and institutions, which is the basis on which we work.
 
 This policy is reviewed at least annually, and whenever we adopt a materially new AI capability.
-
-
 
 _Current version: September 2026._
 

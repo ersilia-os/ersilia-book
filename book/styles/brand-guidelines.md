@@ -45,3 +45,7 @@ Beausite is **not freely available**. If you need to use this font type for any 
 {% hint style="info" %}
 An **alternative** (and officially-accepted) font to Beausite available from Google Fonts is the [Inter](https://fonts.google.com/specimen/Inter) font.
 {% endhint %}
+
+## **Web pages**
+
+We maintain a Claude skill for [HTML formatting](https://github.com/ersilia-os/ersilia-skills/tree/main/skills/html-formatting) that applies Ersilia's look and feel to any web content, such as web pages or dashboards. Beyond the colours, typography and logo described above, it also improves how the page is organised. Once the skill is installed, you ask Claude to format a page in the Ersilia style, in either Claude Code or Cowork. For installation instructions, see the [Claude ](https://app.gitbook.com/s/-Mj44wxA7bU1hQH19m8I/agentic-ai)section.

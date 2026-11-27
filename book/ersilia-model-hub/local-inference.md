@@ -197,6 +197,8 @@ The remaining columns contain the model's predictions. To learn what each column
 * The README file in the model's GitHub repository, for example [ersilia-os/eos3b5e](https://github.com/ersilia-os/eos3b5e).
 * The `run_columns.csv` file in the model's repository, at `model/framework/columns/run_columns.csv`, which defines every output column.
 
+To make sense of the results of several models at once, you can use the [molecule-auditing](https://github.com/ersilia-os/ersilia-skills/tree/main/skills/molecule-auditing) skill for Claude Code. Given a table of molecules with model predictions, it helps you interpret the columns, filter and prioritise the molecules, and produces an interactive report with their 2D structures.
+
 ## Get help
 
 If something doesn't work, [open an issue on GitHub](https://github.com/ersilia-os/ersilia/issues) and include the command you ran and the error message.
