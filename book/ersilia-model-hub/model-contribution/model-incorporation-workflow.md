@@ -131,9 +131,9 @@ Skill: `/model-incorporation-pr` commits only the intended files, asks before it
 {% step %}
 #### Release the model
 
-After the merge, Ersilia's workflows test the model again, publish it to Docker Hub and as an SIF image, and release it as `v1.0.0`. Ersilia maintainers then check that every workflow passed, file the model's paper and close the model request.
+After the merge, Ersilia's workflows take over. They test the model again, upload it to S3, build and test its Docker image for AMD64 and ARM64, publish it to Docker Hub and as an SIF image, update `metadata.yml` and the Hub catalogue, and release it as `v1.0.0`. The release comes from the version label of the pull request, see [Model versioning](model-versioning.md). This usually takes a couple of hours, and longer for a slow model. We encourage you to follow the model until it is released, and then to close the model request.
 
-Skill: `/model-incorporation-release`
+Skill: `/model-incorporation-release` follows the workflows until the model is released, tells you what failed if something does, and closes the request once everything is done. It doesn't release the model itself. Ersilia maintainers also use it to file the model's paper in Ersilia's Drive, which they have to do before closing the request.
 {% endstep %}
 {% endstepper %}
 
@@ -179,7 +179,7 @@ hades_score,float,high,Probability that the molecule resembles an approved oral 
 
 **Open the pull request.** `/model-incorporation-pr` commits the work, asks before pushing, and opens the pull request with the `semver:major` version label and a description of what was tested and reproduced. *Check:* that description, and that every automated check passes. For HADES, this is [ersilia-os/eos3xhm#1](https://github.com/ersilia-os/eos3xhm/pull/1).
 
-**Release the model.** After the merge, the workflows release the model automatically. An Ersilia maintainer then runs `/model-incorporation-release` to check every workflow and the release, file the paper and close the request. HADES was released as `v1.0.0` the same day.
+**Release the model.** After the merge, the workflows release the model automatically. `/model-incorporation-release` follows them until the model is released and then closes the request; Ersilia maintainers also use it to file the paper. HADES was released as `v1.0.0` the same day.
 
 ## Get help
 
