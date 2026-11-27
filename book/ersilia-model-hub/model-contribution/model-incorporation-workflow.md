@@ -113,9 +113,11 @@ Skill: `/model-incorporation-reproduce` detects the model type, proposes the che
 {% step %}
 #### Open the pull request
 
-Commit your work to your fork and open a pull request to the `main` branch of the model's repository. Two automated checks run on every pull request: the same test you ran in the Test step, and a check that the pull request has a version label, which an Ersilia maintainer adds; see [Model versioning](model-versioning.md). Make sure they pass. An Ersilia maintainer then reviews the pull request and merges it.
+Commit your work to your fork and open a pull request to the `main` branch of the model's repository. Stage only the files that belong to the model, not the test report or other generated files, and don't put `[skip ci]` or similar in a commit message, because GitHub would then skip the checks. In the description, link the model request with `Refs ersilia-os/ersilia#N` instead of `Closes`, and say what you tested and reproduced, and what you didn't.
 
-Skill: `/model-incorporation-pr`
+Two automated checks run on every pull request: the same test you ran in the Test step, and a check that the pull request has a version label. A new model always takes `semver:major`; an Ersilia maintainer adds the label if you can't, see [Model versioning](model-versioning.md). Make sure both pass. An Ersilia maintainer then reviews the pull request and merges it.
+
+Skill: `/model-incorporation-pr` commits only the intended files, asks before it pushes, opens the pull request with the `semver:major` label and a description of what was and wasn't run, and reports the checks.
 {% endstep %}
 
 {% step %}
