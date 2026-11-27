@@ -4,7 +4,7 @@ Anyone can contribute a model to the Ersilia Model Hub. If you're a researcher w
 
 Every incorporation goes through the same steps, described on this page. You can do them in two ways:
 
-* **Manually**, following [Incorporate a model manually](manual-incorporation.md), which walks through every step with a worked example.
+* **Manually**, following [Incorporate a model manually](https://ersilia.gitbook.io/ersilia-book/ersilia-book/ersilia-book-archive/ersilia-model-hub/model-incorporation-workflow), in the Ersilia Book Archive, which walks through every step with a worked example.
 * **With Ersilia's skills for Claude Code**, which automate most of the work. Each step below names the skill that does it. If you work manually, your goal is to produce the same result as the skill. Each skill's `SKILL.md` file in [ersilia-skills](https://github.com/ersilia-os/ersilia-skills) describes exactly what it does, so you can also use it as a checklist.
 
 Either way, the decisions are yours: whether a model is worth incorporating, whether its results are reproduced faithfully, and whether the final pull request is right.
