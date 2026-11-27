@@ -14,8 +14,7 @@ Either way, the decisions are yours: whether a model is worth incorporating, whe
 You need:
 
 * A GitHub account.
-* Docker, installed and running.
-* Ersilia, installed in test mode so you can test the model locally:
+* Ersilia, installed in test mode if you want to test the model locally before opening the pull request (the same test runs on your pull request either way):
 
 ```bash
 conda create -n ersilia python=3.12
