@@ -78,4 +78,4 @@ Ersilia's CI runs `ersilia test` on every model, through the workflows in [ersil
 | When the model's code on GitHub changes                 | `ersilia test <MODEL_ID> --shallow --from_github`                                  |
 | Before a Docker image is published, for AMD64 and ARM64 | `ersilia test <MODEL_ID> --deep --from_dockerhub --version dev-amd64 --permissive` |
 
-For how these workflows fit together, see [CI/CD workflows](/broken/pages/f858c75afc06c02a4bb36dbfaa72c23bb9c84f67).
+For how these workflows fit together, see [CI/CD workflows](ci-cd-workflows.md).
