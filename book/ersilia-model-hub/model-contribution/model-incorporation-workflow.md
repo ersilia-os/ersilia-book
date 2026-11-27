@@ -60,16 +60,24 @@ Skill: `/model-incorporation-metadata`
 {% step %}
 #### Add the model code
 
-Add the model's code and checkpoints to the [model template](model-template.md), and adapt it so the model reads Ersilia's input and writes output in the expected format. By the end of this step, the repository contains:
+Add the model's code and checkpoints to your clone of the model repository, which Ersilia created from the [`eos-template`](https://github.com/ersilia-os/eos-template) repository, and adapt the code so the model reads Ersilia's input and writes output in the expected format. Start from the template's [`main.py`](https://github.com/ersilia-os/eos-template/blob/main/model/framework/code/main.py), a placeholder that calculates molecular weight. By the end of this step, the repository contains:
 
-* the model's checkpoints in `model/checkpoints/` and its code in `model/framework/code/`, with `main.py` running the model;
-* `install.yml`, listing the dependencies with pinned versions;
-* `run_columns.csv`, describing each output column;
-* `run_input.csv` and `run_output.csv`, an example input and the output the model gives for it.
+* `model/checkpoints/`, with the weights and any other data the model loads. The model must not download weights at run time. If a file is 100 MiB or larger, the folder is stored with eosvc instead of Git; see [Checkpoints and storage](model-template.md#checkpoints-and-storage).
+* `model/framework/code/`, with the model's code. In `main.py`, `load_tool()` does the one-time setup (imports, reading the checkpoints, building the model) and returns the model. `run_tool(model, input_file, output_file)` reads a CSV with a `smiles` column, runs the model on that batch and writes the output CSV, with one row per input molecule in the same order. Handle molecules that can't be parsed without stopping the batch, and keep longer logic in helper modules next to `main.py`. See [The `main.py` file](model-template.md#the-main.py-file).
+* `install.yml`, in the root of the repository, listing the dependencies with pinned versions. See [The `install.yml` file](model-template.md#the-install.yml-file).
+* `model/framework/columns/run_columns.csv`, describing each output column with four fields: `name`, `type` (`string`, `float` or `integer`), `direction` (`high` or `low`, or empty if it doesn't apply) and `description`. It needs one row for each column that `main.py` writes, with the same name, and the number of rows must match `Output Dimension` in `metadata.yml`. See [Columns file](model-template.md#columns-file).
+* `model/framework/examples/run_input.csv` and `run_output.csv`, three example molecules and the output the model gives for them. Produce `run_output.csv` by running the model, not by hand. See [Example files](model-template.md#example-files).
 
-The model must not download weights at run time.
+For example, the `run_columns.csv` of a model that returns the molecular weight:
 
-Skill: `/model-incorporation-code`
+{% code title="model/framework/columns/run_columns.csv" %}
+```csv
+name,type,direction,description
+mol_weight,float,high,The calculated molecular weight of the molecule in g/mol
+```
+{% endcode %}
+
+Skill: `/model-incorporation-code` copies the checkpoints, adapts `main.py` and writes `install.yml`, `run_columns.csv` and the example files, running the model to produce `run_output.csv`.
 {% endstep %}
 
 {% step %}
