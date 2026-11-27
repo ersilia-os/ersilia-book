@@ -99,9 +99,15 @@ Skills: `/ersilia-model-test` runs the test and proposes fixes, and `/model-fixi
 {% step %}
 #### Reproduce the original results
 
-Check that the model, as incorporated, gives the same outputs as the authors' code on the same molecules. If it doesn't, the incorporation has a bug: fix it before you continue. Then compare its performance with what the paper reports, where the data allow. If a result can't be reproduced or differs from the paper, say so in the pull request and explain why, for example that the data isn't public or that the released weights differ from the paper's.
+This step is optional, but we encourage it: it's the best way to catch a bug in the incorporation before the pull request is reviewed. Check that the model, as incorporated, reproduces what the authors report. What you check depends on the model type, which is the `Task` in `metadata.yml`:
 
-Skill: `/model-incorporation-reproduce`
+* **Annotation**, a model that gives a score or a label for each molecule. Run the same molecules through the authors' code and through the Ersilia model, and compare the predictions. Then, if the paper's test data is public, calculate the metric the paper reports, for example the AUC, and compare it with the reported value.
+* **Representation**, a model that gives a vector for each molecule, such as an embedding. Run the same molecules through the authors' code and through the Ersilia model, and compare the vectors. If the paper reports how similar two named molecules are in the model's own embedding space, check that value too.
+* **Sampling**, a model that generates molecules. The molecules usually differ from run to run, so you can't compare them one by one. Check instead that the generated molecules look like the paper describes: the share that are valid, unique and new is close to the reported one, and their properties, such as molecular weight or logP, are similar to those of the training set.
+
+If the Ersilia model doesn't match the authors' code, the incorporation has a bug: fix it before you continue. If a result can't be reproduced or differs from the paper, say so in the pull request and explain why, for example that the data isn't public or that the released weights differ from the paper's.
+
+Skill: `/model-incorporation-reproduce` detects the model type, proposes the checks for it and reports how close each result is to the original.
 {% endstep %}
 
 {% step %}
