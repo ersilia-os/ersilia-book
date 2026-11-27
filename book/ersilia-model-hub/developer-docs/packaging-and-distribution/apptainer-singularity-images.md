@@ -26,7 +26,7 @@ https://models-sif.s3.eu-north-1.amazonaws.com/<model_id>_v<major>.sif
 
 For example, `eos4e40_v1.sif` serves any release `v1.x.y` of eos4e40. Minor releases replace the file. The URL is stored in the model's `Apptainer` metadata field.
 
-The images are built by `build-upload-sif.yml`, a reusable workflow in [ersilia-model-workflows](https://github.com/ersilia-os/ersilia-model-workflows). It runs after the Docker image has passed its tests, on the first release of a model and on every new major and minor release (see [CI/CD workflows](/broken/pages/pMif6oQpI4adpHomlIy4#ersilia-models)).
+The images are built by `build-upload-sif.yml`, a reusable workflow in [ersilia-model-workflows](https://github.com/ersilia-os/ersilia-model-workflows). It runs after the Docker image has passed its tests, on the first release of a model and on every new major and minor release (see [CI/CD workflows](../testing-and-quality/ci-cd-workflows.md#models)).
 
 ## Usage
 
