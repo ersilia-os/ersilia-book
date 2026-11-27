@@ -111,9 +111,17 @@ Skill: `/model-incorporation-reproduce` detects the model type, proposes the che
 {% endstep %}
 
 {% step %}
+#### Optimize the model
+
+This step is optional, and the author decides whether the model needs it. A model's image is usually much bigger than the model itself, because of the libraries it installs: packages the model never uses, packages that other packages pull in, and GPU support that a model running on a CPU doesn't need. If the dependencies in `install.yml` look heavier than they should be, you can trim them, as long as the outputs don't change. Do it before you open the pull request.
+
+Skill: `/model-optimization` finds out which packages the model really uses when it runs, removes the ones it doesn't need from `install.yml`, and checks that the outputs stay exactly the same. It only reduces the size.
+{% endstep %}
+
+{% step %}
 #### Open the pull request
 
-Commit your work to your fork and open a pull request to the `main` branch of the model's repository. Stage only the files that belong to the model, not the test report or other generated files, and don't put `[skip ci]` or similar in a commit message, because GitHub would then skip the checks. In the description, link the model request with `Refs ersilia-os/ersilia#N` instead of `Closes`, and say what you tested and reproduced, and what you didn't.
+Commit your work to your fork and open a pull request to the `main` branch of the model's repository. Stage only the files that belong to the model, not the test report or other generated files, and don't put `[skip ci]` or similar in a commit message, because GitHub would then skip the checks. In the description, link the model request with `Refs ersilia-os/ersilia#N` instead of `Closes`, and say what you tested, reproduced and optimized, and what you didn't.
 
 Two automated checks run on every pull request: the same test you ran in the Test step, and a check that the pull request has a version label. A new model always takes `semver:major`; an Ersilia maintainer adds the label if you can't, see [Model versioning](model-versioning.md). Make sure both pass. An Ersilia maintainer then reviews the pull request and merges it.
 
