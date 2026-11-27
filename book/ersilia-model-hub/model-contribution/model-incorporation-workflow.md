@@ -83,15 +83,17 @@ Skill: `/model-incorporation-code` copies the checkpoints, adapts `main.py` and 
 {% step %}
 #### Test the model
 
-Test the model the way Ersilia will run it in the Hub:
+Test the model the way Ersilia will run it in the Hub. From the `ersilia` environment you created in [Before you begin](#before-you-begin), run:
 
 ```bash
-ersilia test eosXXXX --shallow --from_dir path/to/eosXXXX
+ersilia -v test eosXXXX --shallow --from_dir path/to/eosXXXX
 ```
 
-The test installs the model from your clone, runs it with every input and output format, checks that the metadata and the output files agree, and checks that repeated runs give the same results. The same test runs automatically on your pull request. If a check fails, see [Troubleshooting models](troubleshooting-models.md).
+The folder must be named exactly like the model identifier, so don't rename your clone. The first run can take several minutes, because the test builds the model's environment. It installs the model from your clone, runs it with every input and output format, checks that the metadata and the files agree, including the columns of `run_output.csv` with `run_columns.csv`, and checks that repeated runs give the same results. The same test runs automatically on your pull request.
 
-Skills: `/ersilia-model-test`, then `/model-fixing` if a check fails
+The test prints the result of each check and saves a report, `eosXXXX-test.json`, in the folder where you run it. Don't commit it. Ignore the checks that say "not present", such as the Docker Hub and S3 links and the model size: Ersilia's workflows fill them in after the merge. If a check fails, start with the first one, because a model that doesn't run makes the others fail too, and see [Troubleshooting models](troubleshooting-models.md). The test doesn't check the values in `run_output.csv`, so regenerate that file whenever you change the code.
+
+Skills: `/ersilia-model-test` runs the test and proposes fixes, and `/model-fixing` applies them once you confirm.
 {% endstep %}
 
 {% step %}
