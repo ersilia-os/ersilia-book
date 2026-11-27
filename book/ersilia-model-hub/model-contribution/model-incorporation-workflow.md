@@ -50,7 +50,7 @@ Skill: `/model-incorporation-request` opens the issue from the paper and its cod
 {% step %}
 #### Fill in the metadata
 
-Complete `metadata.yml` with the information from the paper and the source repository: what the model does, its task and inputs and outputs, the publication, the source code and the license. Many fields only accept values from a fixed list, described in [The `metadata.yml` file](model-template.md#the-metadata.yml-file). Check the source and license fields carefully against the original publication.
+Complete `metadata.yml` with the information from the paper and the source repository: what the model does, its task and inputs and outputs, the publication, the source code and the license. Many fields only accept values from a fixed list, described in the [metadata.yml reference](model-template.md#the-metadata.yml-file). Check the source and license fields carefully against the original publication.
 
 The output dimension and the interpretation must match the output columns you define in the next step, so check them again once the code is in place.
 
