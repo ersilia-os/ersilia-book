@@ -40,11 +40,11 @@ Skill: [`/paper-to-model-assessment`](https://github.com/ersilia-os/ersilia-skil
 {% step %}
 #### Request the model
 
-Open a model request issue on [ersilia-os/ersilia](https://github.com/ersilia-os/ersilia). The form asks for the model's name, a short description, a slug, tags, the publication, the source code and the license. An Ersilia maintainer reviews the request and, once it's approved, creates the model's repository from the model template, with its identifier, for example `eos3xhm`.
+Open a model request issue on [ersilia-os/ersilia](https://github.com/ersilia-os/ersilia). The form asks for the model's name, a short description (up to 600 characters), a slug, tags, the publication, the source code and the license. An Ersilia maintainer reviews and approves the request, and Ersilia's bot then creates the model's repository from the model template, with its identifier, for example `eos3xhm`.
 
 Fork that repository to your GitHub account and clone your fork. You'll do all the following steps in your clone and open the pull request from your fork.
 
-Skill: `/model-incorporation-request`
+Skill: `/model-incorporation-request` opens the issue from the paper and its code and, once the request is approved, forks and clones the repository for you.
 {% endstep %}
 
 {% step %}
