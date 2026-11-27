@@ -137,7 +137,7 @@ Skill: `/model-incorporation-release` follows the workflows until the model is r
 {% endstep %}
 {% endstepper %}
 
-Once a month, Ersilia maintainers use the [model-incorporation-digest](https://github.com/ersilia-os/ersilia-skills/tree/main/skills/model-incorporation-digest) skill to summarise all the models incorporated into the Hub during that month, crediting their original authors and flagging any metadata that needs fixing.
+Once a month, Ersilia maintainers use the [model-incorporation-digest](https://github.com/ersilia-os/ersilia-skills/tree/main/skills/model-incorporation-digest) skill to summarise all the models incorporated into the Hub during that month, crediting their original authors.
 
 ## Example: incorporating eos3xhm
 
