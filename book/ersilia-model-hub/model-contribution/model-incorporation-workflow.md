@@ -30,9 +30,9 @@ If the model's checkpoints include a file of 100 MiB or more, or if you include 
 
 ## Choose a model
 
-Good candidates are published, open source models relevant to infectious or neglected disease research, with code and trained weights available and a license that allows redistribution. Before you start, follow the original authors' instructions to run the model on your machine, and note its dependencies.
+Good candidates are published models that take a single small molecule as input (SMILES, InChI or molfile), perform a Hub task such as activity or property prediction, and address an endpoint relevant to Ersilia, such as antimicrobial resistance, neglected diseases or ADMET. Their code or weights must be open, with a license that allows redistribution. Before you start, follow the original authors' instructions to run the model on your machine, and note its dependencies.
 
-Skill: [`/paper-to-model-assessment`](https://github.com/ersilia-os/ersilia-skills/tree/main/skills/paper-to-model-assessment) summarizes the paper, checks whether the Hub already has a similar model, and assesses its relevance to Ersilia.
+Skill: [`/paper-to-model-assessment`](https://github.com/ersilia-os/ersilia-skills/tree/main/skills/paper-to-model-assessment) summarizes the paper from its PDF, checks whether the Hub already has a similar model, and assesses its relevance to Ersilia.
 
 ## Incorporate the model
 
