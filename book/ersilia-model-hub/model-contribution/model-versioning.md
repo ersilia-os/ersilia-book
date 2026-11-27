@@ -6,18 +6,20 @@ Releases are automatic. Every pull request to a model's `main` branch carries ex
 
 ## Version labels
 
-| Label | Use it when | After the merge |
-|---|---|---|
-| `semver:major` | The outputs change: values, columns or rows | The model is tested, rebuilt and released as `vN+1.0.0` |
-| `semver:minor` | The code, dependencies or checkpoints change, and the outputs stay the same | The model is tested, rebuilt and released as `vN.M+1.0` |
-| `semver:patch` | Only the metadata changes | The model is released as `vN.M.P+1` without rebuilding its image |
-| `no-release` | Nothing that reaches the model changes, such as the workflows or git settings | Nothing runs |
+| Label | Use it when | After the merge | From `v1.2.3` |
+|---|---|---|---|
+| `semver:major` | The outputs change: values, columns or rows | The model is tested, rebuilt and released as `vN+1.0.0` | `v2.0.0` |
+| `semver:minor` | The code, dependencies or checkpoints change, and the outputs stay the same | The model is tested, rebuilt and released as `vN.M+1.0` | `v1.3.0` |
+| `semver:patch` | Only the metadata changes | The model is released as `vN.M.P+1`. Its image is retagged, not rebuilt, and the new metadata reaches the Hub | `v1.2.4` |
+| `no-release` | Nothing that reaches the model changes, such as the workflows or git settings | No tests, rebuild or release | no new version |
 
-If several rows apply, use the highest. Choose the label by the effect of the change on people who use the model, not by which files changed.
+If several rows apply, use the highest. Choose the label by the effect of the change on people who use the model, not by which files changed. The SIF image is built only for major and minor releases, see [Apptainer and Singularity images](../developer-docs/packaging-and-distribution/apptainer-singularity-images.md).
 
-A **new incorporation** always uses `semver:major`, because it adds output columns to an empty template. Its first release is still `v1.0.0`: a repository with no releases starts there, whatever the label.
+A **new incorporation** always uses `semver:major`, because it adds output columns to an empty template. Its first release is still `v1.0.0`: a repository with no releases starts there, whatever the label. See [Open the pull request](model-incorporation-workflow.md) in the incorporation workflow.
 
 Adding a label needs triage permission on the model's repository. If you're an external contributor, an Ersilia maintainer adds it for you.
+
+A pull request merged without a version label is rebuilt but not released, unless it is the first release of a new model. A run started by hand never releases either. Ersilia maintainers check that the label is there before merging.
 
 ## Choose the label
 
@@ -68,13 +70,13 @@ The **Check version label** check runs on every pull request. It works out the m
 | Change | Minimum |
 |---|---|
 | Only `.github/`, `.gitignore`, `.gitattributes`, `CLAUDE.md` or `AGENTS.md` | `no-release` |
-| `metadata.yml`, `README.md`, `LICENSE` or `access.json` | `semver:patch` |
+| `metadata.yml` (or `metadata.json`), `README.md`, `LICENSE` or `access.json` | `semver:patch` |
 | `run_columns.csv`, descriptions or direction only | `semver:patch` |
 | `run_columns.csv`, column names, order or types | `semver:major` |
 | `run_output.csv`, values beyond 1e-4, or columns or rows | `semver:major` |
 | `run_input.csv` | `semver:minor` (the outputs can't be compared, so check by hand) |
 | Anything else: code, dependencies or checkpoints | `semver:minor`, and the model is run on the example input |
 
-When the model is run, its outputs are compared with the previous `run_output.csv`. Values that differ by more than 1e-4 raise the minimum to MAJOR.
+When the model is run, its outputs are compared with the previous `run_output.csv`. Values that differ by more than 1e-4 raise the minimum to MAJOR. The model isn't run for Online models, or when `run_input.csv` also changed. For models with `Output Consistency: Variable`, only the columns and the number of rows are compared, not the values.
 
-The check fails if the label is missing, if there's more than one, or if it's lower than the minimum. A higher label is allowed, and sometimes needed: the check only sees the three example molecules, so new checkpoints that happen to give the same outputs on them still need `semver:major`.
+The check fails if the label is missing, if there's more than one, if it's lower than the minimum, or if the model can't be run on the example input. A higher label is allowed, and sometimes needed: the check only sees the three example molecules, so new checkpoints that happen to give the same outputs on them still need `semver:major`.
