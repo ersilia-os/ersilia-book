@@ -12,7 +12,15 @@ There are three ways to interact with Claude, and at Ersilia we use all three de
 * **Claude Cowork** is a desktop application aimed at file and operations work, where Claude can read and edit files on your computer, connect to apps like Airtable or Slack, and follow custom workflows.
 * **Claude Code** is a command-line tool that gives Claude direct access to your terminal and your codebase, and is what we use for science and platform engineering.
 
-All three interfaces share a key concept that makes Claude actually useful for our day-to-day work: **skills**. Skills can be used in Chat as well, but because a skill usually encodes a recurring task, they are most often used in Cowork or Code, where Claude is acting on our files and systems. Before going into each interface, the next section explains what a skill is and why it matters.
+|                        |        **Chat**       |        **Cowork**       |        **Code**       |
+| ---------------------- | :-------------------: | :---------------------: | :-------------------: |
+| **Where**              |       claude.ai       |       Desktop app       |   Terminal / VSCode   |
+| **Touches your files** | Only files you upload |            ✅            |           ✅           |
+| **Connects to apps**   |           ✅           |            ✅            |           ✅           |
+| **Runs code**          |      ✅ (sandbox)      |       ✅ (sandbox)       |    ✅ (your machine)   |
+| **Output**             |       An answer       |   A file or app update  |        A commit       |
+| **Best for**           |     Quick thinking    |     Operations work     |    Engineering work   |
+| **Who uses it most**   |        Everyone       | Comms, fundraising, ops | Scientists, engineers |
 
 ## Claude Skills
 
@@ -22,17 +30,9 @@ Without skills, you would need to re-explain context and process to Claude every
 
 The same skill works in Chat, Cowork, and Code. A skill written once works across all three Claude interfaces — Chat, Cowork, and Code — because the `SKILL.md` format is identical everywhere; what changes is how the skill is distributed and how you invoke it (a slash command in Code, natural language in Cowork, an attached file in Chat).
 
-Anthropic maintains a registry of general-purpose skills for common tasks. Ersilia maintains its own library of skills tailored to our specific work in the [ersilia-skills](https://github.com/ersilia-os/ersilia-skills/tree/main) repository.
+Anthropic maintains a registry of general-purpose skills for common tasks. Ersilia maintains its own library of skills tailored to our specific work in the [ersilia-skills](https://github.com/ersilia-os/ersilia-skills/tree/main) repository, and skills that produce recurring reports are described in [automations](claude-101.md#automations). Once a skill has been created, it can be used across the different ways of interacting with Claude.
 
-### Installing Skills in Claude Chat
 
-To install a skill in **Claude Chat**, open [claude.ai](https://claude.ai/) and go to _Settings → Customize → Skills_. Click _Create skill_ (or _Upload skill_) and either upload the skill folder as a `.zip` — containing the `SKILL.md` file and any supporting reference documents — or paste the contents directly into the editor. Once saved, the skill is added to your account and stays available across all future conversations.
-
-### Installing Skills in Claude Cowork
-
-To install a skill in **Claude Cowork**, open the desktop app and go to _Customize → Explore plugins_. From this screen you can upload an individual skill (a folder containing the `SKILL.md` file and any supporting reference documents), create one from scratch, or install a skill published by Anthropic. Once added, the skill becomes available across all your Cowork sessions — you do not need to enable it per conversation. To use it, just describe the task in natural language and Claude will pick the right skill based on its description.
-
-In practice, however, skills are rarely installed one by one in Cowork. Most of the time they come bundled inside a **plugin**: a single installable package that groups together a set of skills, the connectors they need (MCPs like Airtable, Slack or Drive), and any slash commands the team has defined. You can install plugins from your organization or Anthropic from _Customize → Explore plugins_ and it gives you the whole setup in one step instead of uploading each skill and configuring each connector separately. You can also use the tool in _Customize → Create plugins to_ create plugins with Claude or uploaded them from your computer or the marketplace.
 
 #### Installing Anthropic skills
 
@@ -97,6 +97,10 @@ Use Claude Chat when you want a fast answer or a thinking partner and Claude doe
 
 To use it, sign in at [claude.ai](https://claude.ai) with your Google account.
 
+#### How to install skills
+
+To install a skill in Claude Chat, open [claude.ai](https://claude.ai/) and go to _Settings → Customize → Skills_. Click _Create skill (or Upload skill)_ and either upload the skill folder as a `.zip` — containing the `SKILL.md` file and any supporting reference documents — or paste the contents directly into the editor. Once saved, the skill is added to your account and stays available across all future conversations.
+
 #### How to invoke a skill
 
 In Claude Chat, you can attach a skill file or paste its contents to apply the workflow to that conversation.
@@ -116,6 +120,10 @@ Use Claude Cowork when your task involves files on your computer or data in our 
 #### How to install it
 
 To get started, download the Claude desktop app from [anthropic.com](https://www.anthropic.com), sign in with your Google account, and enable Cowork mode from the app menu. Then install the Ersilia plugin to load our skills and connectors automatically.
+
+#### How to install skills
+
+To install a skill in Claude Cowork, open the desktop app and go to _Customize → Explore plugins_. From this screen you can upload an individual skill (a folder containing the <mark style="color:green;">SKILL.md</mark> file and any supporting reference documents), create one from scratch, or install a skill published by Anthropic. Once added, the skill becomes available across all your Cowork sessions — you do not need to enable it per conversation.
 
 #### How to invoke a Skill
 
@@ -159,14 +167,10 @@ Use Claude Code when you are working inside a codebase — writing, reviewing, d
 
 In Claude Code, skills are invoked as slash commands: typing `/skill-name` loads the workflow.
 
-### What to use in each case
+### Ersilia MCP
 
-|                        |        **Chat**       |        **Cowork**       |        **Code**       |
-| ---------------------- | :-------------------: | :---------------------: | :-------------------: |
-| **Where**              |       claude.ai       |       Desktop app       |   Terminal / VSCode   |
-| **Touches your files** | Only files you upload |            ✅            |           ✅           |
-| **Connects to apps**   |           ✅           |            ✅            |           ✅           |
-| **Runs code**          |      ✅ (sandbox)      |       ✅ (sandbox)       |    ✅ (your machine)   |
-| **Output**             |       An answer       |   A file or app update  |        A commit       |
-| **Best for**           |     Quick thinking    |     Operations work     |    Engineering work   |
-| **Who uses it most**   |        Everyone       | Comms, fundraising, ops | Scientists, engineers |
+The [Ersilia MCP](https://github.com/ersilia-os/ersilia-mcp) server connects Claude and other AI assistants directly to Ersilia's tools. Through the MCP, users can run models from the Ersilia Model Hub, query precalculated results stored in Isaura, and work with models running locally (a GitHub Codespaces setup is available for testing). We plan to use it in our research and workshops and as part of our work on agentic automation at Ersilia.
+
+### Automations
+
+Some of our skills produce recurring reports that keep the team up to date. They can be run by hand or scheduled. For example, [literature-digest](https://github.com/ersilia-os/ersilia-skills/tree/main/skills/literature-digest) produces a weekly digest of new scientific literature, highlighting models and datasets that could be incorporated into the Ersilia Model Hub, and [event-discovery](https://github.com/ersilia-os/ersilia-skills/tree/main/skills/event-discovery) finds upcoming conferences, workshops and fellowships relevant to Ersilia and summarises them in a classified report.
