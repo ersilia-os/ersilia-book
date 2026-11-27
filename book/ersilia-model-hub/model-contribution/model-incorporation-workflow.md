@@ -141,13 +141,13 @@ Once a month, Ersilia maintainers use the [model-incorporation-digest](https://g
 
 ## Example: incorporating eos3xhm
 
-[HADES](https://github.com/Narek-Petros-yan/HADES) ([*J. Chem. Inf. Model.*, 2026](https://doi.org/10.1021/acs.jcim.5c02953)) scores how closely a compound resembles an approved oral drug. This example walks through its incorporation as `eos3xhm` with the skills: for each step, what the skill does, what you should check, and what the step produced for HADES. The skills propose and you decide: only you can confirm that the model's details are correct. The files linked below are from the release `v1.0.1`.
+[HADES](https://github.com/Narek-Petros-yan/HADES) ([*J. Chem. Inf. Model.*, 2026](https://doi.org/10.1021/acs.jcim.5c02953)) estimates how closely a molecule resembles an approved oral drug. This example follows its incorporation into the Hub as `eos3xhm`, step by step, and explains what each step means in chemical and in programming terms. In every step, the skill proposes the values and the contributor confirms them. The files linked below belong to the first release of the model, `v1.0.0`. The optional optimization step is not shown.
 
-**Choose a model.** `/paper-to-model-assessment` summarizes the paper and looks for similar models in the Hub. For HADES, it found two drug-likeness models already there. *Check:* what the new model adds. HADES is trained on approved oral drugs, unlike the other two, so we went ahead.
+**Choose a model.** `/paper-to-model-assessment` summarizes the paper and searches the Hub for similar models. Drug-likeness models estimate how much a molecule resembles known drugs, and they are used to prioritize molecules in drug discovery. The Hub already had two of them, but HADES is trained on approved oral drugs, unlike the other two, so it adds something new and was incorporated.
 
-**Request the model.** `/model-incorporation-request` proposes every field of the request from the paper and the source code, and opens the issue once you confirm. *Check:* the name, the description, the publication and the license, against the paper. The request for HADES is [ersilia-os/ersilia#1907](https://github.com/ersilia-os/ersilia/issues/1907). Once it was approved, the repository [ersilia-os/eos3xhm](https://github.com/ersilia-os/eos3xhm) was created, and the skill forked it and cloned the fork.
+**Request the model.** `/model-incorporation-request` proposes every field of the request from the paper and the source code, and opens the issue once the contributor confirms. The request for HADES is [ersilia-os/ersilia#1907](https://github.com/ersilia-os/ersilia/issues/1907). After it was approved, the repository [ersilia-os/eos3xhm](https://github.com/ersilia-os/eos3xhm) was created from the model template, and the skill forked it and cloned the fork.
 
-**Fill in the metadata.** `/model-incorporation-metadata` proposes a value for every field of `metadata.yml`, and writes them once you confirm. *Check:* every field against the paper, including the ones you didn't write. The main fields in [`metadata.yml`](https://github.com/ersilia-os/eos3xhm/blob/v1.0.1/metadata.yml) are:
+**Fill in the metadata.** `/model-incorporation-metadata` proposes a value for every field of `metadata.yml` from the paper and the code, and writes them once the contributor confirms. The main fields in [`metadata.yml`](https://github.com/ersilia-os/eos3xhm/blob/v1.0.0/metadata.yml) describe what the model does and what it returns:
 
 ```yaml
 Task: Annotation
@@ -160,26 +160,22 @@ Interpretation: Probability that a compound resembles an approved oral drug;
 License: MIT
 ```
 
-**Add the model code.** `/model-incorporation-code` adds the authors' code and checkpoints to the template, writes `main.py`, pins the dependencies in `install.yml`, describes the outputs in `run_columns.csv`, and runs the model to produce the example files. *Check:* that the output columns and their direction make sense, and that a molecule that can't be read gets an empty row instead of being dropped. For HADES, the checkpoints are five classifiers; the largest is 64 MB, under the 100 MiB limit, so all of them are in Git. Its [`run_columns.csv`](https://github.com/ersilia-os/eos3xhm/blob/v1.0.1/model/framework/columns/run_columns.csv) has one column:
+**Add the model code.** `/model-incorporation-code` adds the authors' code and checkpoints to the template, writes `main.py`, pins the dependencies in `install.yml`, describes the output in `run_columns.csv`, and runs the model to produce the example files. For HADES, the model returns one score per molecule. Its [`run_columns.csv`](https://github.com/ersilia-os/eos3xhm/blob/v1.0.0/model/framework/columns/run_columns.csv) describes that column:
 
 ```
 name,type,direction,description
 hades_score,float,high,Probability that the molecule resembles an approved oral drug with 0.63 the recommended cutoff
 ```
 
-**Test the model.** `/ersilia-model-test` runs `ersilia test --shallow` and explains any check that fails; `/model-fixing` applies the fixes once you agree. For HADES, every check passed.
+The direction is `high` because a higher score means a closer resemblance to an approved oral drug. The dependencies are pinned to exact versions because a new version of a library can change the results without any error.
 
-**Reproduce the original results.** `/model-incorporation-reproduce` compares the model with the authors' code, then recomputes the metrics the paper reports. *Check:* the reproduced numbers against the paper yourself, and that any gap is explained. For HADES, the outputs matched the authors' code on 20 molecules (Spearman correlation 1.000), and the paper's results reproduced on its 1,622-molecule test set:
+**Test the model.** `/ersilia-model-test` runs `ersilia test --shallow`, which runs the model on the example molecules and checks the files, the metadata and the consistency of the outputs. `/model-fixing` applies the fixes if a check fails. For HADES, every check passed.
 
-| Metric | Paper | Reproduced |
-|---|---|---|
-| Accuracy | 0.909 | 0.9094 |
-| Brier score | 0.070 | 0.0700 |
-| Large-error rate (above 0.7) | 6.17% | 6.165% |
+**Reproduce the original results.** `/model-incorporation-reproduce` checks that the Ersilia model gives the same scores as the authors' code on a set of molecules, and that the metrics reported in the paper are obtained again on the paper's test set. For HADES, both checks passed. For example, the accuracy reported in the paper, 0.909, was reproduced.
 
-**Open the pull request.** `/model-incorporation-pr` commits the work, asks before pushing, and opens the pull request with the `semver:major` version label and a description of what was tested and reproduced. *Check:* that description, and that every automated check passes. For HADES, this is [ersilia-os/eos3xhm#1](https://github.com/ersilia-os/eos3xhm/pull/1).
+**Open the pull request.** `/model-incorporation-pr` commits the work, asks before pushing, and opens the pull request with the `semver:major` version label, which marks a new model, and a description of what was tested and reproduced. For HADES, this is [ersilia-os/eos3xhm#1](https://github.com/ersilia-os/eos3xhm/pull/1).
 
-**Release the model.** After the merge, the workflows release the model automatically. `/model-incorporation-release` follows them until the model is released and then closes the request; Ersilia maintainers also use it to file the paper. HADES was released as `v1.0.0` the same day.
+**Release the model.** After the merge, the workflows test the model again, build its images and release it automatically. HADES was released as `v1.0.0`, the first version of every model. `/model-incorporation-release` follows the workflows until the model is released and then closes the request; Ersilia maintainers also use it to file the paper.
 
 ## Get help
 
